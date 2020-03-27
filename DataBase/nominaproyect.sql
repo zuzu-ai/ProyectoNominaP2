@@ -75,13 +75,23 @@ Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table tipo_Porcentaje(
-
+Igss double(2,2) not null,
+Isr double(2,2)not null
 )engine=Innodb;
 
 create table tipo_Cuota(
+Descuentos double(5,2) not null,
+Descuentos_Judiciales double(5,2) not null
 )engine=Innodb;
 
 create table tipo_Tabla(
 
 )engine=Innodb;
+
+create table clase(
+Codigo_Concepto varchar(5) not null,
+foreign key (Codigo_Concepto) references
+Conceptos(Codigo_Concepto)
+)engine=Innodb;
+
 

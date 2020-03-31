@@ -31,13 +31,23 @@ foreign key (Codigo_Departamento) references
 Departamentos(Codigo_Departamento)
 )engine=InnoDB;
 
-create table conceptos(
+create table Aplicacion(
+Codigo_Aplicacion varchar(1) primary key,
+Codigo_Puesto varchar(5) not null,
+Excepcion varchar(5),
+foreign key (Codigo_Puesto) references
+Puestos(Codigo_Puesto)
+)engine=Innodb;
+
+create table Conceptos(
 Codigo_Concepto varchar(5) primary key,
 Nombre_Concepto varchar(10) not null,
 Tipo_Concepto varchar(1) not null,
 Clase_Concepto varchar(1) not null,
 Aplicacion_Concepto varchar(1) not null,
-Valor int not null
+Valor int not null,
+foreign key (Aplicacion_Concepto) references
+aplicacion(Codigo_Aplicacion)
 )engine=Innodb;
 
 create table NominaEncabezado
@@ -47,7 +57,7 @@ Fecha_Inicial_Nomina date,
 Fecha_Final_Nomina date
 )engine=InnoDB;
 
-create table NominaDescripcion
+create table Nomina_Descripcion
 (
 Codigo_Nomina varchar(5) not null,
 Codigo_Empleado varchar(5) not null,
@@ -62,36 +72,35 @@ foreign key (Codigo_Concepto) references
 Conceptos(Codigo_Concepto)
 )engine=InnoDB;
 
-create table aplicacion_Excepcion(
-Codigo_Concepto varchar(5) not null,
+create table Tipo_Porcentaje(
+Codigo_Concepto varchar(5) primary key,
+Nombre_Porcentaje varchar(60) not null,
+Tipo_Clase varchar(1) not null,
+Valor float(10),
 foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
+Conceptos(Codigo_Concepto),
+foreign key (Tipo_Clase) references
+Conceptos(Clase_Concepto)
 )engine=Innodb;
 
-create table aplicacion_Algunos(
-Codigo_Concepto varchar(5) not null,
+create table Tipo_Cuota(
+Codigo_Concepto varchar(1) primary key,
+Nombre_Cuota varchar(60) not null,
+Tipo_Clase varchar(1) not null,
+Valor float(10),
 foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
-)engine=Innodb;
-
-create table tipo_Porcentaje(
-Igss double(2,2) not null,
-Isr double(2,2)not null
-)engine=Innodb;
-
-create table tipo_Cuota(
-Descuentos double(5,2) not null,
-Descuentos_Judiciales double(5,2) not null
+Conceptos(Codigo_Concepto),
+foreign key (Tipo_Clase) references
+Conceptos(Clase_Concepto)
 )engine=Innodb;
 
 create table tipo_Tabla(
-
-)engine=Innodb;
-
-create table clase(
-Codigo_Concepto varchar(5) not null,
+Codigo_Concepto varchar(5) primary key,
+Rango_V1 float(10),
+Rango_V2 float(10),
+Valor varchar(1),
 foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
+Conceptos(Clase_Concepto)
 )engine=Innodb;
 
-
+drop database nominaproyect;

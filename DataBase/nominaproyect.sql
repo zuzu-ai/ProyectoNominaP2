@@ -75,23 +75,17 @@ Conceptos(Codigo_Concepto)
 create table Tipo_Porcentaje(
 Codigo_Concepto varchar(5) primary key,
 Nombre_Porcentaje varchar(60) not null,
-Tipo_Clase varchar(1) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto),
-foreign key (Tipo_Clase) references
-Conceptos(Clase_Concepto)
+Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table Tipo_Cuota(
 Codigo_Concepto varchar(1) primary key,
 Nombre_Cuota varchar(60) not null,
-Tipo_Clase varchar(1) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto),
-foreign key (Tipo_Clase) references
-Conceptos(Clase_Concepto)
+Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table tipo_Tabla(
@@ -100,7 +94,7 @@ Rango_V1 float(10),
 Rango_V2 float(10),
 Valor varchar(1),
 foreign key (Codigo_Concepto) references
-Conceptos(Clase_Concepto)
+Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 drop database nominaproyect;

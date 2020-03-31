@@ -3,7 +3,7 @@ package PaqueteNomina;
 
 
 import java.io.Serializable;
-
+import java.sql.*;
 /**
  *
  * @author ranbr

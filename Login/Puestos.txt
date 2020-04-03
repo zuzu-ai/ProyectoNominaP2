@@ -1,0 +1,4 @@
+Gerente
+Supervisor
+Vendedor
+Auxiliar

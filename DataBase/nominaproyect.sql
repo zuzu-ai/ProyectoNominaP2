@@ -1,16 +1,16 @@
 create database nominaproyect;
 use nominaproyect;
+drop database nominaproyect;
 
-create table Puestos
-(
-Codigo_Puesto varchar(5) primary key,
+create table Puestos(
+Codigo_Puesto int primary key auto_increment,
 Nombre_Puesto varchar(60) not null,
 Estado_Puesto varchar(1) not null
 )engine=InnoDB;
 
 create table Departamentos
 (
-Codigo_Departamento varchar(5) primary key,
+Codigo_Departamento int primary key auto_increment,
 Nombre_Departamento varchar(60) not null,
 Estado_Departamento varchar(1) not null
 )engine=InnoDB;

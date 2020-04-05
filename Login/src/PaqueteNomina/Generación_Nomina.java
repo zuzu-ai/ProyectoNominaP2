@@ -1,4 +1,6 @@
 package PaqueteNomina;
+
+
 import java.sql.*;
 
 /*
@@ -57,52 +59,43 @@ public class Generación_Nomina extends javax.swing.JFrame {
     /**
      * Actualiza los datos en el combobox Departamento.
      */
-                int registros=1000;
-        FileReader fr;
-        try {
-            fr = new FileReader("Departamentos.txt");
-            BufferedReader bf=new BufferedReader(fr);
-           for(int i=0;i<registros;i++){
-            String dato= bf.readLine();
-            cmbxDepartamento.addItem(dato);
+      int registros=1000;
+      try{
+           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+          for(int i=0;i<registros;i++){
+            PreparedStatement pst = cn.prepareStatement("select Nombre_Departamento from departamentos where ID = "+i);
+            ResultSet rs = pst.executeQuery(); 
+            cmbxDepartamento.addItem(rs.getString("Nombre_Departamento"));
             i=i++;
-           } 
-            
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }
+           }
+      }catch(Exception e){};
         
+      
            /**
      * Actualiza los datos en el combobox Nombre Empleado.
      */
-        try {
-            fr = new FileReader("NombreEmpleados.txt");
-            BufferedReader bf=new BufferedReader(fr);
+      try{
+          Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
            for(int i=0;i<registros;i++){
-            String dato= bf.readLine();
-            cmbxNombreEmpleado.addItem(dato);
+            PreparedStatement pst = cn.prepareStatement("select Nombre_Empleado from empleados where ID = "+i);
+            ResultSet rs = pst.executeQuery(); 
+            cmbxNombreEmpleado.addItem(rs.getString("Nombre_Empleado"));
             i=i++;
-           } 
-            
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }
+           }
+      }catch(Exception e){};
         
             /**
      * Actualiza los datos en el combobox Puesto.
      */
-        try {
-            fr = new FileReader("Puestos.txt");
-            BufferedReader bf=new BufferedReader(fr);
-           for(int i=0;i<registros;i++){
-            String dato= bf.readLine();
-            cmbxPuesto.addItem(dato);
+      try{
+          Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+          for(int i=0;i<registros;i++){
+            PreparedStatement pst = cn.prepareStatement("select Nombre_Puesto from puestos where ID = "+i);
+            ResultSet rs = pst.executeQuery(); 
+            cmbxPuesto.addItem(rs.getString("Nombre_Puesto"));
             i=i++;
-           } 
-            
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }
+           }
+      }catch(Exception e){};
 
         
     }
@@ -169,7 +162,6 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         setTitle("Generación de Nómina");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(938, 894));
 
         jScrollPane2.setAutoscrolls(true);
 
@@ -1190,27 +1182,7 @@ String strIgss=txtIgss.getText();
      * Llena la tabla NombreEmpleado cuando se ingresa a Generación de Planilla según los empleados en el archivo.
      */
     private void cmbxNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoActionPerformed
-        // TODO add your handling code here:
-        int registros=1000;
-        String partes[]=new String[3];
-        String dato=null;
-        String nombre=null;
-        FileReader fr; 
-        try {
-            fr = new FileReader("Puestos.txt");
-            BufferedReader bf=new BufferedReader(fr);
-           for(int i=0;i<registros;i++){
-            String datoe= bf.readLine();
-            cmbxPuesto.addItem(datoe);
-            i=i++;
-           } 
-            
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }
-        
-
-       
+        // TODO add your handling code here:      
     }//GEN-LAST:event_cmbxNombreEmpleadoActionPerformed
 
     private void cmbxNombreEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoKeyReleased
@@ -1242,35 +1214,6 @@ String strIgss=txtIgss.getText();
      */
     private void cmbxNombreEmpleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoKeyPressed
         // TODO add your handling code here:
-                FileReader fr;
-        int registros=1000; 
-        String nombrecombo="";
-        nombrecombo=(String)cmbxNombreEmpleado.getSelectedItem();
-       
-         try {
-            fr = new FileReader("Sueldos.txt");
-            BufferedReader bf=new BufferedReader(fr);
-           for(int i=0;i<registros;i++){
-            String datox= bf.readLine();
-            String partes[]=datox.split(" ");
-            
-
-                for(int j=0;j<1;j++){               
-                String nombresueldo=partes[0]+" "+partes[1];
-                
-                
-                if(nombresueldo==nombrecombo){
-                    txtSueldoBase.setText(partes[2]);
-                }
-            j++;
-            
-            }
-               
-            i++;
-           }
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) {
-        }  
     }//GEN-LAST:event_cmbxNombreEmpleadoKeyPressed
 /**
      * Ingresa al empleado en el JTable y en un archivo llamado Nomina, donde se guarda un registro de respaldo.
@@ -1298,35 +1241,11 @@ String strIgss=txtIgss.getText();
         liquido=txtSueldoLiquido.getText();
         formapago=(String)cmbxFormadePago.getSelectedItem();
         
-        FileWriter escritura = null;
-        PrintWriter pw = null;
-        try
-        {
-            escritura = new FileWriter("Nomina.txt");
-            pw = new PrintWriter(escritura);
-
-            for (int i = 0; i < 1; i++)
-                pw.println(departamento+" "+puesto+" "+nombre+" "+sueldo+" "+comisiones+" "+bonificacionesextra+" "+incentivo+" "+sueldodevengado+" "+igss+" "+isr+" "+anticipos+" "+descuentosj+" "+otrosdescuentos+" "+totaldescuentos+" "+liquido+" "+formapago);
-
-        } catch (Exception e) {
-            
-        } finally {
-           try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
-           if (null != escritura)
-              escritura.close();
-           } catch (Exception e2) {
-              
-           }
+        
+        
         }
-       } else{
-           advertencia.setVisible(true);
-       }
         
-        //IMPRESION EN TABLA
         
-    
     }//GEN-LAST:event_IngresarEmpleadoActionPerformed
 
     private void txtSueldoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoBaseActionPerformed

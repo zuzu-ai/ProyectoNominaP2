@@ -152,7 +152,6 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnEliminarDep" min="-2" pref="33" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="193" pref="193" max="-2" attributes="0"/>

@@ -328,6 +328,8 @@ public class Departamento extends javax.swing.JFrame {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
             PreparedStatement pst = cn.prepareStatement("update Departamentos set Codigo_Departamento = ?, Nombre_Departamento = ?,Estado_Departamento = ? where Codigo_Departamento = " + codigo);
             String mensaje="";
+            
+     
 
             if (activo.isSelected()) {
                 mensaje="A";

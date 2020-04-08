@@ -1,16 +1,16 @@
 create database nominaproyect;
 use nominaproyect;
+drop database nominaproyect;
 
-create table Puestos
-(
-Codigo_Puesto varchar(5) primary key,
+create table Puestos(
+Codigo_Puesto int primary key auto_increment,
 Nombre_Puesto varchar(60) not null,
 Estado_Puesto varchar(1) not null
 )engine=InnoDB;
 
 create table Departamentos
 (
-Codigo_Departamento varchar(5) primary key,
+Codigo_Departamento int primary key auto_increment,
 Nombre_Departamento varchar(60) not null,
 Estado_Departamento varchar(1) not null
 )engine=InnoDB;
@@ -97,6 +97,51 @@ foreign key (Codigo_Concepto) references
 Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
+drop database nominaproyect;
+
+create table Reporte_Direccion(
+Reporte_Direccion_Id varchar(128) primary key not null
+, Reporte_Direccion_Zona1 decimal(2,2) not null
+, Reporte_Direccion_Zona2 decimal(2,2) not null
+, Reporte_Direccion_Zona3 decimal(2,2) not null
+, Reporte_Direccion_Zona4 decimal(2,2) not null
+, Reporte_Direccion_Zona5 decimal(2,2) not null
+, Reporte_Direccion_Zona6 decimal(2,2) not null
+, Reporte_Direccion_Zona7 decimal(2,2) not null
+, Reporte_Direccion_Zona8 decimal(2,2) not null
+, Reporte_Direccion_Zona9 decimal(2,2) not null
+, Reporte_Direccion_Zona10 decimal(2,2) not null
+, Reporte_Direccion_Zona11 decimal(2,2) not null
+, Reporte_Direccion_Zona12 decimal(2,2) not null
+, Reporte_Direccion_Zona13 decimal(2,2) not null
+, Reporte_Direccion_Zona14 decimal(2,2) not null
+, Reporte_Direccion_Zona15 decimal(2,2) not null
+, Reporte_Direccion_Zona16 decimal(2,2) not null
+, Reporte_Direccion_Zona17 decimal(2,2) not null
+, Reporte_Direccion_Zona18 decimal(2,2) not null
+, Reporte_Direccion_Zona19 decimal(2,2) not null
+, Reporte_Direccion_Zona20 decimal(2,2) not null
+, Reporte_Direccion_Zona21 decimal(2,2) not null
+, Reporte_Direccion_Zona22 decimal(2,2) not null
+, Reporte_Direccion_Zona23 decimal(2,2) not null
+, Reporte_Direccion_Zona24 decimal(2,2) not null
+, Reporte_Direccion_Zona25 decimal(2,2) not null
+
+
+)engine = InnoDB;
+
+create table Reporte_Departamento(
+Reporte_Departamentos_Id varchar(128) primary key not null
+, Reporte_Departamento1 decimal(2,2) not null
+, Reporte_Departamento2 decimal(2,2) not null
+
+)engine = InnoDB;
+
+create table Reporte_Puesto(
+Reporte_Puesto_Id varchar(128) primary key not null
+, Reporte_Puesto1 decimal(2,2) not null
+, Reporte_Puesto2 decimal(2,2) not null
+)engine = InnoDB;
 create table Reporte_Altas(
 Altas_Id varchar(128) primary key
 , Altas_Enero double(2,2) not null
@@ -132,54 +177,3 @@ Bajas_Id varchar(128) primary key not null
 , Bajas_Diciembre decimal(2,2) not null
 , Bajas_Actuales int not null
 )engine = InnoDB;
-
-
-create table Reporte_Departamento(
-Reporte_Departamentos_Id varchar(128) primary key not null
-, Reporte_Departamento1 decimal(2,2) not null
-, Reporte_Departamento2 decimal(2,2) not null
-
-)engine = InnoDB;
-
-create table Reporte_Puesto(
-Reporte_Puesto_Id varchar(128) primary key not null
-, Reporte_Puesto1 decimal(2,2) not null
-, Reporte_Puesto2 decimal(2,2) not null
-)engine = InnoDB;
-
-
-create table Reporte_Direccion(
-Reporte_Direccion_Id varchar(128) primary key not null
-, Reporte_Direccion_Zona1 decimal(2,2) not null
-, Reporte_Direccion_Zona2 decimal(2,2) not null
-, Reporte_Direccion_Zona3 decimal(2,2) not null
-, Reporte_Direccion_Zona4 decimal(2,2) not null
-, Reporte_Direccion_Zona5 decimal(2,2) not null
-, Reporte_Direccion_Zona6 decimal(2,2) not null
-, Reporte_Direccion_Zona7 decimal(2,2) not null
-, Reporte_Direccion_Zona8 decimal(2,2) not null
-, Reporte_Direccion_Zona9 decimal(2,2) not null
-, Reporte_Direccion_Zona10 decimal(2,2) not null
-, Reporte_Direccion_Zona11 decimal(2,2) not null
-, Reporte_Direccion_Zona12 decimal(2,2) not null
-, Reporte_Direccion_Zona13 decimal(2,2) not null
-, Reporte_Direccion_Zona14 decimal(2,2) not null
-, Reporte_Direccion_Zona15 decimal(2,2) not null
-, Reporte_Direccion_Zona16 decimal(2,2) not null
-, Reporte_Direccion_Zona17 decimal(2,2) not null
-, Reporte_Direccion_Zona18 decimal(2,2) not null
-, Reporte_Direccion_Zona19 decimal(2,2) not null
-, Reporte_Direccion_Zona20 decimal(2,2) not null
-, Reporte_Direccion_Zona21 decimal(2,2) not null
-, Reporte_Direccion_Zona22 decimal(2,2) not null
-, Reporte_Direccion_Zona23 decimal(2,2) not null
-, Reporte_Direccion_Zona24 decimal(2,2) not null
-, Reporte_Direccion_Zona25 decimal(2,2) not null
-
-
-)engine = InnoDB;
-drop table Bajas;
-
-
-select * from Altas;
-drop database nominaproyect;

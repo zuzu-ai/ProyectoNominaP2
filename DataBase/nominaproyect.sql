@@ -120,10 +120,7 @@ Reporte_Direccion_Id varchar(128) primary key not null
 , Reporte_Direccion_Zona17 decimal(2,2) not null
 , Reporte_Direccion_Zona18 decimal(2,2) not null
 , Reporte_Direccion_Zona19 decimal(2,2) not null
-, Reporte_Direccion_Zona20 decimal(2,2) not null
 , Reporte_Direccion_Zona21 decimal(2,2) not null
-, Reporte_Direccion_Zona22 decimal(2,2) not null
-, Reporte_Direccion_Zona23 decimal(2,2) not null
 , Reporte_Direccion_Zona24 decimal(2,2) not null
 , Reporte_Direccion_Zona25 decimal(2,2) not null
 

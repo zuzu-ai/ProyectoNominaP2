@@ -1,7 +1,7 @@
 create database nominaproyect;
 use nominaproyect;
 drop database nominaproyect;
-
+select * from Puestos;
 create table Puestos(
 Codigo_Puesto int primary key auto_increment,
 Nombre_Puesto varchar(60) not null,
@@ -22,8 +22,8 @@ Nombre_Empleado varchar(60) not null,
 Dpi_Empleado varchar(15) not null,
 Fecha_Nacimiento datetime not null,
 Tel_Empleado int not null,
-Ubicacion_Empleado int not null,
-Sueldo_Empleado float(10),
+Ubicacion_Empleado varchar(60) not null,
+Sueldo_Empleado float(10,2),
 Estado_Empledo varchar(1) not null,
 Fecha_Inicio datetime not null,
 Codigo_Puesto int not null,

@@ -17,13 +17,17 @@ Estado_Departamento varchar(1) not null
 
 create table Empleados
 (
-Codigo_Empleado varchar(5) primary key,
+Codigo_Empleado int primary key auto_increment,
 Nombre_Empleado varchar(60) not null,
-Cui_Empleado varchar(15) not null,
-Codigo_Puesto varchar(5) not null,
-Codigo_Departamento varchar(5) not null,
+Dpi_Empleado varchar(15) not null,
+Fecha_Inicio datetime not null,
+Tel_Empleado int not null,
+Ubicacion_Empleado int not null,
 Sueldo_Empleado float(10),
 Estado_Empledo varchar(1) not null,
+Codigo_Puesto int not null,
+Codigo_Departamento int not null,
+
 
 foreign key (Codigo_Puesto) references
 Puestos(Codigo_Puesto),
@@ -33,7 +37,7 @@ Departamentos(Codigo_Departamento)
 
 create table Aplicacion(
 Codigo_Aplicacion varchar(1) primary key,
-Codigo_Puesto varchar(5) not null,
+Codigo_Puesto int not null,
 Excepcion varchar(5),
 foreign key (Codigo_Puesto) references
 Puestos(Codigo_Puesto)
@@ -60,7 +64,7 @@ Fecha_Final_Nomina date
 create table Nomina_Descripcion
 (
 Codigo_Nomina varchar(5) not null,
-Codigo_Empleado varchar(5) not null,
+Codigo_Empleado int not null,
 Codigo_Concepto varchar(5) not null,
 Valor_NominaD float(10),
 
@@ -97,7 +101,7 @@ foreign key (Codigo_Concepto) references
 Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
-drop database nominaproyect;
+
 
 create table Reporte_Direccion(
 Reporte_Direccion_Id varchar(128) primary key not null

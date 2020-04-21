@@ -1,7 +1,7 @@
 
 
 import PaqueteNomina.Generación_Nomina;
-import mantenimiento.empleado.Altas;
+import mantenimiento.empleado.Registros;
 import mantenimiento.empleado.Bajas;
 import mantenimiento.empleado.CambioEmpleados;
 import mantenimiento.empleado.Departamento;
@@ -152,7 +152,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
 
-    new Altas().setVisible(true);
+    new Registros().setVisible(true);
         
     }//GEN-LAST:event_openMenuItemActionPerformed
 

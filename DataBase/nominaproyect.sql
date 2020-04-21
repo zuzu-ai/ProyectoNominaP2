@@ -1,7 +1,7 @@
 create database nominaproyect;
 use nominaproyect;
 drop database nominaproyect;
-
+select * from Puestos;
 create table Puestos(
 Codigo_Puesto int primary key auto_increment,
 Nombre_Puesto varchar(60) not null,
@@ -20,11 +20,12 @@ create table Empleados
 Codigo_Empleado int primary key auto_increment,
 Nombre_Empleado varchar(60) not null,
 Dpi_Empleado varchar(15) not null,
-Fecha_Inicio datetime not null,
+Fecha_Nacimiento datetime not null,
 Tel_Empleado int not null,
-Ubicacion_Empleado int not null,
-Sueldo_Empleado float(10),
+Ubicacion_Empleado varchar(60) not null,
+Sueldo_Empleado float(10,2),
 Estado_Empledo varchar(1) not null,
+Fecha_Inicio datetime not null,
 Codigo_Puesto int not null,
 Codigo_Departamento int not null,
 
@@ -178,3 +179,18 @@ Bajas_Id varchar(128) primary key not null
 , Bajas_Diciembre decimal(2,2) not null
 , Bajas_Actuales int not null
 )engine = InnoDB;
+
+create table Altas
+(
+Codigo_Empleado int primary key auto_increment,
+foreign key (Codigo_Empleado) references
+Empleados(Codigo_Empleado)
+)engine=InnoDB;
+
+
+create table Bajas
+(
+Codigo_Empleado int primary key auto_increment,
+foreign key (Codigo_Empleado) references
+Empleados(Codigo_Empleado)
+)engine=InnoDB;

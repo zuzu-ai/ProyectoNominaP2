@@ -352,6 +352,9 @@
       </Events>
     </Component>
     <Component class="java.awt.TextField" name="txt_id">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_idActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Label" name="label10">
       <Properties>

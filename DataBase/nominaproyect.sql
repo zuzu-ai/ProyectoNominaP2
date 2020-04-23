@@ -194,3 +194,12 @@ Codigo_Empleado int primary key auto_increment,
 foreign key (Codigo_Empleado) references
 Empleados(Codigo_Empleado)
 )engine=InnoDB;
+create table Usarios
+(
+Codigo_Usuario int not null,
+Tipo_Usuario int not null,
+Nombre_Usuario varchar (20) not null,
+Contraseña_Usuario int not null,
+primary key (Codigo_Usuario),
+foreign key (Codigo_Usuario) references Empleados(Codigo_Empleado)
+)engine= InnoDB;

@@ -35,8 +35,6 @@
           <Group type="102" attributes="0">
               <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnNuevoPuesto" min="-2" pref="141" max="-2" attributes="0"/>
-                  <Component id="btnNuevoDepartamento1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="label11" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -53,18 +51,20 @@
                               <Component id="txt_Ubicacion" alignment="0" max="32767" attributes="0"/>
                               <Component id="txt_Sueldo" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="txtIngresar" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cbox_Departamento" pref="201" max="32767" attributes="0"/>
-                                      <Component id="cbox_Puesto" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btn_Registrar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btn_Altas" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lb_Dep" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lb_Pues" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="cbox_Departamento" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cbox_Puesto" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lb_Dep" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lb_Pues" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -88,14 +88,14 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="label12" pref="23" max="32767" attributes="0"/>
+              <Component id="label12" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="label1" min="-2" max="-2" attributes="0"/>
@@ -135,12 +135,10 @@
                   <Component id="date_Inicio" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cbox_Departamento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lb_Dep" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="label3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="lb_Dep" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbox_Departamento" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -150,27 +148,23 @@
                       <Component id="lb_Pues" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnNuevoPuesto" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnNuevoDepartamento1" min="-2" pref="20" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="txtIngresar" min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btn_Registrar" pref="45" max="32767" attributes="0"/>
+                  <Component id="btn_Altas" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="txtIngresar">
+    <Component class="javax.swing.JButton" name="btn_Registrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="INGRESAR"/>
+        <Property name="text" type="java.lang.String" value="REGISTRAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIngresarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_RegistrarActionPerformed"/>
       </Events>
     </Component>
     <Component class="java.awt.Label" name="label1">
@@ -258,28 +252,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_SueldoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnNuevoPuesto">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="8" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CREAR NUEVO PUESTO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoPuestoActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnNuevoDepartamento1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="8" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="CREAR NUEVO DEPATAMENTO"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNuevoDepartamento1ActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="java.awt.Label" name="label12">
       <Properties>
         <Property name="text" type="java.lang.String" value="REGISTRO EMPLEADO"/>
@@ -306,6 +278,15 @@
           <Color id="Cursor Por defecto"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_Altas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="INGRESAR ALTA"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_AltasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

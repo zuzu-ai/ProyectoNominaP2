@@ -182,7 +182,11 @@ Bajas_Id varchar(128) primary key not null
 
 create table Altas
 (
-Codigo_Empleado int primary key auto_increment,
+Codigo_Altas int primary key auto_increment,
+Codigo_Empleado int not null,
+Fecha datetime not null,
+Codigo_Dep int not null,
+Codigo_Pue int not null,
 foreign key (Codigo_Empleado) references
 Empleados(Codigo_Empleado)
 )engine=InnoDB;
@@ -190,7 +194,15 @@ Empleados(Codigo_Empleado)
 
 create table Bajas
 (
-Codigo_Empleado int primary key auto_increment,
-foreign key (Codigo_Empleado) references
-Empleados(Codigo_Empleado)
+Codigo_Bajas int primary key auto_increment,
+Codigo_Altas int not null,
+Fecha datetime not null,
+Codigo_Dep int not null,
+Codigo_Pue int not null,
+foreign key (Codigo_Altas) references
+Altas(Codigo_Altas)
 )engine=InnoDB;
+
+select * from Departamentos;
+select * from Empleados;
+select * from Altas;

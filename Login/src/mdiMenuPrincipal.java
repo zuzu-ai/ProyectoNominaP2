@@ -1,12 +1,11 @@
 
 import PaqueteNomina.Generación_Nomina;
-import mantenimiento.empleado.Altas;
+import mantenimiento.empleado.Registros;
 import mantenimiento.empleado.Bajas;
 import mantenimiento.empleado.CambioEmpleados;
 import mantenimiento.empleado.Departamento;
 import mantenimiento.empleado.Puesto;
-
-
+import Usuarios.Mantenimiento_Usuarios;
 
 public class mdiMenuPrincipal extends javax.swing.JFrame {
 
@@ -15,10 +14,10 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
      */
     public mdiMenuPrincipal() {
         initComponents();
-         setLocationRelativeTo(null);
-       this.setExtendedState(mdiMenuPrincipal.MAXIMIZED_BOTH);
-       this.setTitle("Nomina");
-       setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        this.setExtendedState(mdiMenuPrincipal.MAXIMIZED_BOTH);
+        this.setTitle("Nomina");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     /**
@@ -38,6 +37,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         saveAsMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
 
@@ -94,6 +94,14 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         });
         fileMenu.add(jMenuItem2);
 
+        jMenuItem3.setText("Usuarios");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem3);
+
         menuBar.add(fileMenu);
 
         editMenu.setMnemonic('e');
@@ -132,22 +140,22 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
 
-    new Altas().setVisible(true);
-        
+        new Registros().setVisible(true);
+
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-    new CambioEmpleados().setVisible(true);
+        new CambioEmpleados().setVisible(true);
     }//GEN-LAST:event_saveAsMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-    new Bajas().setVisible(true);
-        
+        new Bajas().setVisible(true);
+
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
 
-new Generación_Nomina().setVisible(true);
+        new Generación_Nomina().setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
@@ -156,12 +164,17 @@ new Generación_Nomina().setVisible(true);
     }//GEN-LAST:event_fileMenuMouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       new Departamento().setVisible(true);
+        new Departamento().setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       new Puesto().setVisible(true);
+        new Puesto().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+       
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+         new Mantenimiento_Usuarios().setVisible(true); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +217,7 @@ new Generación_Nomina().setVisible(true);
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;

@@ -10,7 +10,7 @@ import Usuarios.Mantenimiento_Usuarios;
 public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form mdiMenuPrincipal
+     * Creates new form mdiMenuPrincipal to use the program
      */
     public mdiMenuPrincipal() {
         initComponents();

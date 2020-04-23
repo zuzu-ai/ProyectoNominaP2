@@ -8,6 +8,7 @@ package mantenimiento.empleado;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
@@ -175,13 +176,6 @@ public class Bajas extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnBaja, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                            .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(50, 50, 50)
-                            .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(txtIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addContainerGap(24, Short.MAX_VALUE))
-=======
                             .addGap(102, 102, 102)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(cbox_Id, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,7 +185,6 @@ public class Bajas extends javax.swing.JFrame {
                                     .addComponent(lb_Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(11, 11, 11))))
                 .addContainerGap(37, Short.MAX_VALUE))
->>>>>>> a0da23954a5a14c70848d1a8a3a51d407464f23b
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,17 +235,6 @@ public class Bajas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-    private void txtIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresarActionPerformed
-try {
-            AccesoAleatorio.crearFileEmpleado(new File("empleado.txt"));
-            if( AccesoAleatorio.eliminarEmpleado(cmbId.getSelectedItem().toString()) )
-                JOptionPane.showMessageDialog(this, "El registro correspondiente fue eliminado correctamente.", "Eliminación correcta", JOptionPane.INFORMATION_MESSAGE);
-            else JOptionPane.showMessageDialog(this, "Error al intentar eliminar un registro inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
-        }  
-=======
     private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
 
             java.util.Date fecha=date_F.getDate();
@@ -301,7 +283,6 @@ try {
             JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
->>>>>>> a0da23954a5a14c70848d1a8a3a51d407464f23b
         
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBajaActionPerformed

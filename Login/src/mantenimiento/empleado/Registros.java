@@ -271,7 +271,7 @@ public class Registros extends javax.swing.JFrame {
             java.sql.Date date = new java.sql.Date(d);
             
             java.util.Date fechaI=date_Inicio.getDate();
-            long di=fecha.getTime();
+            long di=fechaI.getTime();
             java.sql.Date datei = new java.sql.Date(di);
             
             
@@ -399,12 +399,10 @@ try{
     }//GEN-LAST:event_cbox_PuestoActionPerformed
 
     private void btn_AltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AltasActionPerformed
-java.util.Date fecha=date_Nacimiento.getDate();
-            long d=fecha.getTime();
-            java.sql.Date date = new java.sql.Date(d);
+
             
             java.util.Date fechaI=date_Inicio.getDate();
-            long di=fecha.getTime();
+            long di=fechaI.getTime();
             java.sql.Date datei = new java.sql.Date(di);
             String valor = null;
         

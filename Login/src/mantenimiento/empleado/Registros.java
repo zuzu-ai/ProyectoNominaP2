@@ -25,7 +25,7 @@ public class Registros extends javax.swing.JFrame {
      */
     public Registros() {
         initComponents();
-           setLocationRelativeTo(null);
+       
              this.setTitle("Altas Empleados");
     
         try{
@@ -63,7 +63,7 @@ public class Registros extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        txtIngresar = new javax.swing.JButton();
+        btn_Registrar = new javax.swing.JButton();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
@@ -79,23 +79,22 @@ public class Registros extends javax.swing.JFrame {
         txt_Ubicacion = new java.awt.TextField();
         txt_Tel = new java.awt.TextField();
         txt_Sueldo = new java.awt.TextField();
-        btnNuevoPuesto = new javax.swing.JButton();
-        btnNuevoDepartamento1 = new javax.swing.JButton();
         label12 = new java.awt.Label();
         label14 = new java.awt.Label();
         date_Nacimiento = new com.toedter.calendar.JDateChooser();
         date_Inicio = new com.toedter.calendar.JDateChooser();
         lb_Dep = new javax.swing.JLabel();
         lb_Pues = new javax.swing.JLabel();
+        btn_Altas = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtIngresar.setText("INGRESAR");
-        txtIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btn_Registrar.setText("REGISTRAR");
+        btn_Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngresarActionPerformed(evt);
+                btn_RegistrarActionPerformed(evt);
             }
         });
 
@@ -145,22 +144,6 @@ public class Registros extends javax.swing.JFrame {
             }
         });
 
-        btnNuevoPuesto.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
-        btnNuevoPuesto.setText("CREAR NUEVO PUESTO");
-        btnNuevoPuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoPuestoActionPerformed(evt);
-            }
-        });
-
-        btnNuevoDepartamento1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
-        btnNuevoDepartamento1.setText("CREAR NUEVO DEPATAMENTO");
-        btnNuevoDepartamento1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoDepartamento1ActionPerformed(evt);
-            }
-        });
-
         label12.setText("REGISTRO EMPLEADO");
 
         label14.setText("Fecha de Nacimiento");
@@ -170,6 +153,14 @@ public class Registros extends javax.swing.JFrame {
         lb_Pues.setText("Codigo");
         lb_Pues.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        btn_Altas.setText("INGRESAR ALTA");
+        btn_Altas.setEnabled(false);
+        btn_Altas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AltasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,8 +168,6 @@ public class Registros extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNuevoPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevoDepartamento1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,16 +182,18 @@ public class Registros extends javax.swing.JFrame {
                                 .addComponent(date_Inicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                                 .addComponent(txt_Ubicacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txt_Sueldo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtIngresar)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbox_Departamento, 0, 201, Short.MAX_VALUE)
-                                        .addComponent(cbox_Puesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lb_Dep)
-                                        .addComponent(lb_Pues))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_Registrar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btn_Altas))
+                                    .addComponent(cbox_Departamento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbox_Puesto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lb_Dep)
+                                    .addComponent(lb_Pues)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,12 +208,12 @@ public class Registros extends javax.swing.JFrame {
                             .addComponent(txt_Dpi, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(txt_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                             .addComponent(date_Nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(label12, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addComponent(label12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,41 +245,46 @@ public class Registros extends javax.swing.JFrame {
                     .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(date_Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbox_Departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_Dep))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb_Dep)
+                    .addComponent(cbox_Departamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbox_Puesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lb_Pues)))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNuevoPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNuevoDepartamento1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_Registrar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(btn_Altas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresarActionPerformed
-   
+    private void btn_RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarActionPerformed
+            java.util.Date fecha=date_Nacimiento.getDate();
+            long d=fecha.getTime();
+            java.sql.Date date = new java.sql.Date(d);
+            
+            java.util.Date fechaI=date_Inicio.getDate();
+            long di=fechaI.getTime();
+            java.sql.Date datei = new java.sql.Date(di);
+            
+            
         String nombre = txt_Nombre.getText().trim();
         String dpi = txt_Dpi.getText().trim();
-        String nacimiento = date_Nacimiento.toString();
+    
         String tel = txt_Tel.getText().trim();
         String ubicacion = txt_Ubicacion.getText().trim();
         String sueldo = txt_Sueldo.getText().trim();
-        String inicio =  date_Inicio.toString();
+     
         String departamento=cbox_Departamento.getSelectedItem().toString();
         String puesto=cbox_Puesto.getSelectedItem().toString();
-        
+        String valor="";
         if (nombre.isEmpty()||dpi.isEmpty()|| tel.isEmpty()|| ubicacion.isEmpty()|| sueldo.isEmpty()|| departamento.isEmpty()|| puesto.isEmpty()) {
             JOptionPane.showMessageDialog(this, "¡Debe Llenar todos los campos!", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
@@ -301,23 +297,30 @@ public class Registros extends javax.swing.JFrame {
             pst.setString(1, "0");
             pst.setString(2, txt_Nombre.getText().trim());
             pst.setString(3, txt_Dpi.getText().trim());
-            pst.setString(4, date_Nacimiento.getDate().toString());
+            pst.setString(4, date.toString());
             pst.setString(5, txt_Tel.getText().trim());
             pst.setString(6, txt_Ubicacion.getText().trim());
             pst.setString(7, txt_Sueldo.getText().trim());
             pst.setString(8, "A");
-            pst.setString(9, date_Inicio.getDate().toString());
-            pst.setString(10, lb_Dep.getText().trim());
-            pst.setString(11, lb_Pues.getText().trim());
+            pst.setString(9, datei.toString());
+            pst.setString(10, lb_Pues.getText().trim());
+            pst.setString(11, lb_Dep.getText().trim());
             
             
             pst.executeUpdate();
+            btn_Altas.setEnabled(true);
+            btn_Registrar.setEnabled(false);
+            txt_Nombre.setEnabled(false);
+            txt_Dpi.setEnabled(false);
+            txt_Tel.setEnabled(false);
+            txt_Ubicacion.setEnabled(false);
+            txt_Sueldo.setEnabled(false);
+            date_Nacimiento.setEnabled(false);
+            date_Inicio.setEnabled(false);
+            cbox_Departamento.setEnabled(false);
+            cbox_Puesto.setEnabled(false);
 
-            txt_Nombre.setText("");
-            txt_Dpi.setText("");
-            txt_Tel.setText("");
-            txt_Ubicacion.setText("");
-            txt_Sueldo.setText("");
+          
             
 
             JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
@@ -327,7 +330,7 @@ public class Registros extends javax.swing.JFrame {
        
 
 // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngresarActionPerformed
+    }//GEN-LAST:event_btn_RegistrarActionPerformed
 
     private void txt_UbicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_UbicacionActionPerformed
         // TODO add your handling code here:
@@ -340,19 +343,6 @@ public class Registros extends javax.swing.JFrame {
     private void txt_SueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_SueldoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_SueldoActionPerformed
-
-    private void btnNuevoDepartamento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoDepartamento1ActionPerformed
-Departamento verDepartamento=new Departamento();     
-verDepartamento.setVisible(true);
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoDepartamento1ActionPerformed
-
-    private void btnNuevoPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPuestoActionPerformed
-     Puesto verPuesto=new Puesto();     
-verPuesto.setVisible(true);
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoPuestoActionPerformed
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
 try{
@@ -408,6 +398,73 @@ try{
         // TODO add your handling code here:
     }//GEN-LAST:event_cbox_PuestoActionPerformed
 
+    private void btn_AltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AltasActionPerformed
+
+            
+            java.util.Date fechaI=date_Inicio.getDate();
+            long di=fechaI.getTime();
+            java.sql.Date datei = new java.sql.Date(di);
+            String valor = null;
+        
+        
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            String id= txt_Dpi.getText();
+            
+            PreparedStatement pst3 = cn.prepareStatement("select Codigo_Empleado from Empleados where Dpi_Empleado=?");
+            pst3.setString(1,id);
+            ResultSet rs = pst3.executeQuery();
+            
+            if(rs.next()){
+                valor=(rs.getString("Codigo_Empleado"));
+                
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Empleado no registrado.");
+            }
+
+
+
+            PreparedStatement pst2 = cn.prepareStatement("insert into Altas values(?,?,?,?,?)");
+            pst2.setString(1, "0");
+            pst2.setString(2, valor);
+            pst2.setString(3, datei.toString());
+            pst2.setString(4, lb_Dep.getText().trim());
+            pst2.setString(5, lb_Pues.getText().trim());
+
+
+            
+            pst2.executeUpdate();
+
+            txt_Nombre.setText("");
+            txt_Dpi.setText("");
+            txt_Tel.setText("");
+            txt_Ubicacion.setText("");
+            txt_Sueldo.setText("");
+            btn_Altas.setEnabled(false);
+            btn_Registrar.setEnabled(true);
+            cbox_Departamento.setSelectedIndex(0);
+            cbox_Puesto.setSelectedIndex(0);
+              txt_Nombre.setEnabled(true);
+            txt_Dpi.setEnabled(true);
+            txt_Tel.setEnabled(true);
+            txt_Ubicacion.setEnabled(true);
+            txt_Sueldo.setEnabled(true);
+            date_Nacimiento.setEnabled(true);
+            date_Inicio.setEnabled(true);
+            cbox_Departamento.setEnabled(true);
+            cbox_Puesto.setEnabled(true);
+
+
+
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+       
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_AltasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -445,8 +502,8 @@ try{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNuevoDepartamento1;
-    private javax.swing.JButton btnNuevoPuesto;
+    private javax.swing.JButton btn_Altas;
+    private javax.swing.JButton btn_Registrar;
     private javax.swing.JComboBox<String> cbox_Departamento;
     private javax.swing.JComboBox<String> cbox_Puesto;
     private com.toedter.calendar.JDateChooser date_Inicio;
@@ -464,7 +521,6 @@ try{
     private java.awt.Label label9;
     private javax.swing.JLabel lb_Dep;
     private javax.swing.JLabel lb_Pues;
-    private javax.swing.JButton txtIngresar;
     private java.awt.TextField txt_Dpi;
     private java.awt.TextField txt_Nombre;
     private java.awt.TextField txt_Sueldo;

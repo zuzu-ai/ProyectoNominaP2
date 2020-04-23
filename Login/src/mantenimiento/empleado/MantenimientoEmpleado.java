@@ -1,14 +1,11 @@
-package PaqueteNomina;
-
-
-
+package mantenimiento.empleado;
 import java.io.Serializable;
 
 /**
  *
  * @author ranbr
  */
-public class Nomina_ implements Serializable {
+public class MantenimientoEmpleado implements Serializable {
 
     private String nombre;
     private String apellido;
@@ -18,8 +15,10 @@ public class Nomina_ implements Serializable {
     private String ubicacion;
     private float sueldo;
     private boolean activo;
+    private int id;
+   
 
-    public Nomina_() {
+    public MantenimientoEmpleado() {
         nombre = "NN";
         apellido = "NN";
         departamento = "NN";
@@ -30,12 +29,13 @@ public class Nomina_ implements Serializable {
         ubicacion = "NN";
         telefono = 0;
         sueldo = 0;
+        id=0;
 
         activo = true;
     }
     
 
-    public Nomina_(String nombre, String apellido, String departamento, String puesto, int dia, int mes, int año, int telefono, String ubicacion, float sueldo, boolean activo) {
+    public MantenimientoEmpleado(int idEmpleado,String nombre, String apellido, String departamento, String puesto, int dia, int mes, int año, int telefono, String ubicacion, float sueldo, boolean activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.departamento = departamento;
@@ -49,10 +49,17 @@ public class Nomina_ implements Serializable {
         this.activo = activo;
     }
 
-    public Nomina_(String departamento, boolean activo) {
+    public MantenimientoEmpleado(int id,String departamento, boolean activo) {
         this.departamento = departamento;
         this.activo = activo;
     }
+
+    MantenimientoEmpleado(String puesto, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
     
 
     public String getNombre() {
@@ -143,9 +150,19 @@ public class Nomina_ implements Serializable {
         this.activo = activo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+
     @Override
     public String toString() {
-        return "\nNombre: " + nombre
+        return "\nId: " + id
+                +"\nNombre: " + nombre
                 + "\nApellido: " + apellido
                 + "\nDepartamento: " + departamento
                 + "\nPuesto: " + puesto
@@ -159,5 +176,11 @@ public class Nomina_ implements Serializable {
     public int getTamaño() {
         return getNombre().length() * 2 + 2 + 4 + 1;
     }
+    
+    public int getTamañoDepto() {
+        return getDepartamento().length() * 2 + 2 + 4 + 1;
+    }
+    
+    
 
 }

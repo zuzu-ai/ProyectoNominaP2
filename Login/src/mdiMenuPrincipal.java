@@ -1,20 +1,16 @@
 
-
 import PaqueteNomina.Generación_Nomina;
 import mantenimiento.empleado.Altas;
 import mantenimiento.empleado.Bajas;
 import mantenimiento.empleado.CambioEmpleados;
 import mantenimiento.empleado.Departamento;
 import mantenimiento.empleado.Puesto;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 
 public class mdiMenuPrincipal extends javax.swing.JFrame {
-    
-   /**
+
+    /**
      * Creates new form mdiMenuPrincipal
      */
     public mdiMenuPrincipal() {
@@ -23,7 +19,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
        this.setExtendedState(mdiMenuPrincipal.MAXIMIZED_BOTH);
        this.setTitle("Nomina");
        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        
     }
 
     /**
@@ -36,7 +31,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         panel = new javax.swing.JDesktopPane();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -48,20 +42,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         cutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2190, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1100, Short.MAX_VALUE)
-        );
-
-        panel.add(jDesktopPane1);
-        jDesktopPane1.setBounds(0, 0, 2190, 1100);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Mantenimiento de Personal");
@@ -166,7 +146,9 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
-    new Generación_Nomina().setVisible(true);
+
+new Generación_Nomina().setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_cutMenuItemActionPerformed
 
     private void fileMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fileMenuMouseClicked
@@ -220,7 +202,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;

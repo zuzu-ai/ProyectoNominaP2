@@ -1,13 +1,13 @@
 package PaqueteNomina;
 
-
-import java.sql.*;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.Cursor;
+import java.awt.Font;
+import java.sql.*;
 
 import static java.awt.PageAttributes.MediaType.C;
 import java.io.BufferedReader;
@@ -21,27 +21,36 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Scanner;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author zuzu-ai
  */
 
 public class Generación_Nomina extends javax.swing.JFrame {
+
     /**
-     * Crea un objeto de tipo AccesoAleatorioN para poder utilizar sus funciones.
+     * Crea un objeto de tipo AccesoAleatorioN para poder utilizar sus
+     * funciones.
      */
-    AccesoAleatorioN aleatorio=new AccesoAleatorioN();
-        /**
-     * Las advertensias se inicializan como invisibles. Se activan solo si el usuario inclumple parámetros establecidos.
+    AccesoAleatorioN aleatorio = new AccesoAleatorioN();
+
+    /**
+     * Las advertensias se inicializan como invisibles. Se activan solo si el
+     * usuario inclumple parámetros establecidos.
      */
     public Generación_Nomina() {
         initComponents();
-         setLocationRelativeTo(null);
-       setSize(1000,800);
-     
+        setLocationRelativeTo(null);
+        setSize(1000, 800);
+        comboDB();
         lblIngreseNum.setVisible(false);
         lblIngreseNum1.setVisible(false);
         lblIngreseNum2.setVisible(false);
@@ -49,55 +58,90 @@ public class Generación_Nomina extends javax.swing.JFrame {
         lblIngreseNum4.setVisible(false);
         lblIngreseNum5.setVisible(false);
         advertencia.setVisible(false);
-        txtBonificacionIncentivo.setText("250.00");txtIsr.setText("0");
-            /**
-     * Redondea las variables de tipo float
-     */
+        txtBonificacionIncentivo.setText("250.00");
+        txtIsr.setText("0");
+        /**
+         * Redondea las variables de tipo float
+         */
         DecimalFormat formato1 = new DecimalFormat("#.00");
-        
-        
-    /**
-     * Actualiza los datos en el combobox Departamento.
-     */
-      int registros=1000;
-      try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-          for(int i=0;i<registros;i++){
-            PreparedStatement pst = cn.prepareStatement("select Nombre_Departamento from departamentos where ID = "+i);
-            ResultSet rs = pst.executeQuery(); 
-            cmbxDepartamento.addItem(rs.getString("Nombre_Departamento"));
+
+        /**
+         * Actualiza los datos en el combobox Departamento.
+         */
+        /* int registros=1000;
+        FileReader fr;
+        try {
+            fr = new FileReader("Departamentos.txt");
+            BufferedReader bf=new BufferedReader(fr);
+           for(int i=0;i<registros;i++){
+            String dato= bf.readLine();
+            cmbxDepartamento.addItem(dato);
             i=i++;
-           }
-      }catch(Exception e){};
+           } 
+            
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
         
-      
            /**
      * Actualiza los datos en el combobox Nombre Empleado.
-     */
-      try{
-          Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+         */
+ /*  try {
+            fr = new FileReader("NombreEmpleados.txt");
+            BufferedReader bf=new BufferedReader(fr);
            for(int i=0;i<registros;i++){
-            PreparedStatement pst = cn.prepareStatement("select Nombre_Empleado from empleados where ID = "+i);
-            ResultSet rs = pst.executeQuery(); 
-            cmbxNombreEmpleado.addItem(rs.getString("Nombre_Empleado"));
+            String dato= bf.readLine();
+            cmbxNombreEmpleado.addItem(dato);
             i=i++;
-           }
-      }catch(Exception e){};
+           } 
+            
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
         
             /**
      * Actualiza los datos en el combobox Puesto.
-     */
-      try{
-          Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-          for(int i=0;i<registros;i++){
-            PreparedStatement pst = cn.prepareStatement("select Nombre_Puesto from puestos where ID = "+i);
-            ResultSet rs = pst.executeQuery(); 
-            cmbxPuesto.addItem(rs.getString("Nombre_Puesto"));
+         */
+ /*  try {
+            fr = new FileReader("Puestos.txt");
+            BufferedReader bf=new BufferedReader(fr);
+           for(int i=0;i<registros;i++){
+            String dato= bf.readLine();
+            cmbxPuesto.addItem(dato);
             i=i++;
-           }
-      }catch(Exception e){};
+           } 
+            
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }*/
+    }
 
-        
+    public void comboDB() {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("select Nombre_Departamento from Departamentos ");
+            ResultSet rs = pst.executeQuery();
+
+            PreparedStatement pst2 = cn.prepareStatement("select Nombre_Empleado from Empleados");
+            ResultSet rs2 = pst2.executeQuery();
+
+            cmbxDepartamento.addItem("Seleccione una opción");
+            while (rs.next()) {
+                cmbxDepartamento.addItem(rs.getString("Nombre_Departamento"));
+            }
+
+            cmbxPuesto.addItem("Seleccione una opción");
+            while (rs2.next()) {
+                cmbxPuesto.addItem(rs2.getString("Nombre_Puesto"));
+            }
+            cmbxNombreEmpleado.addItem("Seleccione una opción");
+            while (rs2.next()) {
+                cmbxNombreEmpleado.addItem(rs2.getString("Nombre_Empleado"));
+            }
+
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -111,292 +155,60 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TbPreNomina = new javax.swing.JTable();
         lblIngresodeDatos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cmbxDepartamento = new javax.swing.JComboBox<>();
         lblDepartamento = new javax.swing.JLabel();
-        lblPuesto = new javax.swing.JLabel();
-        cmbxPuesto = new javax.swing.JComboBox<>();
-        lblNombreEmpleado = new javax.swing.JLabel();
-        cmbxNombreEmpleado = new javax.swing.JComboBox<>();
-        lblSueldoBase = new javax.swing.JLabel();
-        txtSueldoBase = new javax.swing.JTextField();
-        txtComisiones = new javax.swing.JTextField();
-        lblComisiones = new javax.swing.JLabel();
-        lblBonificacionesExtra = new javax.swing.JLabel();
-        txtBonificacionesExtra = new javax.swing.JTextField();
-        lblBonificacionIncentivo = new javax.swing.JLabel();
-        txtBonificacionIncentivo = new javax.swing.JTextField();
-        lblSueldoDevengado = new javax.swing.JLabel();
-        txtSueldoDevengado = new javax.swing.JTextField();
         lblCalculodeIngresos = new javax.swing.JLabel();
+        lblComisiones = new javax.swing.JLabel();
+        txtComisiones = new javax.swing.JTextField();
         lblIngreseNum1 = new javax.swing.JLabel();
-        lblIngreseNum2 = new javax.swing.JLabel();
-        lblIngreseNum = new javax.swing.JLabel();
-        lblIngreseNum4 = new javax.swing.JLabel();
-        lblIngreseNum5 = new javax.swing.JLabel();
-        IngresarEmpleado = new javax.swing.JButton();
-        Limpiar = new javax.swing.JButton();
-        advertencia = new javax.swing.JLabel();
-        lblIngreseNum6 = new javax.swing.JLabel();
+        lblCalculodeDescuentos = new javax.swing.JLabel();
         lblIgss = new javax.swing.JLabel();
         txtIgss = new javax.swing.JTextField();
-        lblIsr = new javax.swing.JLabel();
         txtIsr = new javax.swing.JTextField();
+        lblIsr = new javax.swing.JLabel();
+        txtTotalDescuentos = new javax.swing.JTextField();
+        lblTotalDescuentos = new javax.swing.JLabel();
+        IngresarEmpleado = new javax.swing.JButton();
+        advertencia = new javax.swing.JLabel();
+        Limpiar = new javax.swing.JButton();
+        txtSueldoLiquido = new javax.swing.JTextField();
+        lblTotalDescuentos1 = new javax.swing.JLabel();
+        lblIngreseNum6 = new javax.swing.JLabel();
         txtAnticipos = new javax.swing.JTextField();
         lblAnticipos = new javax.swing.JLabel();
-        lblDescuentosJ = new javax.swing.JLabel();
-        txtDescuentosJ = new javax.swing.JTextField();
-        lblOtrosDescuentos = new javax.swing.JLabel();
-        txtOtrosDescuentos = new javax.swing.JTextField();
-        lblCalculodeDescuentos = new javax.swing.JLabel();
-        lblTotalDescuentos = new javax.swing.JLabel();
-        txtTotalDescuentos = new javax.swing.JTextField();
-        lblTotalDescuentos1 = new javax.swing.JLabel();
-        txtSueldoLiquido = new javax.swing.JTextField();
-        lblFormadePago = new javax.swing.JLabel();
         cmbxFormadePago = new javax.swing.JComboBox<>();
+        lblFormadePago = new javax.swing.JLabel();
+        lblIngreseNum4 = new javax.swing.JLabel();
+        txtDescuentosJ = new javax.swing.JTextField();
+        lblDescuentosJ = new javax.swing.JLabel();
+        lblIngreseNum5 = new javax.swing.JLabel();
+        txtOtrosDescuentos = new javax.swing.JTextField();
+        lblOtrosDescuentos = new javax.swing.JLabel();
+        lblIngreseNum2 = new javax.swing.JLabel();
+        txtBonificacionesExtra = new javax.swing.JTextField();
+        lblBonificacionesExtra = new javax.swing.JLabel();
+        txtBonificacionIncentivo = new javax.swing.JTextField();
+        lblBonificacionIncentivo = new javax.swing.JLabel();
+        txtSueldoDevengado = new javax.swing.JTextField();
+        lblSueldoDevengado = new javax.swing.JLabel();
+        txtSueldoBase = new javax.swing.JTextField();
+        lblIngreseNum = new javax.swing.JLabel();
+        lblSueldoBase = new javax.swing.JLabel();
+        cmbxNombreEmpleado = new javax.swing.JComboBox<>();
+        lblNombreEmpleado = new javax.swing.JLabel();
+        cmbxPuesto = new javax.swing.JComboBox<>();
+        lblPuesto = new javax.swing.JLabel();
         lblGeneraciondePlanilla = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TbPreNomina = new javax.swing.JTable();
 
         setTitle("Generación de Nómina");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setPreferredSize(new java.awt.Dimension(938, 894));
 
         jScrollPane2.setAutoscrolls(true);
-
-        lblIngresodeDatos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblIngresodeDatos.setText("Ingreso de Datos");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("*Si el empleado no tiene algun ingreso o descuento, coloque un 0 en la casilla.");
-
-        cmbxDepartamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxDepartamentoActionPerformed(evt);
-            }
-        });
-
-        lblDepartamento.setText("Departamento:");
-
-        lblPuesto.setText("Puesto:");
-
-        lblNombreEmpleado.setText("Nombre Empleado:");
-
-        cmbxNombreEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxNombreEmpleadoActionPerformed(evt);
-            }
-        });
-        cmbxNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbxNombreEmpleadoKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                cmbxNombreEmpleadoKeyReleased(evt);
-            }
-        });
-
-        lblSueldoBase.setText("Sueldo Base:");
-
-        txtSueldoBase.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                txtSueldoBaseInputMethodTextChanged(evt);
-            }
-        });
-        txtSueldoBase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSueldoBaseActionPerformed(evt);
-            }
-        });
-        txtSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSueldoBaseKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtSueldoBaseKeyTyped(evt);
-            }
-        });
-
-        txtComisiones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtComisionesActionPerformed(evt);
-            }
-        });
-        txtComisiones.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtComisionesKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtComisionesKeyTyped(evt);
-            }
-        });
-
-        lblComisiones.setText("Comisiones:");
-
-        lblBonificacionesExtra.setText("Bonificaciones Extra:");
-
-        txtBonificacionesExtra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBonificacionesExtraActionPerformed(evt);
-            }
-        });
-        txtBonificacionesExtra.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBonificacionesExtraKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBonificacionesExtraKeyTyped(evt);
-            }
-        });
-
-        lblBonificacionIncentivo.setText("Bonificacion Incentivo:");
-
-        txtBonificacionIncentivo.setEditable(false);
-        txtBonificacionIncentivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBonificacionIncentivoActionPerformed(evt);
-            }
-        });
-
-        lblSueldoDevengado.setText("Sueldo Devengado:");
-
-        txtSueldoDevengado.setEditable(false);
-        txtSueldoDevengado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSueldoDevengadoActionPerformed(evt);
-            }
-        });
-
-        lblCalculodeIngresos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCalculodeIngresos.setText("Calculo de Ingresos");
-
-        lblIngreseNum1.setText("Ingrese números");
-
-        lblIngreseNum2.setText("Ingrese números");
-
-        lblIngreseNum.setText("Ingrese números");
-
-        lblIngreseNum4.setText("Ingrese números");
-
-        lblIngreseNum5.setText("Ingrese números");
-
-        IngresarEmpleado.setText("Ingresar Empleado a Nómina");
-        IngresarEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarEmpleadoActionPerformed(evt);
-            }
-        });
-
-        Limpiar.setText("Limpiar");
-        Limpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimpiarActionPerformed(evt);
-            }
-        });
-
-        advertencia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        advertencia.setText("ADVERTENCIA: No todos los campos están llenos");
-
-        lblIngreseNum6.setText("Ingrese números");
-
-        lblIgss.setText("IGSS:");
-
-        txtIgss.setEditable(false);
-        txtIgss.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIgssActionPerformed(evt);
-            }
-        });
-        txtIgss.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtIgssKeyReleased(evt);
-            }
-        });
-
-        lblIsr.setText("ISR:");
-
-        txtIsr.setEditable(false);
-        txtIsr.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIsrActionPerformed(evt);
-            }
-        });
-        txtIsr.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtIsrKeyReleased(evt);
-            }
-        });
-
-        txtAnticipos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAnticiposActionPerformed(evt);
-            }
-        });
-        txtAnticipos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtAnticiposKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAnticiposKeyTyped(evt);
-            }
-        });
-
-        lblAnticipos.setText("Anticipos Concedidos:");
-
-        lblDescuentosJ.setText("Descuentos Judiciales:");
-
-        txtDescuentosJ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescuentosJActionPerformed(evt);
-            }
-        });
-        txtDescuentosJ.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDescuentosJKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDescuentosJKeyTyped(evt);
-            }
-        });
-
-        lblOtrosDescuentos.setText("Otros Descuentos:");
-
-        txtOtrosDescuentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOtrosDescuentosActionPerformed(evt);
-            }
-        });
-        txtOtrosDescuentos.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtOtrosDescuentosKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtOtrosDescuentosKeyTyped(evt);
-            }
-        });
-
-        lblCalculodeDescuentos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblCalculodeDescuentos.setText("Calculo de Descuentos");
-
-        lblTotalDescuentos.setText("Total Descuentos:");
-
-        txtTotalDescuentos.setEditable(false);
-
-        lblTotalDescuentos1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        lblTotalDescuentos1.setText("Sueldo Líquido:");
-
-        txtSueldoLiquido.setEditable(false);
-        txtSueldoLiquido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        lblFormadePago.setText("Forma de Pago:");
-
-        cmbxFormadePago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Cheque" }));
-
-        lblGeneraciondePlanilla.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblGeneraciondePlanilla.setText("Generación de Planilla");
 
         jScrollPane1.setAutoscrolls(true);
 
@@ -424,231 +236,462 @@ public class Generación_Nomina extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 2002, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIngresodeDatos)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblCalculodeIngresos)
-                                .addGap(314, 314, 314)
-                                .addComponent(lblIngreseNum))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(lblPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(lblNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(lblSueldoBase))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cmbxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbxPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(14, 14, 14)
-                                        .addComponent(cmbxNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(lblBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(lblBonificacionIncentivo)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(lblSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblIngreseNum1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblIngreseNum2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(120, 120, 120)
-                                .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(150, 150, 150)
-                                .addComponent(advertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblCalculodeDescuentos)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(lblIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(lblIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblAnticipos)
-                                .addGap(33, 33, 33)
-                                .addComponent(lblDescuentosJ)
-                                .addGap(30, 30, 30)
-                                .addComponent(lblOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(303, 303, 303)
-                                .addComponent(lblIngreseNum6)
-                                .addGap(69, 69, 69)
-                                .addComponent(lblIngreseNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblIngreseNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(lblTotalDescuentos)
-                                .addGap(39, 39, 39)
-                                .addComponent(lblTotalDescuentos1)
-                                .addGap(92, 92, 92)
-                                .addComponent(lblFormadePago))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(txtTotalDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(txtSueldoLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbxFormadePago, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(276, 276, 276)
-                                .addComponent(lblGeneraciondePlanilla)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 2002, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 675, Short.MAX_VALUE))
+        );
+
+        jScrollPane2.setViewportView(jPanel1);
+
+        lblIngresodeDatos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblIngresodeDatos.setText("Ingreso de Datos");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("*Si el empleado no tiene algun ingreso o descuento, coloque un 0 en la casilla.");
+
+        cmbxDepartamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbxDepartamentoActionPerformed(evt);
+            }
+        });
+
+        lblDepartamento.setText("Departamento:");
+
+        lblCalculodeIngresos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCalculodeIngresos.setText("Calculo de Ingresos");
+
+        lblComisiones.setText("Comisiones:");
+
+        txtComisiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtComisionesActionPerformed(evt);
+            }
+        });
+        txtComisiones.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtComisionesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComisionesKeyTyped(evt);
+            }
+        });
+
+        lblIngreseNum1.setText("Ingrese números");
+
+        lblCalculodeDescuentos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCalculodeDescuentos.setText("Calculo de Descuentos");
+
+        lblIgss.setText("IGSS:");
+
+        txtIgss.setEditable(false);
+        txtIgss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIgssActionPerformed(evt);
+            }
+        });
+        txtIgss.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIgssKeyReleased(evt);
+            }
+        });
+
+        txtIsr.setEditable(false);
+        txtIsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIsrActionPerformed(evt);
+            }
+        });
+        txtIsr.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtIsrKeyReleased(evt);
+            }
+        });
+
+        lblIsr.setText("ISR:");
+
+        txtTotalDescuentos.setEditable(false);
+
+        lblTotalDescuentos.setText("Total Descuentos:");
+
+        IngresarEmpleado.setText("Ingresar Empleado a Nómina");
+        IngresarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarEmpleadoActionPerformed(evt);
+            }
+        });
+
+        advertencia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        advertencia.setText("ADVERTENCIA: No todos los campos están llenos");
+
+        Limpiar.setText("Limpiar");
+        Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimpiarActionPerformed(evt);
+            }
+        });
+
+        txtSueldoLiquido.setEditable(false);
+        txtSueldoLiquido.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        lblTotalDescuentos1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblTotalDescuentos1.setText("Sueldo Líquido:");
+
+        lblIngreseNum6.setText("Ingrese números");
+
+        txtAnticipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnticiposActionPerformed(evt);
+            }
+        });
+        txtAnticipos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtAnticiposKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAnticiposKeyTyped(evt);
+            }
+        });
+
+        lblAnticipos.setText("Anticipos Concedidos:");
+
+        cmbxFormadePago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Efectivo", "Cheque" }));
+
+        lblFormadePago.setText("Forma de Pago:");
+
+        lblIngreseNum4.setText("Ingrese números");
+
+        txtDescuentosJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentosJActionPerformed(evt);
+            }
+        });
+        txtDescuentosJ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescuentosJKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescuentosJKeyTyped(evt);
+            }
+        });
+
+        lblDescuentosJ.setText("Descuentos Judiciales:");
+
+        lblIngreseNum5.setText("Ingrese números");
+
+        txtOtrosDescuentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOtrosDescuentosActionPerformed(evt);
+            }
+        });
+        txtOtrosDescuentos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOtrosDescuentosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOtrosDescuentosKeyTyped(evt);
+            }
+        });
+
+        lblOtrosDescuentos.setText("Otros Descuentos:");
+
+        lblIngreseNum2.setText("Ingrese números");
+
+        txtBonificacionesExtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBonificacionesExtraActionPerformed(evt);
+            }
+        });
+        txtBonificacionesExtra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBonificacionesExtraKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBonificacionesExtraKeyTyped(evt);
+            }
+        });
+
+        lblBonificacionesExtra.setText("Bonificaciones Extra:");
+
+        txtBonificacionIncentivo.setEditable(false);
+        txtBonificacionIncentivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBonificacionIncentivoActionPerformed(evt);
+            }
+        });
+
+        lblBonificacionIncentivo.setText("Bonificacion Incentivo:");
+
+        txtSueldoDevengado.setEditable(false);
+        txtSueldoDevengado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoDevengadoActionPerformed(evt);
+            }
+        });
+
+        lblSueldoDevengado.setText("Sueldo Devengado:");
+
+        txtSueldoBase.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                txtSueldoBaseInputMethodTextChanged(evt);
+            }
+        });
+        txtSueldoBase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSueldoBaseActionPerformed(evt);
+            }
+        });
+        txtSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSueldoBaseKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSueldoBaseKeyTyped(evt);
+            }
+        });
+
+        lblIngreseNum.setText("Ingrese números");
+
+        lblSueldoBase.setText("Sueldo Base:");
+
+        cmbxNombreEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbxNombreEmpleadoActionPerformed(evt);
+            }
+        });
+        cmbxNombreEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cmbxNombreEmpleadoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                cmbxNombreEmpleadoKeyReleased(evt);
+            }
+        });
+
+        lblNombreEmpleado.setText("Nombre Empleado:");
+
+        lblPuesto.setText("Puesto:");
+
+        lblGeneraciondePlanilla.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblGeneraciondePlanilla.setText("Generación de Planilla");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(102, 102, 102)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIngresodeDatos)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCalculodeIngresos)
+                        .addGap(314, 314, 314)
+                        .addComponent(lblIngreseNum))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(lblSueldoBase))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbxPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(cmbxNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(lblBonificacionIncentivo)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblIngreseNum1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblIngreseNum2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(advertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCalculodeDescuentos)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(lblIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAnticipos)
+                        .addGap(33, 33, 33)
+                        .addComponent(lblDescuentosJ)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(303, 303, 303)
+                        .addComponent(lblIngreseNum6)
+                        .addGap(69, 69, 69)
+                        .addComponent(lblIngreseNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblIngreseNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(lblTotalDescuentos)
+                        .addGap(39, 39, 39)
+                        .addComponent(lblTotalDescuentos1)
+                        .addGap(92, 92, 92)
+                        .addComponent(lblFormadePago))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(txtTotalDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtSueldoLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbxFormadePago, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(lblGeneraciondePlanilla)))
+                .addContainerGap(125, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(lblGeneraciondePlanilla)
                 .addGap(28, 28, 28)
                 .addComponent(lblIngresodeDatos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSueldoBase)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDepartamento)
                             .addComponent(lblPuesto)
                             .addComponent(lblNombreEmpleado))))
                 .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(cmbxPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cmbxDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cmbxNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(lblCalculodeIngresos))
                     .addComponent(lblIngreseNum))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblComisiones)
                     .addComponent(lblBonificacionesExtra)
                     .addComponent(lblBonificacionIncentivo)
                     .addComponent(lblSueldoDevengado))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIngreseNum1)
                     .addComponent(lblIngreseNum2))
                 .addGap(27, 27, 27)
                 .addComponent(lblCalculodeDescuentos)
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblAnticipos)
                     .addComponent(lblDescuentosJ)
                     .addComponent(lblOtrosDescuentos)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIgss)
                             .addComponent(lblIsr))))
                 .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIngreseNum6)
                     .addComponent(lblIngreseNum4)
                     .addComponent(lblIngreseNum5))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalDescuentos1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTotalDescuentos)
                             .addComponent(lblFormadePago))))
                 .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtSueldoLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTotalDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmbxFormadePago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addComponent(advertencia)
-                .addGap(124, 124, 124)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jScrollPane2.setViewportView(jPanel1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1015, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -690,487 +733,476 @@ public class Generación_Nomina extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOtrosDescuentosActionPerformed
 
-        /**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtComisionesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComisionesKeyTyped
         // TODO add your handling code here:
-        char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum1.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum1.setVisible(false);
         }
     }//GEN-LAST:event_txtComisionesKeyTyped
-        /**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtBonificacionesExtraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonificacionesExtraKeyTyped
         // TODO add your handling code here:
-                char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum2.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum2.setVisible(false);
         }
     }//GEN-LAST:event_txtBonificacionesExtraKeyTyped
-        /**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtAnticiposKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnticiposKeyTyped
         // TODO add your handling code here:
-                char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum.setVisible(false);
         }
     }//GEN-LAST:event_txtAnticiposKeyTyped
-        /**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtDescuentosJKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentosJKeyTyped
         // TODO add your handling code here:
-                char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum4.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum4.setVisible(false);
         }
     }//GEN-LAST:event_txtDescuentosJKeyTyped
-        /**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtOtrosDescuentosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOtrosDescuentosKeyTyped
         // TODO add your handling code here:
-                char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum5.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum5.setVisible(false);
         }
     }//GEN-LAST:event_txtOtrosDescuentosKeyTyped
-        /**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtSueldoBaseKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoBaseKeyReleased
 
-        String strSueldoBase=txtSueldoBase.getText();
-        String strComisiones=txtComisiones.getText();
-        String strBonificacionesExtra=txtBonificacionesExtra.getText();
-        String strBonificacionIncentivo=txtBonificacionIncentivo.getText();
-        
-        if(strSueldoBase.equals("")==false&&strBonificacionIncentivo.equals("")==false){
+        String strSueldoBase = txtSueldoBase.getText();
+        String strComisiones = txtComisiones.getText();
+        String strBonificacionesExtra = txtBonificacionesExtra.getText();
+        String strBonificacionIncentivo = txtBonificacionIncentivo.getText();
+
+        if (strSueldoBase.equals("") == false && strBonificacionIncentivo.equals("") == false) {
             //CALCULO DE SUELDO DEVENGADO
 //CONVERSION DE STRING A DOUBLE
-        double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
-        double dbComisiones = Double.parseDouble(txtComisiones.getText());
-        double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
-        double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
-       
-        
-        //CALCULO DE SUELDO DEVENGADO
-       double dbSueldoDevengado=dbSueldoBase+dbComisiones+dbBonificacionesExtra+dbBonificacionIncentivo;
-       dbSueldoDevengado=Math.round(dbSueldoDevengado*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
-       //IMPRESIÓN EN PANTALLA
-       txtSueldoDevengado.setText(strSueldoDevengado);
-       
-       //CALCULO DE DESCUENTOS
-       
+            double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
+            double dbComisiones = Double.parseDouble(txtComisiones.getText());
+            double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
+            double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
+
+            //CALCULO DE SUELDO DEVENGADO
+            double dbSueldoDevengado = dbSueldoBase + dbComisiones + dbBonificacionesExtra + dbBonificacionIncentivo;
+            dbSueldoDevengado = Math.round(dbSueldoDevengado * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
+            //IMPRESIÓN EN PANTALLA
+            txtSueldoDevengado.setText(strSueldoDevengado);
+
+            //CALCULO DE DESCUENTOS
 //IGSS
-       double dbIgss=dbSueldoBase*0.0483;
-       //CONVERSION DE DOUBLE A STRING
-       dbIgss=Math.round(dbIgss*100)/100d;
-       String strIgss=String.valueOf(dbIgss);
-       //IMPRESION EN PANTALLA
-       txtIgss.setText(strIgss);
-       
+            double dbIgss = dbSueldoBase * 0.0483;
+            //CONVERSION DE DOUBLE A STRING
+            dbIgss = Math.round(dbIgss * 100) / 100d;
+            String strIgss = String.valueOf(dbIgss);
+            //IMPRESION EN PANTALLA
+            txtIgss.setText(strIgss);
+
 //ISR
-       double dbIsr;
-       if(dbSueldoBase<6000){
-           dbIsr=0;
-           txtIsr.setText("0");
-       }
-       else{
-           //CALCULO TOTAL INGRESOS
-           double dbSueldoAnual=dbSueldoBase*12;
-           double dbBonificacionIncentivoAnual=dbBonificacionIncentivo*12;
-           double dbIngresoAnual=dbSueldoAnual+dbBonificacionIncentivoAnual;
-           //CALCULO TOTAL DESCUENTOS
-           double dbIgssAnual=dbIgss*12;
-           double dbDescuentoAnual=dbIgssAnual+48000;
-           //CALCULO RENTA BRUTA
-           double dbRentaBruta=dbIngresoAnual-dbDescuentoAnual;
-           //CALCULO ISR ANUAL
-           double dbIsrAnual=dbRentaBruta*0.05;
-           //CALCULO ISR MENSUAL
-           dbIsr=dbIsrAnual/12;
-           //CONVERSION DE DOUBLE A STRING
-           String strIsr=String.valueOf(dbIsr);
-           dbIsr=Math.round(dbIsr*100)/100d;
-           //IMPRESION EN PANTALLA
-           txtIsr.setText(strIsr);
-       }
-       
+            double dbIsr;
+            if (dbSueldoBase < 6000) {
+                dbIsr = 0;
+                txtIsr.setText("0");
+            } else {
+                //CALCULO TOTAL INGRESOS
+                double dbSueldoAnual = dbSueldoBase * 12;
+                double dbBonificacionIncentivoAnual = dbBonificacionIncentivo * 12;
+                double dbIngresoAnual = dbSueldoAnual + dbBonificacionIncentivoAnual;
+                //CALCULO TOTAL DESCUENTOS
+                double dbIgssAnual = dbIgss * 12;
+                double dbDescuentoAnual = dbIgssAnual + 48000;
+                //CALCULO RENTA BRUTA
+                double dbRentaBruta = dbIngresoAnual - dbDescuentoAnual;
+                //CALCULO ISR ANUAL
+                double dbIsrAnual = dbRentaBruta * 0.05;
+                //CALCULO ISR MENSUAL
+                dbIsr = dbIsrAnual / 12;
+                //CONVERSION DE DOUBLE A STRING
+                String strIsr = String.valueOf(dbIsr);
+                dbIsr = Math.round(dbIsr * 100) / 100d;
+                //IMPRESION EN PANTALLA
+                txtIsr.setText(strIsr);
+            }
+
         }
     }//GEN-LAST:event_txtSueldoBaseKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtComisionesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComisionesKeyReleased
 
-        String strSueldoBase=txtSueldoBase.getText();
-        String strComisiones=txtComisiones.getText();
-        String strBonificacionesExtra=txtBonificacionesExtra.getText();
-        String strBonificacionIncentivo=txtBonificacionIncentivo.getText();
-        
-        if(strSueldoBase.equals("")==false&&strBonificacionIncentivo.equals("")==false){
+        String strSueldoBase = txtSueldoBase.getText();
+        String strComisiones = txtComisiones.getText();
+        String strBonificacionesExtra = txtBonificacionesExtra.getText();
+        String strBonificacionIncentivo = txtBonificacionIncentivo.getText();
+
+        if (strSueldoBase.equals("") == false && strBonificacionIncentivo.equals("") == false) {
             //CALCULO DE SUELDO DEVENGADO
 //CONVERSION DE STRING A DOUBLE
-        double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
-        double dbComisiones = Double.parseDouble(txtComisiones.getText());
-        double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
-        double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
-       
-        
-        //CALCULO DE SUELDO DEVENGADO
-       double dbSueldoDevengado=dbSueldoBase+dbComisiones+dbBonificacionesExtra+dbBonificacionIncentivo;
-       dbSueldoDevengado=Math.round(dbSueldoDevengado*100)/100;
-       //CONVERSION DE DOUBLE A STRING
-       String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
-       //IMPRESIÓN EN PANTALLA
-       txtSueldoDevengado.setText(strSueldoDevengado);
-       
-       //CALCULO DE DESCUENTOS
-       
+            double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
+            double dbComisiones = Double.parseDouble(txtComisiones.getText());
+            double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
+            double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
+
+            //CALCULO DE SUELDO DEVENGADO
+            double dbSueldoDevengado = dbSueldoBase + dbComisiones + dbBonificacionesExtra + dbBonificacionIncentivo;
+            dbSueldoDevengado = Math.round(dbSueldoDevengado * 100) / 100;
+            //CONVERSION DE DOUBLE A STRING
+            String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
+            //IMPRESIÓN EN PANTALLA
+            txtSueldoDevengado.setText(strSueldoDevengado);
+
+            //CALCULO DE DESCUENTOS
 //IGSS
-       double dbIgss=dbSueldoBase*0.0483;
-       //CONVERSION DE DOUBLE A STRING
-       dbIgss=Math.round(dbIgss*100)/100;
-       String strIgss=String.valueOf(dbIgss);
-       //IMPRESION EN PANTALLA
-       txtIgss.setText(strIgss);
-       
+            double dbIgss = dbSueldoBase * 0.0483;
+            //CONVERSION DE DOUBLE A STRING
+            dbIgss = Math.round(dbIgss * 100) / 100;
+            String strIgss = String.valueOf(dbIgss);
+            //IMPRESION EN PANTALLA
+            txtIgss.setText(strIgss);
+
 //ISR
-       double dbIsr;
-       if(dbSueldoBase<6000){
-           dbIsr=0;
-       }
-       else{
-           //CALCULO TOTAL INGRESOS
-           double dbSueldoAnual=dbSueldoBase*12;
-           double dbBonificacionIncentivoAnual=dbBonificacionIncentivo*12;
-           double dbIngresoAnual=dbSueldoAnual+dbBonificacionIncentivoAnual;
-           //CALCULO TOTAL DESCUENTOS
-           double dbIgssAnual=dbIgss*12;
-           double dbDescuentoAnual=dbIgssAnual+48000;
-           //CALCULO RENTA BRUTA
-           double dbRentaBruta=dbIngresoAnual-dbDescuentoAnual;
-           //CALCULO ISR ANUAL
-           double dbIsrAnual=dbRentaBruta*0.05;
-           //CALCULO ISR MENSUAL
-           dbIsr=dbIsrAnual/12;
-           //CONVERSION DE DOUBLE A STRING
-           String strIsr=String.valueOf(dbIsr);
-           dbIsr=Math.round(dbIsr*100)/100;
-           //IMPRESION EN PANTALLA
-           txtIsr.setText(strIsr);
-       }
+            double dbIsr;
+            if (dbSueldoBase < 6000) {
+                dbIsr = 0;
+            } else {
+                //CALCULO TOTAL INGRESOS
+                double dbSueldoAnual = dbSueldoBase * 12;
+                double dbBonificacionIncentivoAnual = dbBonificacionIncentivo * 12;
+                double dbIngresoAnual = dbSueldoAnual + dbBonificacionIncentivoAnual;
+                //CALCULO TOTAL DESCUENTOS
+                double dbIgssAnual = dbIgss * 12;
+                double dbDescuentoAnual = dbIgssAnual + 48000;
+                //CALCULO RENTA BRUTA
+                double dbRentaBruta = dbIngresoAnual - dbDescuentoAnual;
+                //CALCULO ISR ANUAL
+                double dbIsrAnual = dbRentaBruta * 0.05;
+                //CALCULO ISR MENSUAL
+                dbIsr = dbIsrAnual / 12;
+                //CONVERSION DE DOUBLE A STRING
+                String strIsr = String.valueOf(dbIsr);
+                dbIsr = Math.round(dbIsr * 100) / 100;
+                //IMPRESION EN PANTALLA
+                txtIsr.setText(strIsr);
+            }
         }
     }//GEN-LAST:event_txtComisionesKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtBonificacionesExtraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBonificacionesExtraKeyReleased
 
-        String strSueldoBase=txtSueldoBase.getText();
-        String strComisiones=txtComisiones.getText();
-        String strBonificacionesExtra=txtBonificacionesExtra.getText();
-        String strBonificacionIncentivo=txtBonificacionIncentivo.getText();
-        
-        if(strSueldoBase.equals("")==false&&strBonificacionIncentivo.equals("")==false){
+        String strSueldoBase = txtSueldoBase.getText();
+        String strComisiones = txtComisiones.getText();
+        String strBonificacionesExtra = txtBonificacionesExtra.getText();
+        String strBonificacionIncentivo = txtBonificacionIncentivo.getText();
+
+        if (strSueldoBase.equals("") == false && strBonificacionIncentivo.equals("") == false) {
             //CALCULO DE SUELDO DEVENGADO
 //CONVERSION DE STRING A DOUBLE
-        double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
-        double dbComisiones = Double.parseDouble(txtComisiones.getText());
-        double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
-        double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
-       
-        
-        //CALCULO DE SUELDO DEVENGADO
-       double dbSueldoDevengado=dbSueldoBase+dbComisiones+dbBonificacionesExtra+dbBonificacionIncentivo;
-       dbSueldoDevengado=Math.round(dbSueldoDevengado*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
-       //IMPRESIÓN EN PANTALLA
-       txtSueldoDevengado.setText(strSueldoDevengado);
-       
-       //CALCULO DE DESCUENTOS
-       
+            double dbSueldoBase = Double.parseDouble(txtSueldoBase.getText());
+            double dbComisiones = Double.parseDouble(txtComisiones.getText());
+            double dbBonificacionesExtra = Double.parseDouble(txtBonificacionesExtra.getText());
+            double dbBonificacionIncentivo = Double.parseDouble(txtBonificacionIncentivo.getText());
+
+            //CALCULO DE SUELDO DEVENGADO
+            double dbSueldoDevengado = dbSueldoBase + dbComisiones + dbBonificacionesExtra + dbBonificacionIncentivo;
+            dbSueldoDevengado = Math.round(dbSueldoDevengado * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strSueldoDevengado = String.valueOf(dbSueldoDevengado);
+            //IMPRESIÓN EN PANTALLA
+            txtSueldoDevengado.setText(strSueldoDevengado);
+
+            //CALCULO DE DESCUENTOS
 //IGSS
-       double dbIgss=dbSueldoBase*0.0483;
-       //CONVERSION DE DOUBLE A STRING
-       dbIgss=Math.round(dbIgss*100)/100d;
-       String strIgss=String.valueOf(dbIgss);
-       //IMPRESION EN PANTALLA
-       txtIgss.setText(strIgss);
-       
+            double dbIgss = dbSueldoBase * 0.0483;
+            //CONVERSION DE DOUBLE A STRING
+            dbIgss = Math.round(dbIgss * 100) / 100d;
+            String strIgss = String.valueOf(dbIgss);
+            //IMPRESION EN PANTALLA
+            txtIgss.setText(strIgss);
+
 //ISR
-       double dbIsr;
-       if(dbSueldoBase<6000){
-           dbIsr=0;
-       }
-       else{
-           //CALCULO TOTAL INGRESOS
-           double dbSueldoAnual=dbSueldoBase*12;
-           double dbBonificacionIncentivoAnual=dbBonificacionIncentivo*12;
-           double dbIngresoAnual=dbSueldoAnual+dbBonificacionIncentivoAnual;
-           //CALCULO TOTAL DESCUENTOS
-           double dbIgssAnual=dbIgss*12;
-           double dbDescuentoAnual=dbIgssAnual+48000;
-           //CALCULO RENTA BRUTA
-           double dbRentaBruta=dbIngresoAnual-dbDescuentoAnual;
-           //CALCULO ISR ANUAL
-           double dbIsrAnual=dbRentaBruta*0.05;
-           //CALCULO ISR MENSUAL
-           dbIsr=dbIsrAnual/12;
-           //CONVERSION DE DOUBLE A STRING
-           String strIsr=String.valueOf(dbIsr);
-           dbIsr=Math.round(dbIsr*100)/100d;
-           //IMPRESION EN PANTALLA
-           txtIsr.setText(strIsr);
-       }
+            double dbIsr;
+            if (dbSueldoBase < 6000) {
+                dbIsr = 0;
+            } else {
+                //CALCULO TOTAL INGRESOS
+                double dbSueldoAnual = dbSueldoBase * 12;
+                double dbBonificacionIncentivoAnual = dbBonificacionIncentivo * 12;
+                double dbIngresoAnual = dbSueldoAnual + dbBonificacionIncentivoAnual;
+                //CALCULO TOTAL DESCUENTOS
+                double dbIgssAnual = dbIgss * 12;
+                double dbDescuentoAnual = dbIgssAnual + 48000;
+                //CALCULO RENTA BRUTA
+                double dbRentaBruta = dbIngresoAnual - dbDescuentoAnual;
+                //CALCULO ISR ANUAL
+                double dbIsrAnual = dbRentaBruta * 0.05;
+                //CALCULO ISR MENSUAL
+                dbIsr = dbIsrAnual / 12;
+                //CONVERSION DE DOUBLE A STRING
+                String strIsr = String.valueOf(dbIsr);
+                dbIsr = Math.round(dbIsr * 100) / 100d;
+                //IMPRESION EN PANTALLA
+                txtIsr.setText(strIsr);
+            }
         }
 
     }//GEN-LAST:event_txtBonificacionesExtraKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtIgssKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIgssKeyReleased
 
-        String strIgss=txtIgss.getText();
-        String strIsr=txtIsr.getText();
-        String strAnticipos=txtAnticipos.getText();
-        String strDescuentosJ=txtDescuentosJ.getText();
-        String strOtrosDescuentos=txtOtrosDescuentos.getText();
-        
-        if(strIgss.equals("")==false){
+        String strIgss = txtIgss.getText();
+        String strIsr = txtIsr.getText();
+        String strAnticipos = txtAnticipos.getText();
+        String strDescuentosJ = txtDescuentosJ.getText();
+        String strOtrosDescuentos = txtOtrosDescuentos.getText();
+
+        if (strIgss.equals("") == false) {
 
 //CONVERSION DE STRING A DOUBLE
-        double dbIgss = Double.parseDouble(txtIgss.getText());
-        double dbIsr = Double.parseDouble(txtIsr.getText());
-        double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
-        double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
-        double dbOtrosDescuentos=Double.parseDouble(txtOtrosDescuentos.getText());
-       
-        
-        //CALCULO DE TOTAL DESCUENTOS
-       double dbTotalDescuentos=dbIgss+dbIsr+dbAnticipos+dbDescuentosJ+dbOtrosDescuentos;
-       dbTotalDescuentos=Math.round(dbTotalDescuentos*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
-       //IMPRESIÓN EN PANTALLA
-       txtTotalDescuentos.setText(strTotalDescuentos);
+            double dbIgss = Double.parseDouble(txtIgss.getText());
+            double dbIsr = Double.parseDouble(txtIsr.getText());
+            double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
+            double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
+            double dbOtrosDescuentos = Double.parseDouble(txtOtrosDescuentos.getText());
 
-       //CALCULO DE SUELDO LIQUIDO
-       //CONVERSION DE STRING A DOUBLE
-       double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
-       
-       double dbSueldoLiquido=dbIngresos-dbTotalDescuentos;
-       //CONVERSION DE DOUBLE A STRING
-       dbSueldoLiquido=Math.round(dbSueldoLiquido*100)/100d;
-       String strSueldoLiquido=String.valueOf(dbSueldoLiquido);
-       //IMPRESION EN PANTALLA
-       txtSueldoLiquido.setText(strSueldoLiquido);
+            //CALCULO DE TOTAL DESCUENTOS
+            double dbTotalDescuentos = dbIgss + dbIsr + dbAnticipos + dbDescuentosJ + dbOtrosDescuentos;
+            dbTotalDescuentos = Math.round(dbTotalDescuentos * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
+            //IMPRESIÓN EN PANTALLA
+            txtTotalDescuentos.setText(strTotalDescuentos);
+
+            //CALCULO DE SUELDO LIQUIDO
+            //CONVERSION DE STRING A DOUBLE
+            double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
+
+            double dbSueldoLiquido = dbIngresos - dbTotalDescuentos;
+            //CONVERSION DE DOUBLE A STRING
+            dbSueldoLiquido = Math.round(dbSueldoLiquido * 100) / 100d;
+            String strSueldoLiquido = String.valueOf(dbSueldoLiquido);
+            //IMPRESION EN PANTALLA
+            txtSueldoLiquido.setText(strSueldoLiquido);
 
         }
     }//GEN-LAST:event_txtIgssKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtIsrKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIsrKeyReleased
-String strIgss=txtIgss.getText();
-        String strIsr=txtIsr.getText();
-        String strAnticipos=txtAnticipos.getText();
-        String strDescuentosJ=txtDescuentosJ.getText();
-        String strOtrosDescuentos=txtOtrosDescuentos.getText();
-        
-        if(strIgss.equals("")==false){
+        String strIgss = txtIgss.getText();
+        String strIsr = txtIsr.getText();
+        String strAnticipos = txtAnticipos.getText();
+        String strDescuentosJ = txtDescuentosJ.getText();
+        String strOtrosDescuentos = txtOtrosDescuentos.getText();
+
+        if (strIgss.equals("") == false) {
 
 //CONVERSION DE STRING A DOUBLE
-        double dbIgss = Double.parseDouble(txtIgss.getText());
-        double dbIsr = Double.parseDouble(txtIsr.getText());
-        double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
-        double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
-        double dbOtrosDescuentos=Double.parseDouble(txtOtrosDescuentos.getText());
-       
-        
-        //CALCULO DE TOTAL DESCUENTOS
-       double dbTotalDescuentos=dbIgss+dbIsr+dbAnticipos+dbDescuentosJ+dbOtrosDescuentos;
-       dbTotalDescuentos=Math.round(dbTotalDescuentos*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
-       //IMPRESIÓN EN PANTALLA
-       txtTotalDescuentos.setText(strTotalDescuentos);
+            double dbIgss = Double.parseDouble(txtIgss.getText());
+            double dbIsr = Double.parseDouble(txtIsr.getText());
+            double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
+            double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
+            double dbOtrosDescuentos = Double.parseDouble(txtOtrosDescuentos.getText());
 
-       //CALCULO DE SUELDO LIQUIDO
-       //CONVERSION DE STRING A DOUBLE
-       double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
-       
-       double dbSueldoLiquido=dbIngresos-dbTotalDescuentos;
-       //CONVERSION DE DOUBLE A STRING
-       dbSueldoLiquido=Math.round(dbSueldoLiquido*100)/100d;
-       String strSueldoLiquido=String.valueOf(dbSueldoLiquido);
-       //IMPRESION EN PANTALLA
-       txtSueldoLiquido.setText(strSueldoLiquido);
+            //CALCULO DE TOTAL DESCUENTOS
+            double dbTotalDescuentos = dbIgss + dbIsr + dbAnticipos + dbDescuentosJ + dbOtrosDescuentos;
+            dbTotalDescuentos = Math.round(dbTotalDescuentos * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
+            //IMPRESIÓN EN PANTALLA
+            txtTotalDescuentos.setText(strTotalDescuentos);
+
+            //CALCULO DE SUELDO LIQUIDO
+            //CONVERSION DE STRING A DOUBLE
+            double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
+
+            double dbSueldoLiquido = dbIngresos - dbTotalDescuentos;
+            //CONVERSION DE DOUBLE A STRING
+            dbSueldoLiquido = Math.round(dbSueldoLiquido * 100) / 100d;
+            String strSueldoLiquido = String.valueOf(dbSueldoLiquido);
+            //IMPRESION EN PANTALLA
+            txtSueldoLiquido.setText(strSueldoLiquido);
 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txtIsrKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtAnticiposKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnticiposKeyReleased
-String strIgss=txtIgss.getText();
-        String strIsr=txtIsr.getText();
-        String strAnticipos=txtAnticipos.getText();
-        String strDescuentosJ=txtDescuentosJ.getText();
-        String strOtrosDescuentos=txtOtrosDescuentos.getText();
-        
-        if(strIgss.equals("")==false){
+        String strIgss = txtIgss.getText();
+        String strIsr = txtIsr.getText();
+        String strAnticipos = txtAnticipos.getText();
+        String strDescuentosJ = txtDescuentosJ.getText();
+        String strOtrosDescuentos = txtOtrosDescuentos.getText();
+
+        if (strIgss.equals("") == false) {
 
 //CONVERSION DE STRING A DOUBLE
-        double dbIgss = Double.parseDouble(txtIgss.getText());
-        double dbIsr = Double.parseDouble(txtIsr.getText());
-        double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
-        double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
-        double dbOtrosDescuentos=Double.parseDouble(txtOtrosDescuentos.getText());
-       
-        
-        //CALCULO DE TOTAL DESCUENTOS
-       double dbTotalDescuentos=dbIgss+dbIsr+dbAnticipos+dbDescuentosJ+dbOtrosDescuentos;
-       dbTotalDescuentos=Math.round(dbTotalDescuentos*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
-       //IMPRESIÓN EN PANTALLA
-       txtTotalDescuentos.setText(strTotalDescuentos);
+            double dbIgss = Double.parseDouble(txtIgss.getText());
+            double dbIsr = Double.parseDouble(txtIsr.getText());
+            double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
+            double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
+            double dbOtrosDescuentos = Double.parseDouble(txtOtrosDescuentos.getText());
 
-       //CALCULO DE SUELDO LIQUIDO
-       //CONVERSION DE STRING A DOUBLE
-       double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
-       
-       double dbSueldoLiquido=dbIngresos-dbTotalDescuentos;
-       //CONVERSION DE DOUBLE A STRING
-       dbSueldoLiquido=Math.round(dbSueldoLiquido*100)/100d;
-       String strSueldoLiquido=String.valueOf(dbSueldoLiquido);
-       //IMPRESION EN PANTALLA
-       txtSueldoLiquido.setText(strSueldoLiquido);
+            //CALCULO DE TOTAL DESCUENTOS
+            double dbTotalDescuentos = dbIgss + dbIsr + dbAnticipos + dbDescuentosJ + dbOtrosDescuentos;
+            dbTotalDescuentos = Math.round(dbTotalDescuentos * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
+            //IMPRESIÓN EN PANTALLA
+            txtTotalDescuentos.setText(strTotalDescuentos);
+
+            //CALCULO DE SUELDO LIQUIDO
+            //CONVERSION DE STRING A DOUBLE
+            double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
+
+            double dbSueldoLiquido = dbIngresos - dbTotalDescuentos;
+            //CONVERSION DE DOUBLE A STRING
+            dbSueldoLiquido = Math.round(dbSueldoLiquido * 100) / 100d;
+            String strSueldoLiquido = String.valueOf(dbSueldoLiquido);
+            //IMPRESION EN PANTALLA
+            txtSueldoLiquido.setText(strSueldoLiquido);
 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txtAnticiposKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtDescuentosJKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentosJKeyReleased
-String strIgss=txtIgss.getText();
-        String strIsr=txtIsr.getText();
-        String strAnticipos=txtAnticipos.getText();
-        String strDescuentosJ=txtDescuentosJ.getText();
-        String strOtrosDescuentos=txtOtrosDescuentos.getText();
-        
-        if(strIgss.equals("")==false){
+        String strIgss = txtIgss.getText();
+        String strIsr = txtIsr.getText();
+        String strAnticipos = txtAnticipos.getText();
+        String strDescuentosJ = txtDescuentosJ.getText();
+        String strOtrosDescuentos = txtOtrosDescuentos.getText();
+
+        if (strIgss.equals("") == false) {
 
 //CONVERSION DE STRING A DOUBLE
-        double dbIgss = Double.parseDouble(txtIgss.getText());
-        double dbIsr = Double.parseDouble(txtIsr.getText());
-        double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
-        double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
-        double dbOtrosDescuentos=Double.parseDouble(txtOtrosDescuentos.getText());
-       
-        
-        //CALCULO DE TOTAL DESCUENTOS
-       double dbTotalDescuentos=dbIgss+dbIsr+dbAnticipos+dbDescuentosJ+dbOtrosDescuentos;
-       dbTotalDescuentos=Math.round(dbTotalDescuentos*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
-       //IMPRESIÓN EN PANTALLA
-       txtTotalDescuentos.setText(strTotalDescuentos);
+            double dbIgss = Double.parseDouble(txtIgss.getText());
+            double dbIsr = Double.parseDouble(txtIsr.getText());
+            double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
+            double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
+            double dbOtrosDescuentos = Double.parseDouble(txtOtrosDescuentos.getText());
 
-       //CALCULO DE SUELDO LIQUIDO
-       //CONVERSION DE STRING A DOUBLE
-       double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
-       
-       double dbSueldoLiquido=dbIngresos-dbTotalDescuentos;
-       //CONVERSION DE DOUBLE A STRING
-       dbSueldoLiquido=Math.round(dbSueldoLiquido*100)/100d;
-       String strSueldoLiquido=String.valueOf(dbSueldoLiquido);
-       //IMPRESION EN PANTALLA
-       txtSueldoLiquido.setText(strSueldoLiquido);
+            //CALCULO DE TOTAL DESCUENTOS
+            double dbTotalDescuentos = dbIgss + dbIsr + dbAnticipos + dbDescuentosJ + dbOtrosDescuentos;
+            dbTotalDescuentos = Math.round(dbTotalDescuentos * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
+            //IMPRESIÓN EN PANTALLA
+            txtTotalDescuentos.setText(strTotalDescuentos);
+
+            //CALCULO DE SUELDO LIQUIDO
+            //CONVERSION DE STRING A DOUBLE
+            double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
+
+            double dbSueldoLiquido = dbIngresos - dbTotalDescuentos;
+            //CONVERSION DE DOUBLE A STRING
+            dbSueldoLiquido = Math.round(dbSueldoLiquido * 100) / 100d;
+            String strSueldoLiquido = String.valueOf(dbSueldoLiquido);
+            //IMPRESION EN PANTALLA
+            txtSueldoLiquido.setText(strSueldoLiquido);
 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txtDescuentosJKeyReleased
-/**
-     * Condiciona para que el usuario pueda escribir solamente números.
-     * El KeyReleased mantiene actualizados los JTextField que requieren de los datos para hacer calculos automáticos.
+    /**
+     * Condiciona para que el usuario pueda escribir solamente números. El
+     * KeyReleased mantiene actualizados los JTextField que requieren de los
+     * datos para hacer calculos automáticos.
      */
     private void txtOtrosDescuentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOtrosDescuentosKeyReleased
-String strIgss=txtIgss.getText();
-        String strIsr=txtIsr.getText();
-        String strAnticipos=txtAnticipos.getText();
-        String strDescuentosJ=txtDescuentosJ.getText();
-        String strOtrosDescuentos=txtOtrosDescuentos.getText();
-        
-        if(strIgss.equals("")==false){
+        String strIgss = txtIgss.getText();
+        String strIsr = txtIsr.getText();
+        String strAnticipos = txtAnticipos.getText();
+        String strDescuentosJ = txtDescuentosJ.getText();
+        String strOtrosDescuentos = txtOtrosDescuentos.getText();
+
+        if (strIgss.equals("") == false) {
 
 //CONVERSION DE STRING A DOUBLE
-        double dbIgss = Double.parseDouble(txtIgss.getText());
-        double dbIsr = Double.parseDouble(txtIsr.getText());
-        double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
-        double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
-        double dbOtrosDescuentos=Double.parseDouble(txtOtrosDescuentos.getText());
-       
-        
-        //CALCULO DE TOTAL DESCUENTOS
-       double dbTotalDescuentos=dbIgss+dbIsr+dbAnticipos+dbDescuentosJ+dbOtrosDescuentos;
-       dbTotalDescuentos=Math.round(dbTotalDescuentos*100)/100d;
-       //CONVERSION DE DOUBLE A STRING
-       String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
-       //IMPRESIÓN EN PANTALLA
-       txtTotalDescuentos.setText(strTotalDescuentos);
+            double dbIgss = Double.parseDouble(txtIgss.getText());
+            double dbIsr = Double.parseDouble(txtIsr.getText());
+            double dbAnticipos = Double.parseDouble(txtAnticipos.getText());
+            double dbDescuentosJ = Double.parseDouble(txtDescuentosJ.getText());
+            double dbOtrosDescuentos = Double.parseDouble(txtOtrosDescuentos.getText());
 
-       //CALCULO DE SUELDO LIQUIDO
-       //CONVERSION DE STRING A DOUBLE
-       double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
-       
-       double dbSueldoLiquido=dbIngresos-dbTotalDescuentos;
-       //CONVERSION DE DOUBLE A STRING
-       dbSueldoLiquido=Math.round(dbSueldoLiquido*100)/100d;
-       String strSueldoLiquido=String.valueOf(dbSueldoLiquido);
-       //IMPRESION EN PANTALLA
-       txtSueldoLiquido.setText(strSueldoLiquido);
+            //CALCULO DE TOTAL DESCUENTOS
+            double dbTotalDescuentos = dbIgss + dbIsr + dbAnticipos + dbDescuentosJ + dbOtrosDescuentos;
+            dbTotalDescuentos = Math.round(dbTotalDescuentos * 100) / 100d;
+            //CONVERSION DE DOUBLE A STRING
+            String strTotalDescuentos = String.valueOf(dbTotalDescuentos);
+            //IMPRESIÓN EN PANTALLA
+            txtTotalDescuentos.setText(strTotalDescuentos);
+
+            //CALCULO DE SUELDO LIQUIDO
+            //CONVERSION DE STRING A DOUBLE
+            double dbIngresos = Double.parseDouble(txtSueldoDevengado.getText());
+
+            double dbSueldoLiquido = dbIngresos - dbTotalDescuentos;
+            //CONVERSION DE DOUBLE A STRING
+            dbSueldoLiquido = Math.round(dbSueldoLiquido * 100) / 100d;
+            String strSueldoLiquido = String.valueOf(dbSueldoLiquido);
+            //IMPRESION EN PANTALLA
+            txtSueldoLiquido.setText(strSueldoLiquido);
 
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txtOtrosDescuentosKeyReleased
@@ -1178,81 +1210,154 @@ String strIgss=txtIgss.getText();
     private void cmbxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxDepartamentoActionPerformed
 
     }//GEN-LAST:event_cmbxDepartamentoActionPerformed
-/**
-     * Llena la tabla NombreEmpleado cuando se ingresa a Generación de Planilla según los empleados en el archivo.
+    /**
+     * Llena la tabla NombreEmpleado cuando se ingresa a Generación de Planilla
+     * según los empleados en el archivo.
      */
     private void cmbxNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoActionPerformed
-        // TODO add your handling code here:      
+        // TODO add your handling code here:
+        int registros = 1000;
+        String partes[] = new String[3];
+        String dato = null;
+        String nombre = null;
+        FileReader fr;
+        try {
+            fr = new FileReader("Puestos.txt");
+            BufferedReader bf = new BufferedReader(fr);
+            for (int i = 0; i < registros; i++) {
+                String datoe = bf.readLine();
+                cmbxPuesto.addItem(datoe);
+                i = i++;
+            }
+
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
+
+
     }//GEN-LAST:event_cmbxNombreEmpleadoActionPerformed
 
     private void cmbxNombreEmpleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoKeyReleased
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cmbxNombreEmpleadoKeyReleased
-/**
+    /**
      * Condiciona para que el usuario pueda escribir solamente números.
      */
     private void txtSueldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoBaseKeyTyped
         // TODO add your handling code here:
-                char validar=evt.getKeyChar();
-        if(Character.isLetter(validar)){
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
             lblIngreseNum.setVisible(true);
-        }
-        else{
+        } else {
             lblIngreseNum.setVisible(false);
         }
 
     }//GEN-LAST:event_txtSueldoBaseKeyTyped
 
     private void txtSueldoBaseInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtSueldoBaseInputMethodTextChanged
-      // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtSueldoBaseInputMethodTextChanged
-/**
-     * Llena la tabla NombreEmpleado cuando se ingresa a Generación de Planilla según los empleados en el archivo.
+    /**
+     * Llena la tabla NombreEmpleado cuando se ingresa a Generación de Planilla
+     * según los empleados en el archivo.
      */
     private void cmbxNombreEmpleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoKeyPressed
         // TODO add your handling code here:
+        FileReader fr;
+        int registros = 1000;
+        String nombrecombo = "";
+        nombrecombo = (String) cmbxNombreEmpleado.getSelectedItem();
+
+        try {
+            fr = new FileReader("Sueldos.txt");
+            BufferedReader bf = new BufferedReader(fr);
+            for (int i = 0; i < registros; i++) {
+                String datox = bf.readLine();
+                String partes[] = datox.split(" ");
+
+                for (int j = 0; j < 1; j++) {
+                    String nombresueldo = partes[0] + " " + partes[1];
+
+                    if (nombresueldo == nombrecombo) {
+                        txtSueldoBase.setText(partes[2]);
+                    }
+                    j++;
+
+                }
+
+                i++;
+            }
+        } catch (FileNotFoundException ex) {
+        } catch (IOException ex) {
+        }
     }//GEN-LAST:event_cmbxNombreEmpleadoKeyPressed
-/**
-     * Ingresa al empleado en el JTable y en un archivo llamado Nomina, donde se guarda un registro de respaldo.
+    /**
+     * Ingresa al empleado en el JTable y en un archivo llamado Nomina, donde se
+     * guarda un registro de respaldo.
      */
     private void IngresarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarEmpleadoActionPerformed
         // TODO add your handling code here:       
-        String departamento="", puesto="", nombre="", sueldo="", comisiones="", bonificacionesextra="", incentivo="", sueldodevengado="";
-        String igss="", isr="", anticipos="", descuentosj="", otrosdescuentos="", totaldescuentos="", liquido="", formapago="";
-        if(sueldo!=null&&comisiones!=null&&bonificacionesextra!=null&&anticipos!=null&&descuentosj!=null&&totaldescuentos!=null){
-        advertencia.setVisible(false);
-        departamento=(String)cmbxDepartamento.getSelectedItem();
-        puesto=(String)cmbxPuesto.getSelectedItem();
-        nombre=(String)cmbxNombreEmpleado.getSelectedItem();
-        sueldo=txtSueldoBase.getText();
-        comisiones=txtComisiones.getText();
-        bonificacionesextra=txtBonificacionesExtra.getText();
-        incentivo=txtBonificacionIncentivo.getText();
-        sueldodevengado=txtSueldoDevengado.getText();
-        igss=txtIgss.getText();
-        isr=txtIsr.getText();
-        anticipos=txtAnticipos.getText();
-        descuentosj=txtDescuentosJ.getText();
-        otrosdescuentos=txtOtrosDescuentos.getText();
-        totaldescuentos=txtTotalDescuentos.getText();
-        liquido=txtSueldoLiquido.getText();
-        formapago=(String)cmbxFormadePago.getSelectedItem();
-        
-        
-        
+        String departamento = "", puesto = "", nombre = "", sueldo = "", comisiones = "", bonificacionesextra = "", incentivo = "", sueldodevengado = "";
+        String igss = "", isr = "", anticipos = "", descuentosj = "", otrosdescuentos = "", totaldescuentos = "", liquido = "", formapago = "";
+        if (sueldo != null && comisiones != null && bonificacionesextra != null && anticipos != null && descuentosj != null && totaldescuentos != null) {
+            advertencia.setVisible(false);
+            departamento = (String) cmbxDepartamento.getSelectedItem();
+            puesto = (String) cmbxPuesto.getSelectedItem();
+            nombre = (String) cmbxNombreEmpleado.getSelectedItem();
+            sueldo = txtSueldoBase.getText();
+            comisiones = txtComisiones.getText();
+            bonificacionesextra = txtBonificacionesExtra.getText();
+            incentivo = txtBonificacionIncentivo.getText();
+            sueldodevengado = txtSueldoDevengado.getText();
+            igss = txtIgss.getText();
+            isr = txtIsr.getText();
+            anticipos = txtAnticipos.getText();
+            descuentosj = txtDescuentosJ.getText();
+            otrosdescuentos = txtOtrosDescuentos.getText();
+            totaldescuentos = txtTotalDescuentos.getText();
+            liquido = txtSueldoLiquido.getText();
+            formapago = (String) cmbxFormadePago.getSelectedItem();
+
+            FileWriter escritura = null;
+            PrintWriter pw = null;
+            try {
+                escritura = new FileWriter("Nomina.txt");
+                pw = new PrintWriter(escritura);
+
+                for (int i = 0; i < 1; i++) {
+                    pw.println(departamento + " " + puesto + " " + nombre + " " + sueldo + " " + comisiones + " " + bonificacionesextra + " " + incentivo + " " + sueldodevengado + " " + igss + " " + isr + " " + anticipos + " " + descuentosj + " " + otrosdescuentos + " " + totaldescuentos + " " + liquido + " " + formapago);
+                }
+
+            } catch (Exception e) {
+
+            } finally {
+                try {
+                    // Nuevamente aprovechamos el finally para 
+                    // asegurarnos que se cierra el fichero.
+                    if (null != escritura) {
+                        escritura.close();
+                    }
+                } catch (Exception e2) {
+
+                }
+            }
+        } else {
+            advertencia.setVisible(true);
         }
-        
-        
+
+        //IMPRESION EN TABLA
+
     }//GEN-LAST:event_IngresarEmpleadoActionPerformed
 
     private void txtSueldoBaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoBaseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSueldoBaseActionPerformed
-/**
-     * Luego de ingresar un empleado limpia los JTextField para poder ingresar un nuevo empleado.
+    /**
+     * Luego de ingresar un empleado limpia los JTextField para poder ingresar
+     * un nuevo empleado.
      */
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
         // TODO add your handling code here:
@@ -1260,7 +1365,7 @@ String strIgss=txtIgss.getText();
         txtComisiones.setText("");
         txtBonificacionesExtra.setText("");
         txtSueldoDevengado.setText("");
-        
+
         txtIgss.setText("");
         txtIsr.setText("0");
         txtAnticipos.setText("");
@@ -1268,18 +1373,15 @@ String strIgss=txtIgss.getText();
         txtOtrosDescuentos.setText("");
         txtTotalDescuentos.setText("");
         txtSueldoLiquido.setText("");
-        
+
     }//GEN-LAST:event_LimpiarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-
     /**
      * @param args the command line arguments
      */
-
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1310,7 +1412,7 @@ String strIgss=txtIgss.getText();
                 new Generación_Nomina().setVisible(true);
             }
         });
-}
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton IngresarEmpleado;
     private javax.swing.JButton Limpiar;

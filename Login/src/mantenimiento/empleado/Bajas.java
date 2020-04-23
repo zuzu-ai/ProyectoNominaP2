@@ -8,7 +8,6 @@ package mantenimiento.empleado;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import java.sql.*;
 
 /**
  *
@@ -199,7 +198,7 @@ public class Bajas extends javax.swing.JFrame {
                             .addGap(50, 50, 50)
                             .addComponent(txtTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(txtIngresar, javax.swing.GroupLayout.Alignment.TRAILING)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +256,14 @@ public class Bajas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresarActionPerformed
-
+try {
+            AccesoAleatorio.crearFileEmpleado(new File("empleado.txt"));
+            if( AccesoAleatorio.eliminarEmpleado(cmbId.getSelectedItem().toString()) )
+                JOptionPane.showMessageDialog(this, "El registro correspondiente fue eliminado correctamente.", "Eliminación correcta", JOptionPane.INFORMATION_MESSAGE);
+            else JOptionPane.showMessageDialog(this, "Error al intentar eliminar un registro inexistente.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
+        }  
         
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIngresarActionPerformed

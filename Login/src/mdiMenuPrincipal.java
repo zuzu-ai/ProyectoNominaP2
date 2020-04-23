@@ -140,13 +140,10 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
 
-<<<<<<< HEAD
     new Registros().setVisible(true);
         
-=======
         new Registros().setVisible(true);
 
->>>>>>> a034d22dab559c18bb2026a091d8c574bd8d39ff
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed

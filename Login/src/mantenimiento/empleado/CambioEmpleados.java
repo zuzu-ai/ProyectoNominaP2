@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package mantenimiento.empleado;
-<<<<<<< HEAD
-=======
 import java.sql.*;
 import javax.swing.JOptionPane;
->>>>>>> a0da23954a5a14c70848d1a8a3a51d407464f23b
 
 /**
  *

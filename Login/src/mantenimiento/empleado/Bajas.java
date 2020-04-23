@@ -25,7 +25,7 @@ public class Bajas extends javax.swing.JFrame {
              this.setTitle("Bajas Empleados");
              try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
-            PreparedStatement pst = cn.prepareStatement("select Codigo_Altas from Altas");
+            PreparedStatement pst = cn.prepareStatement("select Codigo_Altas from Altas ");
             ResultSet rs = pst.executeQuery();
             
             
@@ -52,7 +52,7 @@ public class Bajas extends javax.swing.JFrame {
     private void initComponents() {
 
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        txtIngresar = new javax.swing.JButton();
+        btnBaja = new javax.swing.JButton();
         label11 = new java.awt.Label();
         label1 = new java.awt.Label();
         txtNombre = new java.awt.TextField();
@@ -72,11 +72,11 @@ public class Bajas extends javax.swing.JFrame {
         lb_P = new javax.swing.JLabel();
         lb_Nom = new javax.swing.JLabel();
 
-        txtIngresar.setText("DAR DE BAJA");
-        txtIngresar.setEnabled(false);
-        txtIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btnBaja.setText("DAR DE BAJA");
+        btnBaja.setEnabled(false);
+        btnBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngresarActionPerformed(evt);
+                btnBajaActionPerformed(evt);
             }
         });
 
@@ -174,7 +174,7 @@ public class Bajas extends javax.swing.JFrame {
                         .addGap(85, 85, 85)
                         .addComponent(label13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtIngresar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBaja, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(102, 102, 102)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -228,18 +228,64 @@ public class Bajas extends javax.swing.JFrame {
                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(date_F, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(txtIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresarActionPerformed
+    private void btnBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBajaActionPerformed
 
+            java.util.Date fecha=date_F.getDate();
+            long d=fecha.getTime();
+            java.sql.Date date = new java.sql.Date(d);
+        
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            PreparedStatement pst = cn.prepareStatement("insert into Bajas values(?,?,?,?,?)");
+            pst.setString(1, "0");
+            pst.setString(2, lb_Nom.getText().trim());
+            pst.setString(3, date.toString());
+            pst.setString(4, lb_D.getText().trim());
+            pst.setString(5, lb_P.getText().trim());
+       
+            pst.executeUpdate();
+            
+            PreparedStatement pst2 = cn.prepareStatement("delete from Altas where Codigo_Empleado= ?");
+            pst2.setString(1, lb_Nom.getText().trim());
+            pst2.executeUpdate();
+            
+            String codigo=lb_Nom.getText().trim();
+            PreparedStatement pst3 = cn.prepareStatement("update Empleados set Estado_Empleado = ? where Codigo_Empleado = " + codigo);
+
+            pst3.setString(1, "B");
+            pst3.executeUpdate();
+
+            
+            
+            btnBaja.setEnabled(false);
+          
+            txtNombre.setText("");
+            txtDep.setText("");
+            txtPue.setText("");
+            lb_D.setText("Id");
+            lb_P.setText("Id");
+            cbox_Id.setSelectedItem(0);
+            
+            
+
+          
+            
+
+            JOptionPane.showMessageDialog(this, "¡BAJA EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        
         
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngresarActionPerformed
+    }//GEN-LAST:event_btnBajaActionPerformed
 
     private void txtSueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSueldoActionPerformed
         // TODO add your handling code here:
@@ -265,8 +311,8 @@ try{
                     
                 }
                 
-               PreparedStatement pst2 = cn.prepareStatement("select Nombre_EMpleado,Sueldo_Empleado from Empleados where Codigo_Empleado= ?");
-                pst2.setString(1, lb_Nom.getText().toString());  
+               PreparedStatement pst2 = cn.prepareStatement("select Nombre_Empleado, Sueldo_Empleado from Empleados where Codigo_Empleado= ?");
+                pst2.setString(1, lb_Nom.getText());  
                 ResultSet rs2 = pst2.executeQuery();
                 
                 if(rs2.next()){
@@ -274,8 +320,8 @@ try{
                     txtSueldo.setText(rs2.getString("Sueldo_Empleado"));  
                 }
                 
-                PreparedStatement pst3 = cn.prepareStatement("select Nombre_Departamento from Departamentos where Codigo_Depatamento= ?");
-                pst3.setString(1, lb_D.getText().toString());  
+                PreparedStatement pst3 = cn.prepareStatement("select Nombre_Departamento from Departamentos where Codigo_Departamento= ?");
+                pst3.setString(1, lb_D.getText());  
                 ResultSet rs3 = pst3.executeQuery();
                 
                 if(rs3.next()){
@@ -283,14 +329,14 @@ try{
                 }
                 
                 PreparedStatement pst4 = cn.prepareStatement("select Nombre_Puesto from Puestos where Codigo_Puesto= ?");
-                pst4.setString(1, lb_P.getText().toString());  
+                pst4.setString(1, lb_P.getText());  
                 ResultSet rs4 = pst4.executeQuery();
                 
                 if(rs4.next()){
                     txtPue.setText(rs4.getString("Nombre_Puesto"));   
                 }
                 
-                
+                btnBaja.setEnabled(true);
             }catch (Exception e){
                 
             }
@@ -333,6 +379,7 @@ try{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBaja;
     private javax.swing.JComboBox<String> cbox_Id;
     private com.toedter.calendar.JDateChooser date_F;
     private com.toedter.calendar.JDateChooser date_I;
@@ -349,7 +396,6 @@ try{
     private javax.swing.JLabel lb_Nom;
     private javax.swing.JLabel lb_P;
     private java.awt.TextField txtDep;
-    private javax.swing.JButton txtIngresar;
     private java.awt.TextField txtNombre;
     private java.awt.TextField txtPue;
     private java.awt.TextField txtSueldo;

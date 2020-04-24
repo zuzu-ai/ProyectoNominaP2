@@ -29,7 +29,7 @@ public class Registros extends javax.swing.JFrame {
              this.setTitle("Altas Empleados");
     
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rs = pst.executeQuery();
             
@@ -291,7 +291,7 @@ public class Registros extends javax.swing.JFrame {
         }
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Empleados values(?,?,?,?,?,?,?,?,?,?,?)");
    
             pst.setString(1, "0");
@@ -346,7 +346,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
 try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
 
             PreparedStatement pst2 = cn.prepareStatement("select Codigo_Departamento from Departamentos where Nombre_Departamento = ?");
            
@@ -375,7 +375,7 @@ try{
 
     private void cbox_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_PuestoActionPerformed
 try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst3 = cn.prepareStatement("select Codigo_Puesto from Puestos where Nombre_Puesto = ?");
           
             pst3.setString(1, cbox_Puesto.getSelectedItem().toString());
@@ -408,7 +408,7 @@ try{
         
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             String id= txt_Dpi.getText();
             
             PreparedStatement pst3 = cn.prepareStatement("select Codigo_Empleado from Empleados where Dpi_Empleado=?");

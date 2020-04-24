@@ -94,13 +94,14 @@
                               <Component id="txtAltasDiciembre" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnMostrarAltas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtBuscarAltas" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,7 +141,10 @@
                   <Component id="txtAltasDiciembre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnMostrarAltas" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnMostrarAltas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBuscarAltas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -245,6 +249,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAltasActuales">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtBuscarAltas">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscarAltasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

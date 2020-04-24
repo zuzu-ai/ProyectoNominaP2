@@ -5,6 +5,13 @@
  */
 package ReporteEmpleados;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Daniel Garcia
@@ -28,32 +35,33 @@ public class ReporteBajas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        txtAltasActuales1 = new javax.swing.JTextField();
+        txtBajasEnero = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtAltasActuales2 = new javax.swing.JTextField();
+        txtBajasFebrero = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtAltasActuales = new javax.swing.JTextField();
+        txtBajasActuales = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtAltasActuales3 = new javax.swing.JTextField();
-        txtAltasActuales4 = new javax.swing.JTextField();
-        txtAltasActuales5 = new javax.swing.JTextField();
-        txtAltasActuales6 = new javax.swing.JTextField();
+        txtBajasMarzo = new javax.swing.JTextField();
+        txtBajasAbril = new javax.swing.JTextField();
+        txtBajasMayo = new javax.swing.JTextField();
+        txtBajasJunio = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtAltasActuales7 = new javax.swing.JTextField();
+        txtBajasJulio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtAltasActuales8 = new javax.swing.JTextField();
+        txtBajasAgosto = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtAltasActuales9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        txtAltasActuales10 = new javax.swing.JTextField();
+        txtBajasSeptiembre = new javax.swing.JTextField();
+        btnMostrarBajas = new javax.swing.JButton();
+        txtBajasOctubre = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtAltasActuales11 = new javax.swing.JTextField();
+        txtBajasNoviembre = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        txtAltasActuales14 = new javax.swing.JTextField();
+        txtBajasDiciembre = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtBuscarBajas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,15 +83,26 @@ public class ReporteBajas extends javax.swing.JFrame {
 
         jLabel11.setText("Diciembre");
 
-        jButton1.setText("Mostrar");
+        btnMostrarBajas.setText("Mostrar");
+        btnMostrarBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarBajasActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Julio");
 
         jLabel14.setText("Junio");
 
-        jLabel1.setText("Altas Actuales");
+        jLabel1.setText("Bajas Actuales");
 
         jLabel2.setText("Marzo");
+
+        txtBuscarBajas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarBajasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,15 +114,15 @@ public class ReporteBajas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(txtAltasActuales, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBajasActuales, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtAltasActuales1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasEnero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAltasActuales2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasFebrero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtBajasMarzo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(42, 42, 42)
@@ -113,15 +132,15 @@ public class ReporteBajas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtAltasActuales4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasAbril, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasMayo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasJunio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasJulio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtBajasAgosto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(45, 45, 45)
@@ -143,17 +162,18 @@ public class ReporteBajas extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel11))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtAltasActuales9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasSeptiembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasOctubre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAltasActuales11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBajasNoviembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAltasActuales14, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtBajasDiciembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(btnMostrarBajas)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscarBajas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,26 +195,71 @@ public class ReporteBajas extends javax.swing.JFrame {
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAltasActuales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAltasActuales14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBajasActuales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasEnero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasFebrero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasMarzo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasAbril, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasMayo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasJunio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasJulio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasAgosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasSeptiembre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasOctubre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasNoviembre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBajasDiciembre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarBajas)
+                    .addComponent(txtBuscarBajas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtBuscarBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarBajasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarBajasActionPerformed
+
+    private void btnMostrarBajasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarBajasActionPerformed
+
+        String dep = txtBuscarBajas.getText().trim();
+        if (dep.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "¡No se ingreo sl registro de reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            PreparedStatement pst = cn.prepareStatement("select * from Reporte_Bajas where Altas_id = ?");
+            pst.setString(1, txtBuscarBajas.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
+            txtBajasActuales.setText(rs.getString("Altas_Actuales"));
+            txtBajasEnero.setText(rs.getString("Altas_Enero"));
+            txtBajasFebrero.setText(rs.getString("Altas_Febrero"));
+            txtBajasMarzo.setText(rs.getString("Altas_Marzo"));
+            txtBajasAbril.setText(rs.getString("Altas_Abril"));
+            txtBajasMayo.setText(rs.getString("Altas_Mayo"));
+            txtBajasJunio.setText(rs.getString("Altas_Junio"));
+            txtBajasJulio.setText(rs.getString("Altas_Julio"));
+            txtBajasAgosto.setText(rs.getString("Altas_Agosto"));
+            txtBajasSeptiembre.setText(rs.getString("Altas_Septiembre"));
+            txtBajasOctubre.setText(rs.getString("Altas_Octubre"));
+            txtBajasNoviembre.setText(rs.getString("Altas_Noviembre"));
+            txtBajasDiciembre.setText(rs.getString("Altas_Diciembre"));
+            }else {
+                JOptionPane.showMessageDialog(null, "Reporte no encontrado");
+            }
+                
+            
+
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Error en Monstrar Reporte");
+        }  
+    }//GEN-LAST:event_btnMostrarBajasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,7 +297,7 @@ public class ReporteBajas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnMostrarBajas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -246,18 +311,19 @@ public class ReporteBajas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtAltasActuales;
-    private javax.swing.JTextField txtAltasActuales1;
-    private javax.swing.JTextField txtAltasActuales10;
-    private javax.swing.JTextField txtAltasActuales11;
-    private javax.swing.JTextField txtAltasActuales14;
-    private javax.swing.JTextField txtAltasActuales2;
-    private javax.swing.JTextField txtAltasActuales3;
-    private javax.swing.JTextField txtAltasActuales4;
-    private javax.swing.JTextField txtAltasActuales5;
-    private javax.swing.JTextField txtAltasActuales6;
-    private javax.swing.JTextField txtAltasActuales7;
-    private javax.swing.JTextField txtAltasActuales8;
-    private javax.swing.JTextField txtAltasActuales9;
+    private javax.swing.JTextField txtBajasAbril;
+    private javax.swing.JTextField txtBajasActuales;
+    private javax.swing.JTextField txtBajasAgosto;
+    private javax.swing.JTextField txtBajasDiciembre;
+    private javax.swing.JTextField txtBajasEnero;
+    private javax.swing.JTextField txtBajasFebrero;
+    private javax.swing.JTextField txtBajasJulio;
+    private javax.swing.JTextField txtBajasJunio;
+    private javax.swing.JTextField txtBajasMarzo;
+    private javax.swing.JTextField txtBajasMayo;
+    private javax.swing.JTextField txtBajasNoviembre;
+    private javax.swing.JTextField txtBajasOctubre;
+    private javax.swing.JTextField txtBajasSeptiembre;
+    private javax.swing.JTextField txtBuscarBajas;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,16 +29,16 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtAltasActuales" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="txtBajasActuales" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtAltasActuales1" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasEnero" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales2" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasFebrero" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales3" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasMarzo" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -51,15 +51,15 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtAltasActuales4" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasAbril" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales5" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasMayo" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales6" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasJunio" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales7" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasJulio" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales8" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasAgosto" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
@@ -85,22 +85,23 @@
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtAltasActuales9" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasSeptiembre" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales10" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasOctubre" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales11" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasNoviembre" min="-2" pref="60" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtAltasActuales14" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="txtBajasDiciembre" min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnMostrarBajas" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="txtBuscarBajas" min="-2" pref="53" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,22 +126,25 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtAltasActuales" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales11" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAltasActuales14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasActuales" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasEnero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasFebrero" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasMarzo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasAbril" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasMayo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasJunio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasJulio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasAgosto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasSeptiembre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasOctubre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasNoviembre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBajasDiciembre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnMostrarBajas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBuscarBajas" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -152,14 +156,14 @@
         <Property name="text" type="java.lang.String" value="Mayo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales1">
+    <Component class="javax.swing.JTextField" name="txtBajasEnero">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Enero"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales2">
+    <Component class="javax.swing.JTextField" name="txtBajasFebrero">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -171,7 +175,7 @@
         <Property name="text" type="java.lang.String" value="Abril"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales">
+    <Component class="javax.swing.JTextField" name="txtBajasActuales">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -183,65 +187,73 @@
         <Property name="text" type="java.lang.String" value="Octubre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales3">
+    <Component class="javax.swing.JTextField" name="txtBajasMarzo">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales4">
+    <Component class="javax.swing.JTextField" name="txtBajasAbril">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales5">
+    <Component class="javax.swing.JTextField" name="txtBajasMayo">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales6">
+    <Component class="javax.swing.JTextField" name="txtBajasJunio">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="text" type="java.lang.String" value="Septiembre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales7">
+    <Component class="javax.swing.JTextField" name="txtBajasJulio">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agosto"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales8">
+    <Component class="javax.swing.JTextField" name="txtBajasAgosto">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="text" type="java.lang.String" value="Diciembre"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales9">
+    <Component class="javax.swing.JTextField" name="txtBajasSeptiembre">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnMostrarBajas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarBajasActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales10">
+    <Component class="javax.swing.JTextField" name="txtBajasOctubre">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
         <Property name="text" type="java.lang.String" value="Julio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales11">
+    <Component class="javax.swing.JTextField" name="txtBajasNoviembre">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>
         <Property name="text" type="java.lang.String" value="Junio"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtAltasActuales14">
+    <Component class="javax.swing.JTextField" name="txtBajasDiciembre">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Altas Actuales"/>
+        <Property name="text" type="java.lang.String" value="Bajas Actuales"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Marzo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtBuscarBajas">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscarBajasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

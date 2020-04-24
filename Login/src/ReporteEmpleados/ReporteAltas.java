@@ -62,6 +62,7 @@ public class ReporteAltas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtAltasActuales = new javax.swing.JTextField();
+        txtBuscarAltas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +98,12 @@ public class ReporteAltas extends javax.swing.JFrame {
         jLabel2.setText("Marzo");
 
         jLabel6.setText("Abril");
+
+        txtBuscarAltas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarAltasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,11 +169,12 @@ public class ReporteAltas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtAltasNoviembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAltasDiciembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtAltasDiciembre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnMostrarAltas)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBuscarAltas, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +210,9 @@ public class ReporteAltas extends javax.swing.JFrame {
                     .addComponent(txtAltasNoviembre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAltasDiciembre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnMostrarAltas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrarAltas)
+                    .addComponent(txtBuscarAltas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -210,14 +220,20 @@ public class ReporteAltas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMostrarAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarAltasActionPerformed
-   
-        try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
-            PreparedStatement pst = cn.prepareStatement("select * from Reporte_Altas");
-           
-            ResultSet rs = pst.executeQuery();
+        String dep = txtBuscarAltas.getText().trim();
+        if (dep.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "¡No se ingreo sl registro de reporte!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-            
+        try {
+
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            PreparedStatement pst = cn.prepareStatement("select * from Reporte_Altas where Altas_id = ?");
+            pst.setString(1, txtBuscarAltas.getText().trim());
+
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()){
             txtAltasActuales.setText(rs.getString("Altas_Actuales"));
             txtAltasEnero.setText(rs.getString("Altas_Enero"));
             txtAltasFebrero.setText(rs.getString("Altas_Febrero"));
@@ -231,16 +247,17 @@ public class ReporteAltas extends javax.swing.JFrame {
             txtAltasOctubre.setText(rs.getString("Altas_Octubre"));
             txtAltasNoviembre.setText(rs.getString("Altas_Noviembre"));
             txtAltasDiciembre.setText(rs.getString("Altas_Diciembre"));
-            
-            
-            
-
-            
-
-        }catch (HeadlessException | SQLException e){
-                JOptionPane.showMessageDialog(null, "Error en muestreo");
+            }else {
+                JOptionPane.showMessageDialog(null, "Reporte no encontrado");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error en Monstrar Reporte");
         }
     }//GEN-LAST:event_btnMostrarAltasActionPerformed
+
+    private void txtBuscarAltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAltasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarAltasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,5 +322,6 @@ public class ReporteAltas extends javax.swing.JFrame {
     private javax.swing.JTextField txtAltasNoviembre;
     private javax.swing.JTextField txtAltasOctubre;
     private javax.swing.JTextField txtAltasSeptiembre;
+    private javax.swing.JTextField txtBuscarAltas;
     // End of variables declaration//GEN-END:variables
 }

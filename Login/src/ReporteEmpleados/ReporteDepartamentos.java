@@ -227,7 +227,7 @@ public class ReporteDepartamentos extends javax.swing.JFrame {
 
         try {
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Reporte_Departamento where Reporte_Departamentos_Id = ?");
             pst.setString(1, txtBuscarDepartamento.getText().trim());
 

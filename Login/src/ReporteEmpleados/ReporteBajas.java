@@ -231,7 +231,7 @@ public class ReporteBajas extends javax.swing.JFrame {
         }
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Reporte_Bajas where Altas_id = ?");
             pst.setString(1, txtBuscarBajas.getText().trim());
 

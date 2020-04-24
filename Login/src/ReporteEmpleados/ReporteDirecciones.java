@@ -358,7 +358,7 @@ public class ReporteDirecciones extends javax.swing.JFrame {
 
         try {
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Reporte_Direccion where Reporte_Direccion_Id = ?");
             pst.setString(1, txtBuscarDireccion.getText().trim());
 

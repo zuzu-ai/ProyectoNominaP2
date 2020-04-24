@@ -228,7 +228,7 @@ public class ReporteAltas extends javax.swing.JFrame {
 
         try {
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "Rochi1523");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Reporte_Altas where Altas_id = ?");
             pst.setString(1, txtBuscarAltas.getText().trim());
 

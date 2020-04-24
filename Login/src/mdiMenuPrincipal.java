@@ -38,6 +38,8 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
 
@@ -94,13 +96,19 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         });
         fileMenu.add(jMenuItem2);
 
-        jMenuItem3.setText("Usuarios");
+        jMenuItem3.setText("Altas Usuarios");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
         fileMenu.add(jMenuItem3);
+
+        jMenuItem4.setText("Bajas usuarios ");
+        fileMenu.add(jMenuItem4);
+
+        jMenuItem5.setText("Mantenimiento usuarios");
+        fileMenu.add(jMenuItem5);
 
         menuBar.add(fileMenu);
 
@@ -220,6 +228,8 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;

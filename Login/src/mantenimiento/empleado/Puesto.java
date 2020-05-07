@@ -321,7 +321,7 @@ String puesto = txt_BuscarPuesto.getText().trim();
             return;
         } 
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Puestos where Codigo_Puesto = ?");
             pst.setString(1, txt_BuscarPuesto.getText().trim());
             
@@ -348,7 +348,7 @@ String puesto = txt_CrearPuesto.getText().trim();
         }  
         
          try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Puestos values(?,?,?)");
             
             pst.setString(1, "0");
@@ -367,7 +367,7 @@ String puesto = txt_CrearPuesto.getText().trim();
 
     private void btnEliminarPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPuestoActionPerformed
 try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from Puestos where Codigo_Puesto = ?");
             
             pst.setString(1, txt_EliminarPuesto.getText().trim());
@@ -403,7 +403,7 @@ try {
 try {
             String codigo_puesto = txt_id.getText().trim();
             
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update Puestos set Codigo_Puesto = ?, Nombre_Puesto = ?,Estado_Puesto = ? where Codigo_Puesto = " + codigo_puesto);
             String mensaje="";
            

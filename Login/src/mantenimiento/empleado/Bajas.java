@@ -24,7 +24,7 @@ public class Bajas extends javax.swing.JFrame {
              setLocationRelativeTo(null);
              this.setTitle("Bajas Empleados");
              try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Codigo_Altas from Altas ");
             ResultSet rs = pst.executeQuery();
             
@@ -242,7 +242,7 @@ public class Bajas extends javax.swing.JFrame {
             java.sql.Date date = new java.sql.Date(d);
         
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Bajas values(?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, lb_Nom.getText().trim());
@@ -297,7 +297,7 @@ public class Bajas extends javax.swing.JFrame {
 
     private void cbox_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_IdActionPerformed
 try{
-                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+                Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
                 PreparedStatement pst = cn.prepareStatement("select Codigo_Empleado,Codigo_Dep,Codigo_Pue,Fecha from Altas where Codigo_Altas= ?");
                 pst.setString(1, cbox_Id.getSelectedItem().toString());
                 

@@ -32,26 +32,32 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         panel = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        editMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         cutMenuItem = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fileMenu.setMnemonic('f');
-        fileMenu.setText("Mantenimiento de Personal");
+        fileMenu.setText("Archivo");
         fileMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fileMenuMouseClicked(evt);
             }
         });
+        menuBar.add(fileMenu);
+
+        editMenu.setMnemonic('e');
+        editMenu.setText("Catálogos ");
 
         openMenuItem.setMnemonic('o');
         openMenuItem.setText("Altas empleados");
@@ -60,7 +66,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 openMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(openMenuItem);
+        editMenu.add(openMenuItem);
 
         saveMenuItem.setMnemonic('s');
         saveMenuItem.setText("Bajas empleados");
@@ -69,7 +75,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 saveMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(saveMenuItem);
+        editMenu.add(saveMenuItem);
 
         saveAsMenuItem.setMnemonic('a');
         saveAsMenuItem.setText("Cambio empleados");
@@ -78,7 +84,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 saveAsMenuItemActionPerformed(evt);
             }
         });
-        fileMenu.add(saveAsMenuItem);
+        editMenu.add(saveAsMenuItem);
 
         jMenuItem1.setText("Departamentos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +92,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        fileMenu.add(jMenuItem1);
+        editMenu.add(jMenuItem1);
 
         jMenuItem2.setText("Puestos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -94,26 +100,14 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        fileMenu.add(jMenuItem2);
-
-        jMenuItem3.setText("Altas Usuarios");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        fileMenu.add(jMenuItem3);
-
-        jMenuItem4.setText("Bajas usuarios ");
-        fileMenu.add(jMenuItem4);
+        editMenu.add(jMenuItem2);
 
         jMenuItem5.setText("Mantenimiento usuarios");
-        fileMenu.add(jMenuItem5);
+        editMenu.add(jMenuItem5);
 
-        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Generar Planilla");
+        jMenu1.setText("Procesos");
 
         cutMenuItem.setMnemonic('t');
         cutMenuItem.setText("Ingreso de datos");
@@ -122,9 +116,18 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
                 cutMenuItemActionPerformed(evt);
             }
         });
-        editMenu.add(cutMenuItem);
+        jMenu1.add(cutMenuItem);
 
-        menuBar.add(editMenu);
+        menuBar.add(jMenu1);
+
+        jMenu2.setText("Informes");
+        menuBar.add(jMenu2);
+
+        jMenu3.setText("Herramientas");
+        menuBar.add(jMenu3);
+
+        jMenu4.setText("Ayuda");
+        menuBar.add(jMenu4);
 
         setJMenuBar(menuBar);
 
@@ -181,11 +184,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         new Puesto().setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
        
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-         new Mantenimiento_Usuarios().setVisible(true); 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -225,10 +223,12 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem cutMenuItem;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;

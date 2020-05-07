@@ -21,7 +21,7 @@ public class CambioEmpleados extends javax.swing.JFrame {
            setLocationRelativeTo(null);
              this.setTitle("Cambio Empleados");
              try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rs = pst.executeQuery();
             
@@ -287,7 +287,7 @@ public class CambioEmpleados extends javax.swing.JFrame {
         String codigo=cbox_Id.getSelectedItem().toString();
 
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update Empleados set Nombre_Empleado = ?, Dpi_Empleado = ?, Fecha_Nacimiento = ? ,Tel_Empleado = ?,Ubicacion_Empleado = ?,Sueldo_Empleado = ?, Fecha_Inicio = ?,Codigo_Puesto =?,Codigo_Departamento=? where Codigo_Empleado="+codigo);
 
            
@@ -313,7 +313,7 @@ public class CambioEmpleados extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
 
             PreparedStatement pst2 = cn.prepareStatement("select Codigo_Departamento from Departamentos where Nombre_Departamento = ?");
 
@@ -337,7 +337,7 @@ public class CambioEmpleados extends javax.swing.JFrame {
 
     private void cbox_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_PuestoActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst3 = cn.prepareStatement("select Codigo_Puesto from Puestos where Nombre_Puesto = ?");
 
             pst3.setString(1, cbox_Puesto.getSelectedItem().toString());
@@ -373,7 +373,7 @@ public class CambioEmpleados extends javax.swing.JFrame {
 
     private void cbox_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_IdActionPerformed
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Empleados where Codigo_Empleado= ?");
             pst.setString(1, cbox_Id.getSelectedItem().toString());
 

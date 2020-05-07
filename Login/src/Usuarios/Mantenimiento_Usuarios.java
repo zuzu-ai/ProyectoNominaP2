@@ -62,14 +62,11 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
         pfContraseña_Usuario = new javax.swing.JPasswordField();
         btnRegistrar = new javax.swing.JButton();
         txtTipo_Usuario = new javax.swing.JTextField();
-<<<<<<< HEAD
         btnModificar3 = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txtbuscado = new javax.swing.JTextField();
         btnBuscar2 = new javax.swing.JButton();
-=======
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +83,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
         jLabel6.setText("Tipo de usuario:");
 
         cmbxCodigo_Empleado.addActionListener(new java.awt.event.ActionListener() {
-<<<<<<< HEAD
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbxCodigo_EmpleadoActionPerformed(evt);
             }
@@ -137,33 +133,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
         btnBuscar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscar2ActionPerformed(evt);
-=======
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxCodigo_EmpleadoActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Nombre Usuario:");
-
-        txtNombre_Usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombre_UsuarioActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("Contaseña:");
-
-        pfContraseña_Usuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pfContraseña_UsuarioActionPerformed(evt);
-            }
-        });
-
-        btnRegistrar.setText("Registrar");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
             }
         });
 
@@ -175,7 +144,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-<<<<<<< HEAD
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,38 +183,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
-=======
-                        .addComponent(jLabel8)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbxCodigo_Empleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNombre_E, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtTipo_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtNombre_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pfContraseña_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblPuesto_E, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblEstado_E, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jblDepartamento_E, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(38, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +227,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(pfContraseña_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,11 +239,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
                         .addComponent(txtbuscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnBuscar2)))
                 .addContainerGap(47, Short.MAX_VALUE))
-=======
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,7 +258,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pfContraseña_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfContraseña_UsuarioActionPerformed
-<<<<<<< HEAD
         // TODO add your handling code here:
     }//GEN-LAST:event_pfContraseña_UsuarioActionPerformed
 
@@ -473,73 +402,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error en Seleccion","Warning",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscar2ActionPerformed
-=======
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pfContraseña_UsuarioActionPerformed
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // Altas Usuarios
-        try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
-            //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into Usarios values(?,?,?,?)");
-            
-            pst.setString(1, "0");
-            pst.setString(2, txtTipo_Usuario.getText().trim());
-            pst.setString(3, txtNombre_Usuario.getText().trim());
-            pst.setString(4, pfContraseña_Usuario.getPassword().toString().trim());
-           
-            pst.executeUpdate();
-
-            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            txtTipo_Usuario.setText("");
-            txtNombre_Usuario.setText("");
-            pfContraseña_Usuario.setText("");
-            lblNombre_E.setText("");
-            jblDepartamento_E.setText("");
-            lblEstado_E.setText("");
-            lblPuesto_E.setText("");
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-    }//GEN-LAST:event_btnRegistrarActionPerformed
-
-    private void txtNombre_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre_UsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre_UsuarioActionPerformed
-
-    private void cmbxCodigo_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxCodigo_EmpleadoActionPerformed
-//cmbx codigo empleado
-
-     try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-
-            PreparedStatement pst = cn.prepareStatement("select Codigo_Empleado from Empleados where Nombre_Empleado = ?");
-            
-           
-            pst.setString(1, cmbxCodigo_Empleado.getSelectedItem().toString());
-                        
-            ResultSet rs = pst.executeQuery();
-
-            if(rs.next()){
-               lblNombre_E.setText(rs.getString("Codigo_Empleado"));
-                
-
-            } else {
-                
-            }
-    
-                    
-        }catch (Exception e){
-            JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-  
-
-
-
-    }//GEN-LAST:event_cmbxCodigo_EmpleadoActionPerformed
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
 
     /**
      * @param args the command line arguments
@@ -577,12 +439,9 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
     private javax.swing.JButton btnBuscar2;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar3;
-=======
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cmbxCodigo_Empleado;
     private javax.swing.JLabel jLabel1;
@@ -602,9 +461,6 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     private javax.swing.JPasswordField pfContraseña_Usuario;
     private javax.swing.JTextField txtNombre_Usuario;
     private javax.swing.JTextField txtTipo_Usuario;
-<<<<<<< HEAD
     private javax.swing.JTextField txtbuscado;
-=======
->>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
     // End of variables declaration//GEN-END:variables
 }

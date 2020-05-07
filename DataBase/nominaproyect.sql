@@ -1,7 +1,6 @@
 create database nominaproyect;
 use nominaproyect;
-drop database nominaproyect;
-select * from Puestos;
+
 create table Puestos(
 Codigo_Puesto int primary key auto_increment,
 Nombre_Puesto varchar(60) not null,
@@ -45,32 +44,38 @@ Puestos(Codigo_Puesto)
 )engine=Innodb;
 
 create table Conceptos(
-Codigo_Concepto varchar(5) primary key,
+Codigo_Concepto int primary key,
+Codigo_Empleado int not null,
 Nombre_Concepto varchar(10) not null,
 Tipo_Concepto varchar(1) not null,
 Clase_Concepto varchar(1) not null,
 Aplicacion_Concepto varchar(1) not null,
 Valor int not null,
 foreign key (Aplicacion_Concepto) references
-aplicacion(Codigo_Aplicacion)
+aplicacion(Codigo_Aplicacion),
+foreign key (Codigo_Empleado) references
+empleados(Codigo_Empleado)
 )engine=Innodb;
 
-create table NominaEncabezado
+create table Nomina
 (
-Codigo_Nomina varchar(5) primary key,
+Codigo_Nomina int primary key auto_increment,
 Fecha_Inicial_Nomina date,
-Fecha_Final_Nomina date
-)engine=InnoDB;
-
-create table Nomina_Descripcion
-(
-Codigo_Nomina varchar(5) not null,
 Codigo_Empleado int not null,
-Codigo_Concepto varchar(5) not null,
-Valor_NominaD float(10),
+Codigo_Concepto int not null,
+SueldoL decimal not null,
+SueldoBase decimal not null,
+Comisiones decimal not null,
+Bonificaciones decimal not null,
+Incentivo decimal not null,
+Devengado decimal not null,
+Igss decimal not null,
+Isr decimal not null,
+Anticipos decimal not null,
+DescuentosJ decimal not null,
+OtrosDescuentos decimal not null,
+TotalDesucentos decimal not null,
 
-foreign key (Codigo_Nomina) references
-NominaEncabezado(Codigo_Nomina),
 foreign key (Codigo_Empleado) references
 Empleados(Codigo_Empleado),
 foreign key (Codigo_Concepto) references
@@ -78,7 +83,7 @@ Conceptos(Codigo_Concepto)
 )engine=InnoDB;
 
 create table Tipo_Porcentaje(
-Codigo_Concepto varchar(5) primary key,
+Codigo_Concepto int primary key,
 Nombre_Porcentaje varchar(60) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
@@ -86,7 +91,7 @@ Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table Tipo_Cuota(
-Codigo_Concepto varchar(1) primary key,
+Codigo_Concepto int primary key,
 Nombre_Cuota varchar(60) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
@@ -94,7 +99,7 @@ Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table tipo_Tabla(
-Codigo_Concepto varchar(5) primary key,
+Codigo_Concepto int primary key,
 Rango_V1 float(10),
 Rango_V2 float(10),
 Valor varchar(1),
@@ -161,8 +166,6 @@ Altas_Id varchar(128) primary key
 , Altas_Actuales int not null
 )engine = Innodb;
 
-insert into Altas values(uuid(),12.20,10.12,14.36,15.24,18.25,36.24,19.36,14.25,18.82,17.71,13.25,18,52,1523);
-
 create table Reporte_Bajas(
 Bajas_Id varchar(128) primary key not null
 , Bajas_Enero double(2,2) not null
@@ -182,7 +185,11 @@ Bajas_Id varchar(128) primary key not null
 
 create table Altas
 (
-Codigo_Empleado int primary key auto_increment,
+Codigo_Altas int primary key auto_increment,
+Codigo_Empleado int not null,
+Fecha datetime not null,
+Codigo_Dep int not null,
+Codigo_Pue int not null,
 foreign key (Codigo_Empleado) references
 Empleados(Codigo_Empleado)
 )engine=InnoDB;
@@ -190,16 +197,40 @@ Empleados(Codigo_Empleado)
 
 create table Bajas
 (
-Codigo_Empleado int primary key auto_increment,
-foreign key (Codigo_Empleado) references
-Empleados(Codigo_Empleado)
+Codigo_Bajas int primary key auto_increment,
+Codigo_Altas int not null,
+Fecha datetime not null,
+Codigo_Dep int not null,
+Codigo_Pue int not null,
+foreign key (Codigo_Altas) references
+Altas(Codigo_Altas)
 )engine=InnoDB;
-create table Usarios
-(
-Codigo_Usuario int not null,
-Tipo_Usuario int not null,
-Nombre_Usuario varchar (20) not null,
-Contraseña_Usuario int not null,
-primary key (Codigo_Usuario),
-foreign key (Codigo_Usuario) references Empleados(Codigo_Empleado)
-)engine= InnoDB;
+
+
+
+INSERT INTO puestos values ("0","Vendedor","T");
+INSERT INTO puestos values ("0","Gerente","T");
+INSERT INTO puestos values ("0","Contador","T");
+INSERT INTO puestos values ("0","Auxiliar","T");
+
+
+INSERT INTO departamentos values ("0","Marketing","T");
+INSERT INTO departamentos values ("0","Gerencia","T");
+INSERT INTO departamentos values ("0","Contabilidad","T");
+INSERT INTO departamentos values ("0","Limpieza","T");
+
+
+insert into aplicacion values ("1","1","N/A");
+insert into aplicacion values ("2","2","1");
+
+
+insert into Conceptos VALUES(0,1,"Isr","%","-","1",5);
+
+
+
+
+
+select * from NOMINA;
+
+drop database nominaproyect;
+

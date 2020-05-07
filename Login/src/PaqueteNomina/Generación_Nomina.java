@@ -56,7 +56,6 @@ public class Generación_Nomina extends javax.swing.JFrame {
         lblIngreseNum2.setVisible(false);
         lblIngreseNum4.setVisible(false);
         lblIngreseNum5.setVisible(false);
-        advertencia.setVisible(false);
         txtBonificacionIncentivo.setText("250.00");
         txtIsr.setText("0");
         /**
@@ -158,7 +157,6 @@ public class Generación_Nomina extends javax.swing.JFrame {
         txtTotalDescuentos = new javax.swing.JTextField();
         lblTotalDescuentos = new javax.swing.JLabel();
         IngresarEmpleado = new javax.swing.JButton();
-        advertencia = new javax.swing.JLabel();
         Limpiar = new javax.swing.JButton();
         txtSueldoLiquido = new javax.swing.JTextField();
         lblTotalDescuentos1 = new javax.swing.JLabel();
@@ -182,10 +180,14 @@ public class Generación_Nomina extends javax.swing.JFrame {
         lblSueldoBase = new javax.swing.JLabel();
         cmbxNombreEmpleado = new javax.swing.JComboBox<>();
         lblNombreEmpleado = new javax.swing.JLabel();
-        lblGeneraciondePlanilla = new javax.swing.JLabel();
         date = new com.toedter.calendar.JDateChooser();
         fechanomina = new javax.swing.JLabel();
         codigoe = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        buscar = new javax.swing.JTextField();
+        ConceptoE = new javax.swing.JLabel();
 
         setTitle("Generación de Nómina");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -253,15 +255,12 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         lblTotalDescuentos.setText("Total Descuentos:");
 
-        IngresarEmpleado.setText("Ingresar Empleado a Nómina");
+        IngresarEmpleado.setText("Ingresar");
         IngresarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IngresarEmpleadoActionPerformed(evt);
             }
         });
-
-        advertencia.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        advertencia.setText("ADVERTENCIA: No todos los campos están llenos");
 
         Limpiar.setText("Limpiar");
         Limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -366,6 +365,7 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         lblSueldoDevengado.setText("Sueldo Devengado:");
 
+        txtSueldoBase.setEditable(false);
         txtSueldoBase.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
@@ -405,12 +405,32 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         lblNombreEmpleado.setText("Nombre Empleado:");
 
-        lblGeneraciondePlanilla.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblGeneraciondePlanilla.setText("Generación de Planilla");
-
         fechanomina.setText("fecha nomina");
 
         codigoe.setText("Codigo");
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        ConceptoE.setText("Concepto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -419,10 +439,44 @@ public class Generación_Nomina extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(378, 378, 378)
-                        .addComponent(lblGeneraciondePlanilla))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbxNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(10, 10, 10)
+                                        .addComponent(codigoe)
+                                        .addGap(40, 40, 40)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblSueldoBase)
+                                            .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(414, 414, 414)
+                                        .addComponent(ConceptoE, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(fechanomina)
+                                .addGap(18, 18, 18)
+                                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)
+                                .addComponent(IngresarEmpleado)
+                                .addGap(18, 18, 18)
+                                .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscar)
+                                .addGap(18, 18, 18)
+                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblIngresodeDatos)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
@@ -432,103 +486,88 @@ public class Generación_Nomina extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(lblIngreseNum2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(34, 34, 34)
                                         .addComponent(lblBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(34, 34, 34)
                                         .addComponent(lblBonificacionIncentivo)
                                         .addGap(30, 30, 30)
-                                        .addComponent(lblSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(lblNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(cmbxNombreEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(codigoe)
-                                                .addGap(40, 40, 40)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lblSueldoBase)
-                                                    .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(lblSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addComponent(lblIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(lblIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblAnticipos)
-                                .addGap(33, 33, 33)
-                                .addComponent(lblDescuentosJ)
-                                .addGap(30, 30, 30)
-                                .addComponent(lblOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
+                                .addGap(165, 165, 165)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(92, 92, 92)
-                                        .addComponent(advertencia, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(245, 245, 245)
-                                        .addComponent(lblIngreseNum6)
-                                        .addGap(69, 69, 69)
-                                        .addComponent(lblIngreseNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lblIngreseNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(119, 119, 119)
-                                        .addComponent(lblTotalDescuentos)
-                                        .addGap(39, 39, 39)
-                                        .addComponent(lblTotalDescuentos1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(119, 119, 119)
                                         .addComponent(txtTotalDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(6, 6, 6)
                                         .addComponent(txtSueldoLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(23, 23, 23)
                                         .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(46, 46, 46)
                                         .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(lblIngresodeDatos)
-                            .addComponent(jLabel1)
+                                        .addGap(40, 40, 40)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblDescuentosJ)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(lblIngreseNum4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(53, 53, 53)
+                                                .addComponent(lblIngreseNum5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblOtrosDescuentos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblTotalDescuentos)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(lblTotalDescuentos1))))
                             .addComponent(lblCalculodeIngresos)
                             .addComponent(lblCalculodeDescuentos)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fechanomina)
-                                .addGap(18, 18, 18)
-                                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(126, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(lblIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(53, 53, 53)
+                                .addComponent(lblIsr, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblAnticipos)
+                                    .addComponent(lblIngreseNum6))))))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblGeneraciondePlanilla)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fechanomina))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(44, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechanomina))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(lblIngresodeDatos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -543,53 +582,65 @@ public class Generación_Nomina extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSueldoBase)
                         .addGap(3, 3, 3)
-                        .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(lblCalculodeIngresos)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblComisiones)
-                    .addComponent(lblBonificacionesExtra)
-                    .addComponent(lblBonificacionIncentivo)
-                    .addComponent(lblSueldoDevengado))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIngreseNum1)
-                    .addComponent(lblIngreseNum2))
-                .addGap(27, 27, 27)
-                .addComponent(lblCalculodeDescuentos)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAnticipos)
-                    .addComponent(lblDescuentosJ)
-                    .addComponent(lblOtrosDescuentos)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ConceptoE))))
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIgss)
-                            .addComponent(lblIsr))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblIgss)
+                        .addGap(9, 9, 9)
+                        .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addComponent(lblCalculodeIngresos)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIgss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIngreseNum6)
-                    .addComponent(lblIngreseNum4)
-                    .addComponent(lblIngreseNum5))
-                .addGap(6, 6, 6)
+                            .addComponent(lblComisiones)
+                            .addComponent(lblBonificacionesExtra)
+                            .addComponent(lblBonificacionIncentivo)
+                            .addComponent(lblSueldoDevengado))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBonificacionesExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBonificacionIncentivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSueldoDevengado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIngreseNum1)
+                            .addComponent(lblIngreseNum2))
+                        .addGap(27, 27, 27)
+                        .addComponent(lblCalculodeDescuentos)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblIsr)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIsr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblAnticipos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtAnticipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(lblIngreseNum6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblDescuentosJ)
+                                            .addComponent(lblOtrosDescuentos))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                    .addComponent(txtDescuentosJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtOtrosDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(lblIngreseNum5)
+                                                .addGap(3, 3, 3))
+                                            .addComponent(lblIngreseNum4, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                        .addGap(8, 8, 8)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTotalDescuentos1)
                     .addGroup(layout.createSequentialGroup()
@@ -601,16 +652,7 @@ public class Generación_Nomina extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(txtTotalDescuentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(Limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(IngresarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(advertencia)
-                .addGap(41, 41, 41))
+                .addGap(81, 81, 81))
         );
 
         pack();
@@ -1190,62 +1232,48 @@ try{
      */
     private void IngresarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarEmpleadoActionPerformed
         // TODO add your handling code here:       
-        String departamento = "", puesto = "", nombre = "", sueldo = "", comisiones = "", bonificacionesextra = "", incentivo = "", sueldodevengado = "";
-        String igss = "", isr = "", anticipos = "", descuentosj = "", otrosdescuentos = "", totaldescuentos = "", liquido = "", formapago = "";
-        
-        java.util.Date fechaN=date.getDate();
+
+            java.util.Date fechaN=date.getDate();
             long fecha=fechaN.getTime();
             java.sql.Date dateN = new java.sql.Date(fecha);
             
+try{
+            Connection cn2 = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst2 = cn2.prepareStatement("select Codigo_Concepto from Conceptos where Codigo_Empleado = ?");
             
-        if (sueldo != null && comisiones != null && bonificacionesextra != null && anticipos != null && descuentosj != null && totaldescuentos != null) {
-            advertencia.setVisible(false);
-
-            //no lo quiero, solo quiero codigo concepto
-
-            igss = txtIgss.getText();
-            isr = txtIsr.getText();
-            anticipos = txtAnticipos.getText();
-            descuentosj = txtDescuentosJ.getText();
-            otrosdescuentos = txtOtrosDescuentos.getText();
-            totaldescuentos = txtTotalDescuentos.getText();
-            //si lo quiero
-            liquido = txtSueldoLiquido.getText();
-            //no lo quiero
+            pst2.setString(1, codigoe.getText().trim());
             
-            try{
+            ResultSet rs2 = pst2.executeQuery();
+            
+            if(rs2.next()){
+                ConceptoE.setText(rs2.getString("Codigo_Concepto"));
+            } else {                
+            }
+}catch(Exception e){                
+                    }
+
+             try{
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             //localhost es 127.0.0.1
-            PreparedStatement pst = cn.prepareStatement("insert into nominaencabezado values(?,?)");
-            PreparedStatement pst2 = cn.prepareStatement("insert into nomina_descripcion values(?,?,?,?,?,?,?)");
-            
-            pst.setString(1, "0");
-            pst.setString(2, dateN.toString());  //aqui se pide la fecha
-            pst.executeUpdate();
+            PreparedStatement pst2 = cn.prepareStatement("insert into nomina values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
             
-            pst2.setString(1,"0");
-            pst2.setString(2, codigoe.getText().trim());
-            pst2.setString(3,"00001");
-            if(isr!="0"){
-             pst2.setString(4,"00002");   
-            }
-            else{
-                pst2.setString(4,"N/A");
-            }
-            if(anticipos!="0"){
-             pst2.setString(5,"00003");   
-            }
-            else{
-                pst2.setString(5,"N/A");
-            }
-            if(descuentosj!="0"|| otrosdescuentos!="0"){
-             pst2.setString(6,"00004");   
-            }
-            else{
-                pst2.setString(6,"N/A");
-            }
-            pst2.setString(7,txtSueldoLiquido.getText().trim());
+            pst2.setString(1, "0");
+            pst2.setString(2, dateN.toString());
+            pst2.setString(3, codigoe.getText().trim());
+            pst2.setString(4, ConceptoE.getText().trim());
+            pst2.setString(5, txtSueldoLiquido.getText().trim());
+            pst2.setString(6, txtSueldoBase.getText().trim());
+            pst2.setString(7, txtComisiones.getText().trim());
+            pst2.setString(8, txtBonificacionesExtra.getText().trim());
+            pst2.setString(9, txtBonificacionIncentivo.getText().trim());
+            pst2.setString(10, txtSueldoDevengado.getText().trim());
+            pst2.setString(11, txtIgss.getText().trim());
+            pst2.setString(12, txtIsr.getText().trim());
+            pst2.setString(13, txtAnticipos.getText().trim());
+            pst2.setString(14, txtDescuentosJ.getText().trim());
+            pst2.setString(15, txtOtrosDescuentos.getText().trim());
+            pst2.setString(16, txtTotalDescuentos.getText().trim());
             pst2.executeUpdate();
             
             cmbxNombreEmpleado.setSelectedItem(0);
@@ -1256,19 +1284,16 @@ try{
             txtBonificacionIncentivo.setText("250.00");
             txtSueldoDevengado.setText("");
             txtIgss.setText("");
-            txtIsr.setText("");
+            txtIsr.setText("0");
             txtAnticipos.setText("");
             txtDescuentosJ.setText("");
             txtOtrosDescuentos.setText("");
             txtTotalDescuentos.setText("");
             txtSueldoLiquido.setText("");
-        }catch (Exception e){
-                       
-        }
             
-        }
-        else{
-            advertencia.setVisible(true);
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }catch (Exception e){
+         JOptionPane.showMessageDialog(this, "Error en registro", "Warning", JOptionPane.WARNING_MESSAGE);  
         }
 
     }//GEN-LAST:event_IngresarEmpleadoActionPerformed
@@ -1282,20 +1307,139 @@ try{
      */
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
         // TODO add your handling code here:
-        txtSueldoBase.setText("");
-        txtComisiones.setText("");
-        txtBonificacionesExtra.setText("");
-        txtSueldoDevengado.setText("");
-
-        txtIgss.setText("");
-        txtIsr.setText("0");
-        txtAnticipos.setText("");
-        txtDescuentosJ.setText("");
-        txtOtrosDescuentos.setText("");
-        txtTotalDescuentos.setText("");
-        txtSueldoLiquido.setText("");
+       cmbxNombreEmpleado.setSelectedItem(0);
+            txtSueldoBase.setText("");
+            date.updateUI();
+            txtComisiones.setText("");
+            txtBonificacionesExtra.setText("");
+            txtBonificacionIncentivo.setText("250.00");
+            txtSueldoDevengado.setText("");
+            txtIgss.setText("");
+            txtIsr.setText("0");
+            txtAnticipos.setText("");
+            txtDescuentosJ.setText("");
+            txtOtrosDescuentos.setText("");
+            txtTotalDescuentos.setText("");
+            txtSueldoLiquido.setText("");
 
     }//GEN-LAST:event_LimpiarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst2 = cn.prepareStatement("delete from nomina where Codigo_Nomina = ?");
+            
+            
+            pst2.setString(1, buscar.getText().trim());
+            pst2.executeUpdate();
+            
+            
+         cmbxNombreEmpleado.setSelectedItem(0);
+            cmbxNombreEmpleado.setSelectedItem(0);
+            txtSueldoBase.setText("");
+            date.updateUI();
+            txtComisiones.setText("");
+            txtBonificacionesExtra.setText("");
+            txtBonificacionIncentivo.setText("250.00");
+            txtSueldoDevengado.setText("");
+            txtIgss.setText("");
+            txtIsr.setText("0");
+            txtAnticipos.setText("");
+            txtDescuentosJ.setText("");
+            txtOtrosDescuentos.setText("");
+            txtTotalDescuentos.setText("");
+            txtSueldoLiquido.setText("");
+            
+            JOptionPane.showMessageDialog(this, "¡ELIMINACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+                        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en eliminación", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("select * from nomina where Codigo_Nomina = ?");
+            
+            pst.setString(1, buscar.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()){
+                codigoe.setText(rs.getString("Codigo_Empleado"));
+                ConceptoE.setText(rs.getString("Codigo_Concepto"));
+                txtSueldoLiquido.setText(rs.getString("SueldoL"));
+                txtSueldoBase.setText(rs.getString("SueldoBase"));
+                txtComisiones.setText(rs.getString("Comisiones"));
+                txtBonificacionesExtra.setText(rs.getString("Bonificaciones"));
+                txtBonificacionIncentivo.setText(rs.getString("Incentivo"));
+                txtSueldoDevengado.setText(rs.getString("Devengado"));
+                txtIgss.setText(rs.getString("Igss"));
+                txtIsr.setText(rs.getString("Isr"));
+                txtAnticipos.setText(rs.getString("Anticipos"));
+                txtDescuentosJ.setText(rs.getString("DescuentosJ"));
+                txtOtrosDescuentos.setText(rs.getString("OtrosDescuentos"));
+                txtTotalDescuentos.setText(rs.getString("TotalDesucentos"));
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Nomina no registrada", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error al buscar", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+
+             try{
+                 String ID = buscar.getText().trim();
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            //localhost es 127.0.0.1
+            PreparedStatement pst2 = cn.prepareStatement("update nomina set codigo_empleado = ?, codigo_concepto = ?, sueldol = ?, sueldobase = ? , comisiones= ?, bonificaciones=?, incentivo=?, devengado=?, igss=?, isr=?, anticipos=?, descuentosj=?,otrosdescuentos=?,totaldesucentos=? where codigo_nomina=" + ID);
+            
+            
+            pst2.setString(1, codigoe.getText().trim());
+            pst2.setString(2, ConceptoE.getText().trim());
+            pst2.setString(3, txtSueldoLiquido.getText().trim());
+            pst2.setString(4, txtSueldoBase.getText().trim());
+            pst2.setString(5, txtComisiones.getText().trim());
+            pst2.setString(6, txtBonificacionesExtra.getText().trim());
+            pst2.setString(7, txtBonificacionIncentivo.getText().trim());
+            pst2.setString(8, txtSueldoDevengado.getText().trim());
+            pst2.setString(9, txtIgss.getText().trim());
+            pst2.setString(10, txtIsr.getText().trim());
+            pst2.setString(11, txtAnticipos.getText().trim());
+            pst2.setString(12, txtDescuentosJ.getText().trim());
+            pst2.setString(13, txtOtrosDescuentos.getText().trim());
+            pst2.setString(14, txtTotalDescuentos.getText().trim());
+            pst2.executeUpdate();
+            
+            cmbxNombreEmpleado.setSelectedItem(0);
+            txtSueldoBase.setText("");
+            date.updateUI();
+            txtComisiones.setText("");
+            txtBonificacionesExtra.setText("");
+            txtBonificacionIncentivo.setText("250.00");
+            txtSueldoDevengado.setText("");
+            txtIgss.setText("");
+            txtIsr.setText("0");
+            txtAnticipos.setText("");
+            txtDescuentosJ.setText("");
+            txtOtrosDescuentos.setText("");
+            txtTotalDescuentos.setText("");
+            txtSueldoLiquido.setText("");
+            
+            JOptionPane.showMessageDialog(this, "¡MODIFICACION EXITOSA!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+        }catch (Exception e){
+         JOptionPane.showMessageDialog(this, "Error en modificación", "Warning", JOptionPane.WARNING_MESSAGE);  
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1335,9 +1479,13 @@ try{
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ConceptoE;
     private javax.swing.JButton IngresarEmpleado;
     private javax.swing.JButton Limpiar;
-    private javax.swing.JLabel advertencia;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JTextField buscar;
     private javax.swing.JComboBox<String> cmbxNombreEmpleado;
     private javax.swing.JLabel codigoe;
     private com.toedter.calendar.JDateChooser date;
@@ -1350,7 +1498,6 @@ try{
     private javax.swing.JLabel lblCalculodeIngresos;
     private javax.swing.JLabel lblComisiones;
     private javax.swing.JLabel lblDescuentosJ;
-    private javax.swing.JLabel lblGeneraciondePlanilla;
     private javax.swing.JLabel lblIgss;
     private javax.swing.JLabel lblIngreseNum1;
     private javax.swing.JLabel lblIngreseNum2;

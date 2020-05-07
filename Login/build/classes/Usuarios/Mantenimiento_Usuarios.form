@@ -45,12 +45,24 @@
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+<<<<<<< HEAD
                           <Component id="btnEliminar" min="-2" pref="102" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnRegistrar" min="-2" pref="101" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnModificar3" min="-2" pref="95" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+=======
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -74,6 +86,7 @@
                               <Component id="jblDepartamento_E" alignment="1" min="-2" pref="209" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="38" max="32767" attributes="0"/>
+<<<<<<< HEAD
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -82,10 +95,13 @@
                               <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
+=======
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
                       </Group>
                   </Group>
               </Group>
               <Group type="102" alignment="1" attributes="0">
+<<<<<<< HEAD
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="64" max="32767" attributes="0"/>
@@ -93,6 +109,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnBuscar2" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+=======
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnRegistrar" min="-2" pref="138" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,6 +144,7 @@
                           <Component id="lblEstado_E" min="-2" pref="19" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -167,6 +189,40 @@
                       </Group>
                   </Group>
                   <EmptySpace pref="47" max="32767" attributes="0"/>
+=======
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="lblPuesto_E" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtTipo_Usuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtNombre_Usuario" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                      <Component id="pfContraseña_Usuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <Component id="btnRegistrar" min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
               </Group>
           </Group>
         </DimensionLayout>
@@ -239,6 +295,7 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pfContrase&#xf1;a_Usuario">
+<<<<<<< HEAD
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pfContrase&#xf1;a_UsuarioActionPerformed"/>
           </Events>
@@ -284,7 +341,21 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscar2ActionPerformed"/>
+=======
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pfContrase&#xf1;a_UsuarioActionPerformed"/>
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnRegistrar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Registrar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTipo_Usuario">
         </Component>
       </SubComponents>
     </Container>

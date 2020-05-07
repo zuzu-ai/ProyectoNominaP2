@@ -38,8 +38,15 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         saveAsMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+=======
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
         cutMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -102,10 +109,28 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         });
         editMenu.add(jMenuItem2);
 
+<<<<<<< HEAD
         jMenuItem5.setText("Mantenimiento usuarios");
         editMenu.add(jMenuItem5);
 
         menuBar.add(editMenu);
+=======
+        jMenuItem3.setText("Altas Usuarios");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem3);
+
+        jMenuItem4.setText("Bajas usuarios ");
+        fileMenu.add(jMenuItem4);
+
+        jMenuItem5.setText("Mantenimiento usuarios");
+        fileMenu.add(jMenuItem5);
+
+        menuBar.add(fileMenu);
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
 
         jMenu1.setText("Procesos");
 
@@ -229,6 +254,11 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+<<<<<<< HEAD
+=======
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;

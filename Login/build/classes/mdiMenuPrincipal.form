@@ -64,6 +64,20 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
+<<<<<<< HEAD
+                <Property name="text" type="java.lang.String" value="Mantenimiento usuarios"/>
+=======
+                <Property name="text" type="java.lang.String" value="Altas Usuarios"/>
+>>>>>>> 22aa3a9036db43a33417645abdbaa80b14a0661c
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Bajas usuarios "/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+              <Properties>
                 <Property name="text" type="java.lang.String" value="Mantenimiento usuarios"/>
               </Properties>
             </MenuItem>

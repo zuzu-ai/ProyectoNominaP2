@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,6 +28,45 @@ public class Puesto extends javax.swing.JFrame {
         initComponents();
          setLocationRelativeTo(null);
              this.setTitle("Puestos");
+             
+              try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement psttt = cn.prepareStatement("select Codigo_Puesto from puestos ");
+            ResultSet rss = psttt.executeQuery();
+
+            cbox_Departamento.addItem("Seleccione una opción");
+            while (rss.next()) {
+                cbox_Departamento.addItem(rss.getString("Codigo_Puesto"));
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        tablas();
+    }
+    
+    public void tablas() {
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pstt4 = cn.prepareStatement("select * from puestos");
+            ResultSet rss4 = pstt4.executeQuery();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Nombre Puesto");
+            modelo.addColumn("Estado");
+            tbl_Dep.setModel(modelo);
+            String[] dato = new String[2];
+            while (rss4.next()) {
+                dato[0] = rss4.getString(2);
+                dato[1] = rss4.getString(3);
+
+                modelo.addRow(dato);
+            }
+
+        } catch (Exception e) {
+
+        }
     }
 
     /**
@@ -39,88 +79,27 @@ public class Puesto extends javax.swing.JFrame {
     private void initComponents() {
 
         EstadoPuesto = new javax.swing.ButtonGroup();
-        txt_CrearPuesto = new java.awt.TextField();
-        label6 = new java.awt.Label();
-        btnRegresar = new javax.swing.JButton();
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
-        txt_BuscarPuesto = new java.awt.TextField();
-        label4 = new java.awt.Label();
-        btnBuscarPuesto = new javax.swing.JButton();
-        label5 = new java.awt.Label();
-        txt_EliminarPuesto = new java.awt.TextField();
         label3 = new java.awt.Label();
-        btnCrearPuesto = new javax.swing.JButton();
-        btnEliminarPuesto = new javax.swing.JButton();
-        txt_nombre = new java.awt.TextField();
-        label7 = new java.awt.Label();
         txt_estado = new java.awt.TextField();
         label8 = new java.awt.Label();
-        label9 = new java.awt.Label();
-        txt_id = new java.awt.TextField();
-        label10 = new java.awt.Label();
-        txt_Nuevo = new java.awt.TextField();
-        label11 = new java.awt.Label();
-        label12 = new java.awt.Label();
+        txt_CrearDep = new java.awt.TextField();
+        btnCrearDep = new javax.swing.JButton();
+        btn_limpiar = new javax.swing.JButton();
+        btnEliminarDep = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        label1 = new java.awt.Label();
         jPanel1 = new javax.swing.JPanel();
         activo = new javax.swing.JRadioButton();
         inactivo = new javax.swing.JRadioButton();
-
-        txt_CrearPuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_CrearPuestoActionPerformed(evt);
-            }
-        });
-
-        label6.setText("Puesto");
-
-        btnRegresar.setText("REGRESAR");
-        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarActionPerformed(evt);
-            }
-        });
-
-        label1.setText("CREAR PUESTO");
-
-        label2.setText("BUSCAR PUESTO");
-
-        label4.setText("ID Puesto");
-
-        btnBuscarPuesto.setText("BUSCAR");
-        btnBuscarPuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarPuestoActionPerformed(evt);
-            }
-        });
-
-        label5.setText("ELIMINAR PUESTO");
+        cbox_Departamento = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_Dep = new javax.swing.JTable();
+        label4 = new java.awt.Label();
+        btn_Refrescar = new javax.swing.JButton();
 
         label3.setText("Puesto");
-
-        btnCrearPuesto.setText("CREAR NUEVO");
-        btnCrearPuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearPuestoActionPerformed(evt);
-            }
-        });
-
-        btnEliminarPuesto.setText("ELIMINAR");
-        btnEliminarPuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPuestoActionPerformed(evt);
-            }
-        });
-
-        txt_nombre.setEnabled(false);
-        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreActionPerformed(evt);
-            }
-        });
-
-        label7.setText("Puesto");
 
         txt_estado.setEnabled(false);
         txt_estado.addActionListener(new java.awt.event.ActionListener() {
@@ -131,301 +110,350 @@ public class Puesto extends javax.swing.JFrame {
 
         label8.setText("Estado");
 
-        label9.setText("MODIFICAR PUESTO");
-
-        label10.setText("ID Puesto");
-
-        txt_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+        txt_CrearDep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_NuevoActionPerformed(evt);
+                txt_CrearDepActionPerformed(evt);
             }
         });
 
-        label11.setText("Puesto");
+        btnCrearDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/save (1).png"))); // NOI18N
+        btnCrearDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearDepActionPerformed(evt);
+            }
+        });
 
-        label12.setText("Estado");
+        btn_limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/edit_clear.png"))); // NOI18N
+        btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_limpiarActionPerformed(evt);
+            }
+        });
 
-        btnModificar.setText("MODIFICAR");
+        btnEliminarDep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/gnome_edit_delete.png"))); // NOI18N
+        btnEliminarDep.setEnabled(false);
+        btnEliminarDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDepActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/modify.png"))); // NOI18N
+        btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
-        EstadoPuesto.add(activo);
+        label1.setText("MANTENIMIENTO PUESTO");
+
         activo.setText("Activo");
 
-        EstadoPuesto.add(inactivo);
         inactivo.setText("Inactivo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(activo)
-                    .addComponent(inactivo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(activo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(inactivo)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(activo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(inactivo)
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(activo)
+                    .addComponent(inactivo)))
         );
+
+        cbox_Departamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbox_DepartamentoActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        tbl_Dep.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre Puesto", "Estado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbl_Dep);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+
+        label4.setText("ID Puesto");
+
+        btn_Refrescar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/refresh.png"))); // NOI18N
+        btn_Refrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RefrescarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(135, 135, 135)
-                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_CrearPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(45, 45, 45)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_BuscarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btnCrearPuesto)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbox_Departamento, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txt_CrearDep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnBuscarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminarPuesto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_EliminarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txt_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnRegresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(69, 69, 69)))
-                .addGap(44, 44, 44))
+                            .addGap(1, 1, 1)
+                            .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnCrearDep, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_Refrescar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEliminarDep, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_CrearPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_EliminarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCrearPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jSeparator1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCrearDep, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEliminarDep, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_Refrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbox_Departamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_BuscarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(txt_CrearDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(5, 5, 5)
-                        .addComponent(btnBuscarPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txt_Nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(13, 13, 13)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(label12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegresarActionPerformed
-
-    private void btnBuscarPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPuestoActionPerformed
-String puesto = txt_BuscarPuesto.getText().trim();
-        if(puesto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "¡No se ingreso el nombre del puesto!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        } 
-         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("select * from Puestos where Codigo_Puesto = ?");
-            pst.setString(1, txt_BuscarPuesto.getText().trim());
-            
-            ResultSet rs = pst.executeQuery();
-            
-            if(rs.next()){
-                txt_nombre.setText(rs.getString("Nombre_Puesto"));
-                txt_estado.setText(rs.getString("Estado_Puesto"));
-               
-            } else {
-                JOptionPane.showMessageDialog(null, "Puesto no registrado.");
-            }
-            
-        }catch (Exception e){
-            
-        }     // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarPuestoActionPerformed
-
-    private void btnCrearPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPuestoActionPerformed
-String puesto = txt_CrearPuesto.getText().trim();
-        if (puesto.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "¡No se ingreso el nombre del puesto!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        }  
-        
-         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("insert into Puestos values(?,?,?)");
-            
-            pst.setString(1, "0");
-            pst.setString(2, txt_CrearPuesto.getText().trim());
-            pst.setString(3, "A");
-            pst.executeUpdate();
-            
-            txt_CrearPuesto.setText("");
-            
-            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-        }catch (Exception e){
-            
-        }
-// TODO add your handling code here:
-    }//GEN-LAST:event_btnCrearPuestoActionPerformed
-
-    private void btnEliminarPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPuestoActionPerformed
-try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("delete from Puestos where Codigo_Puesto = ?");
-            
-            pst.setString(1, txt_EliminarPuesto.getText().trim());
-            pst.executeUpdate();
-            
-            txt_EliminarPuesto.setText("");
-            
-            
-          JOptionPane.showMessageDialog(this, "REGISTRO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en la eliminación de registros.", "Error", JOptionPane.ERROR_MESSAGE);
-        }          // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarPuestoActionPerformed
-
-    private void txt_CrearPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CrearPuestoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_CrearPuestoActionPerformed
-
-    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreActionPerformed
-
     private void txt_estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_estadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_estadoActionPerformed
 
-    private void txt_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NuevoActionPerformed
+    private void txt_CrearDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_CrearDepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_NuevoActionPerformed
+    }//GEN-LAST:event_txt_CrearDepActionPerformed
+
+    private void btnCrearDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearDepActionPerformed
+        String puesto = txt_CrearDep.getText().trim();
+        if (puesto.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "¡No se ingreso el nombre del puesto!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("insert into puestos values(?,?,?)");
+
+            pst.setString(1, "0");
+            pst.setString(2, txt_CrearDep.getText().trim());
+            pst.setString(3, "A");
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "¡REGISTRO EXITOSO!", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            tablas();
+
+            txt_CrearDep.setText("");
+            cbox_Departamento.setSelectedIndex(0);
+            txt_estado.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCrearDepActionPerformed
+
+    private void btn_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_limpiarActionPerformed
+        txt_CrearDep.setText("");
+        cbox_Departamento.setSelectedIndex(0);
+        txt_estado.setText("");
+        btnEliminarDep.setEnabled(false);
+        btnModificar.setEnabled(false);
+        btnCrearDep.setEnabled(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void btnEliminarDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDepActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement pst = cn.prepareStatement("delete from puestos where Codigo_Puesto = ?");
+
+            pst.setString(1, cbox_Departamento.getSelectedItem().toString());
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(this, "PUESTO ELIMINADO.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            txt_CrearDep.setText("");
+            cbox_Departamento.setSelectedIndex(0);
+            txt_estado.setText("");
+            tablas();
+            btnEliminarDep.setEnabled(false);
+            btnModificar.setEnabled(false);
+            btnCrearDep.setEnabled(true);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en la eliminación del puesto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarDepActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-try {
-            String codigo_puesto = txt_id.getText().trim();
-            
+        try {
+            String codigo = cbox_Departamento.getSelectedItem().toString();
+
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
-            PreparedStatement pst = cn.prepareStatement("update Puestos set Codigo_Puesto = ?, Nombre_Puesto = ?,Estado_Puesto = ? where Codigo_Puesto = " + codigo_puesto);
-            String mensaje="";
-           
+            PreparedStatement pst = cn.prepareStatement("update Puestos set Nombre_Puesto = ?,Estado_Puesto = ? where Codigo_Puesto = " + codigo);
+            String mensaje = "";
+
             if (activo.isSelected()) {
-            mensaje="A";
-        } else if (inactivo.isSelected()) {
-            mensaje="I";
-        
-        }
-  
-           pst.setString(1, txt_id.getText().trim());
-            pst.setString(2, txt_Nuevo.getText().trim());
-            pst.setString(3, mensaje);
+                mensaje = "A";
+            } else if (inactivo.isSelected()) {
+                mensaje = "I";
+
+            }
+
+            pst.setString(1, txt_CrearDep.getText().trim());
+            pst.setString(2, mensaje);
             pst.executeUpdate();
-            
+
             JOptionPane.showMessageDialog(this, "MODIFICACION EXITOSA.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            
+            tablas();
+
+            txt_CrearDep.setText("");
+            cbox_Departamento.setSelectedIndex(0);
+            txt_estado.setText("");
+            btnEliminarDep.setEnabled(false);
+            btnModificar.setEnabled(false);
+            btnCrearDep.setEnabled(true);
+
         } catch (Exception e) {
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+
+            PreparedStatement pst2 = cn.prepareStatement("select * from puestos where Codigo_Puesto= ?");
+            pst2.setString(1, cbox_Departamento.getSelectedItem().toString());
+            ResultSet rs2 = pst2.executeQuery();
+
+            if (rs2.next()) {
+                txt_CrearDep.setText(rs2.getString("Nombre_Puesto"));
+                txt_estado.setText(rs2.getString("Estado_Puesto"));
+                btnEliminarDep.setEnabled(true);
+                btnModificar.setEnabled(true);
+                btnCrearDep.setEnabled(false);
+            } else {
+
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbox_DepartamentoActionPerformed
+
+    private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            PreparedStatement psttt = cn.prepareStatement("select Codigo_Puesto from puestos ");
+            ResultSet rss = psttt.executeQuery();
+
+            cbox_Departamento.removeAllItems();
+            cbox_Departamento.addItem("Seleccione una opción");
+            while (rss.next()) {
+                cbox_Departamento.addItem(rss.getString("Codigo_Puesto"));
+            }
+
+            tablas();
+
+        } catch (Exception e) {
+
+        }
+        tablas();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_RefrescarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,6 +481,7 @@ try {
             java.util.logging.Logger.getLogger(Puesto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -465,31 +494,23 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup EstadoPuesto;
     private javax.swing.JRadioButton activo;
-    private javax.swing.JButton btnBuscarPuesto;
-    private javax.swing.JButton btnCrearPuesto;
-    private javax.swing.JButton btnEliminarPuesto;
+    private javax.swing.JButton btnCrearDep;
+    private javax.swing.JButton btnEliminarDep;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnRegresar;
+    private javax.swing.JButton btn_Refrescar;
+    private javax.swing.JButton btn_limpiar;
+    private javax.swing.JComboBox<String> cbox_Departamento;
     private javax.swing.JRadioButton inactivo;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private java.awt.Label label1;
-    private java.awt.Label label10;
-    private java.awt.Label label11;
-    private java.awt.Label label12;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label4;
-    private java.awt.Label label5;
-    private java.awt.Label label6;
-    private java.awt.Label label7;
     private java.awt.Label label8;
-    private java.awt.Label label9;
-    private java.awt.TextField txt_BuscarPuesto;
-    private java.awt.TextField txt_CrearPuesto;
-    private java.awt.TextField txt_EliminarPuesto;
-    private java.awt.TextField txt_Nuevo;
+    private javax.swing.JTable tbl_Dep;
+    private java.awt.TextField txt_CrearDep;
     private java.awt.TextField txt_estado;
-    private java.awt.TextField txt_id;
-    private java.awt.TextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -206,6 +206,17 @@ foreign key (Codigo_Altas) references
 Altas(Codigo_Altas)
 )engine=InnoDB;
 
+create table Bitacora(
+CodigoBitacora int primary key auto_increment,
+Codigo_Usuario int not null,
+fecha date not null,
+hora time not null,
+Descripcion varchar(60),
+
+foreign key (Codigo_Usuario) references
+Usuarios(Codigo_Usuario)
+)engine=InnoDB;
+
 
 
 INSERT INTO puestos values ("0","Vendedor","T");
@@ -230,7 +241,7 @@ insert into Conceptos VALUES(0,1,"Isr","%","-","1",5);
 
 
 
-select * from NOMINA;
+select * from empleados;
 
 drop database nominaproyect;
 

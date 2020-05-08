@@ -1,8 +1,6 @@
 
 import PaqueteNomina.Generación_Nomina;
 import mantenimiento.empleado.Registros;
-import mantenimiento.empleado.Bajas;
-import mantenimiento.empleado.CambioEmpleados;
 import mantenimiento.empleado.Departamento;
 import mantenimiento.empleado.Puesto;
 import Usuarios.Mantenimiento_Usuarios;
@@ -34,8 +32,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         editMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -67,24 +63,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
             }
         });
         editMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Bajas empleados");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
-            }
-        });
-        editMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Cambio empleados");
-        saveAsMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveAsMenuItemActionPerformed(evt);
-            }
-        });
-        editMenu.add(saveAsMenuItem);
 
         jMenuItem1.setText("Departamentos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,15 +135,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_openMenuItemActionPerformed
 
-    private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
-        new CambioEmpleados().setVisible(true);
-    }//GEN-LAST:event_saveAsMenuItemActionPerformed
-
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        new Bajas().setVisible(true);
-
-    }//GEN-LAST:event_saveMenuItemActionPerformed
-
     private void cutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutMenuItemActionPerformed
 
         new Generación_Nomina().setVisible(true);
@@ -233,8 +202,6 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JDesktopPane panel;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -30,7 +30,7 @@ public class Departamento extends javax.swing.JFrame {
         this.setTitle("Departamentos");
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Departamento from departamentos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -48,7 +48,7 @@ public class Departamento extends javax.swing.JFrame {
 
     public void tablas() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pstt4 = cn.prepareStatement("select * from departamentos");
             ResultSet rss4 = pstt4.executeQuery();
 
@@ -313,7 +313,7 @@ public class Departamento extends javax.swing.JFrame {
         try {
             String codigo = cbox_Departamento.getSelectedItem().toString();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update Departamentos set Nombre_Departamento = ?,Estado_Departamento = ? where Codigo_Departamento = " + codigo);
             String mensaje = "";
 
@@ -356,7 +356,7 @@ public class Departamento extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Departamentos values(?,?,?)");
 
             pst.setString(1, "0");
@@ -380,7 +380,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void btnEliminarDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDepActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("delete from Departamentos where Codigo_Departamento = ?");
 
             pst.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -402,7 +402,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
 
             PreparedStatement pst2 = cn.prepareStatement("select * from Departamentos where Codigo_Departamento = ?");
             pst2.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -429,7 +429,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Departamento from departamentos ");
             ResultSet rss = psttt.executeQuery();
 

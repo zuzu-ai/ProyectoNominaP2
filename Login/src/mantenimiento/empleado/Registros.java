@@ -30,7 +30,7 @@ public class Registros extends javax.swing.JFrame {
         this.setTitle("Altas Empleados");
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement psttt = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -63,7 +63,7 @@ public class Registros extends javax.swing.JFrame {
 
     public void tablas() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pstt4 = cn.prepareStatement("select * from Empleados");
             ResultSet rss4 = pstt4.executeQuery();
 
@@ -599,7 +599,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
 
             PreparedStatement pst2 = cn.prepareStatement("select Codigo_Departamento from Departamentos where Nombre_Departamento = ?");
 
@@ -623,7 +623,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_PuestoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst3 = cn.prepareStatement("select Codigo_Puesto from Puestos where Nombre_Puesto = ?");
 
             pst3.setString(1, cbox_Puesto.getSelectedItem().toString());
@@ -661,7 +661,7 @@ public class Registros extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             String id = txt_Dpi.getText();
    
             PreparedStatement pstt = cn.prepareStatement("insert into Empleados values(?,?,?,?,?,?,?,?,?,?,?)");
@@ -742,7 +742,7 @@ public class Registros extends javax.swing.JFrame {
         String codigo = cbox_Id.getSelectedItem().toString();
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("update Empleados set Nombre_Empleado = ?, Dpi_Empleado = ?, Fecha_Nacimiento = ? ,Tel_Empleado = ?,Ubicacion_Empleado = ?,Sueldo_Empleado = ?, Estado_Empleado=?, Fecha_Inicio = ?,Codigo_Puesto =?,Codigo_Departamento=? where Codigo_Empleado=" + codigo);
             String mensaje = "";
 
@@ -802,7 +802,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_IdActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("select * from Empleados where Codigo_Empleado= ?");
             pst.setString(1, cbox_Id.getSelectedItem().toString());
 
@@ -848,7 +848,7 @@ public class Registros extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement pst = cn.prepareStatement("insert into Bajas values(?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, cbox_Id.getSelectedItem().toString());
@@ -905,7 +905,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "Ashly", "ranbr");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement psttt = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rss = psttt.executeQuery();
 

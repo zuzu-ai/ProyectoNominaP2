@@ -40,7 +40,7 @@ public class Departamento extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         tablas();
@@ -65,7 +65,7 @@ public class Departamento extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -339,6 +339,7 @@ public class Departamento extends javax.swing.JFrame {
             btnCrearDep.setEnabled(true);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -373,6 +374,7 @@ public class Departamento extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -397,6 +399,7 @@ public class Departamento extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la eliminación del departamento.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarDepActionPerformed
 
@@ -412,16 +415,14 @@ public class Departamento extends javax.swing.JFrame {
                 txt_CrearDep.setText(rs2.getString("Nombre_Departamento"));
                 txt_estado.setText(rs2.getString("Estado_Departamento"));
                 btnEliminarDep.setEnabled(true);
-            btnModificar.setEnabled(true);
-            btnCrearDep.setEnabled(false);
+                btnModificar.setEnabled(true);
+                btnCrearDep.setEnabled(false);
             } else {
 
             }
 
-            
-
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -442,7 +443,7 @@ public class Departamento extends javax.swing.JFrame {
             tablas();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         tablas();
 
@@ -454,8 +455,8 @@ public class Departamento extends javax.swing.JFrame {
         cbox_Departamento.setSelectedIndex(0);
         txt_estado.setText("");
         btnEliminarDep.setEnabled(false);
-            btnModificar.setEnabled(false);
-            btnCrearDep.setEnabled(true);
+        btnModificar.setEnabled(false);
+        btnCrearDep.setEnabled(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_limpiarActionPerformed

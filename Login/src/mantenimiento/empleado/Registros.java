@@ -56,7 +56,7 @@ public class Registros extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         tablas();
     }
@@ -152,7 +152,7 @@ public class Registros extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -257,10 +257,20 @@ public class Registros extends javax.swing.JFrame {
                 txt_TelActionPerformed(evt);
             }
         });
+        txt_Tel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_TelKeyTyped(evt);
+            }
+        });
 
         txt_Sueldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_SueldoActionPerformed(evt);
+            }
+        });
+        txt_Sueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_SueldoKeyTyped(evt);
             }
         });
 
@@ -615,7 +625,7 @@ public class Registros extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -639,7 +649,7 @@ public class Registros extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -655,7 +665,8 @@ public class Registros extends javax.swing.JFrame {
         java.sql.Date datei = new java.sql.Date(di);
         String valor = null;
 
-        if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty() || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty()) {
+        if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty()
+                || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty() || date_Nacimiento.getCalendar() == null || date_Inicio.getCalendar() == null) {
             JOptionPane.showMessageDialog(this, "¡Debe Llenar todos los campos!", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -663,7 +674,7 @@ public class Registros extends javax.swing.JFrame {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             String id = txt_Dpi.getText();
-   
+
             PreparedStatement pstt = cn.prepareStatement("insert into Empleados values(?,?,?,?,?,?,?,?,?,?,?)");
 
             pstt.setString(1, "0");
@@ -726,6 +737,7 @@ public class Registros extends javax.swing.JFrame {
             tablas();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -795,6 +807,7 @@ public class Registros extends javax.swing.JFrame {
             tablas();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡MODIFICACION FALLIDA!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -830,6 +843,7 @@ public class Registros extends javax.swing.JFrame {
 
             }
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
         // TODO add your handling code here:
@@ -898,6 +912,7 @@ public class Registros extends javax.swing.JFrame {
             tablas();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡BAJA DE EMPLEADO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -934,6 +949,7 @@ public class Registros extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
         tablas();
@@ -959,6 +975,29 @@ public class Registros extends javax.swing.JFrame {
         date_F.setCalendar(null);
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_limpiarActionPerformed
+
+    private void txt_TelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_TelKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_TelKeyTyped
+
+    private void txt_SueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_SueldoKeyTyped
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(rootPane, "Ingrese solo numeros");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_SueldoKeyTyped
 
     /**
      * @param args the command line arguments

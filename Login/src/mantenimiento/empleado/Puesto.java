@@ -26,10 +26,10 @@ public class Puesto extends javax.swing.JFrame {
      */
     public Puesto() {
         initComponents();
-         setLocationRelativeTo(null);
-             this.setTitle("Puestos");
-             
-              try {
+        setLocationRelativeTo(null);
+        this.setTitle("Puestos");
+
+        try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Puesto from puestos ");
             ResultSet rss = psttt.executeQuery();
@@ -40,12 +40,12 @@ public class Puesto extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         tablas();
     }
-    
+
     public void tablas() {
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
@@ -65,7 +65,7 @@ public class Puesto extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -335,6 +335,7 @@ public class Puesto extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -370,6 +371,7 @@ public class Puesto extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error en la eliminación del puesto.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }          // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarDepActionPerformed
 
@@ -403,6 +405,7 @@ public class Puesto extends javax.swing.JFrame {
             btnCrearDep.setEnabled(true);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -427,7 +430,7 @@ public class Puesto extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         // TODO add your handling code here:
@@ -448,7 +451,7 @@ public class Puesto extends javax.swing.JFrame {
             tablas();
 
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         tablas();
 

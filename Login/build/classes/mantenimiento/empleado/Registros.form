@@ -327,11 +327,13 @@
     <Component class="java.awt.TextField" name="txt_Tel">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_TelActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_TelKeyTyped"/>
       </Events>
     </Component>
     <Component class="java.awt.TextField" name="txt_Sueldo">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_SueldoActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_SueldoKeyTyped"/>
       </Events>
     </Component>
     <Component class="java.awt.Label" name="label14">

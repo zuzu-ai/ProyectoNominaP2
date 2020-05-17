@@ -22,6 +22,7 @@ import java.io.RandomAccessFile;
 import java.util.Scanner;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import principal.mdiMenuPrincipal;
 
 /**
  *
@@ -58,7 +59,7 @@ public class Internal_Nomina extends javax.swing.JInternalFrame {
                      /**
      * Realiza la conexión con la base de datos.
      */
-          Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+         Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
           for(int i=0;i<registros;i++){
             PreparedStatement pst = cn.prepareStatement("select Nombre_Departamento from departamentos where ID = "+i);
             ResultSet rs = pst.executeQuery(); 

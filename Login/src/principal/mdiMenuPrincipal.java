@@ -1,11 +1,32 @@
+package principal;
+
 
 import PaqueteNomina.Generación_Nomina;
 import mantenimiento.empleado.Registros;
 import mantenimiento.empleado.Departamento;
 import mantenimiento.empleado.Puesto;
 import Usuarios.Mantenimiento_Usuarios;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class mdiMenuPrincipal extends javax.swing.JFrame {
+    
+    public static String BD = "jdbc:mysql://localhost/nominaproyect";
+    public static String Usuario = "root";
+    public static String Contraseña = "";
+    
+    public static Connection getConeccion(){
+        Connection cn = null;
+        try{
+            Class.forName(BD);
+            cn=DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
+            
+        }catch(Exception e){
+            System.out.println(String.valueOf(e));}
+        return cn;
+        
+         
+    }
 
     /**
      * Creates new form mdiMenuPrincipal to use the program
@@ -131,7 +152,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
     new Registros().setVisible(true);
         
-        new Registros().setVisible(true);
+  
 
     }//GEN-LAST:event_openMenuItemActionPerformed
 

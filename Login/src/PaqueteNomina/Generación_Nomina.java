@@ -29,6 +29,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import principal.mdiMenuPrincipal;
 
 /**
  *
@@ -116,7 +117,7 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
     public void comboDB() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst2 = cn.prepareStatement("select Nombre_Empleado from Empleados");
             ResultSet rs2 = pst2.executeQuery();
@@ -367,10 +368,10 @@ public class Generación_Nomina extends javax.swing.JFrame {
 
         txtSueldoBase.setEditable(false);
         txtSueldoBase.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtSueldoBaseInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txtSueldoBase.addActionListener(new java.awt.event.ActionListener() {
@@ -1167,7 +1168,7 @@ public class Generación_Nomina extends javax.swing.JFrame {
     private void cmbxNombreEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxNombreEmpleadoActionPerformed
         // TODO add your handling code here:
 try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst2 = cn.prepareStatement("select Codigo_Empleado from Empleados where Nombre_Empleado = ?");
             PreparedStatement pst3 = cn.prepareStatement("select Sueldo_Empleado from Empleados where Nombre_Empleado = ?");
@@ -1238,7 +1239,7 @@ try{
             java.sql.Date dateN = new java.sql.Date(fecha);
             
 try{
-            Connection cn2 = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn2 = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst2 = cn2.prepareStatement("select Codigo_Concepto from Conceptos where Codigo_Empleado = ?");
             
             pst2.setString(1, codigoe.getText().trim());
@@ -1253,7 +1254,7 @@ try{
                     }
 
              try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             //localhost es 127.0.0.1
             PreparedStatement pst2 = cn.prepareStatement("insert into nomina values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             
@@ -1327,7 +1328,7 @@ try{
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         try {
-             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+              Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst2 = cn.prepareStatement("delete from nomina where Codigo_Nomina = ?");
             
             
@@ -1361,7 +1362,7 @@ try{
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from nomina where Codigo_Nomina = ?");
             
             pst.setString(1, buscar.getText().trim());
@@ -1399,7 +1400,7 @@ try{
 
              try{
                  String ID = buscar.getText().trim();
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             //localhost es 127.0.0.1
             PreparedStatement pst2 = cn.prepareStatement("update nomina set codigo_empleado = ?, codigo_concepto = ?, sueldol = ?, sueldobase = ? , comisiones= ?, bonificaciones=?, incentivo=?, devengado=?, igss=?, isr=?, anticipos=?, descuentosj=?,otrosdescuentos=?,totaldesucentos=? where codigo_nomina=" + ID);
             

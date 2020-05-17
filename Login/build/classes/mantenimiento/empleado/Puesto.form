@@ -221,11 +221,17 @@
       <SubComponents>
         <Component class="javax.swing.JRadioButton" name="activo">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="EstadoPuesto"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Activo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="inactivo">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="EstadoPuesto"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Inactivo"/>
           </Properties>
         </Component>
@@ -250,13 +256,20 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Puesto"/>
+          </Border>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="612" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="600" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

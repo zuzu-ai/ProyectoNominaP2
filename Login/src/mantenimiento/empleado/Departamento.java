@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import principal.mdiMenuPrincipal;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Departamento extends javax.swing.JFrame {
         this.setTitle("Departamentos");
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Departamento from departamentos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -48,7 +49,7 @@ public class Departamento extends javax.swing.JFrame {
 
     public void tablas() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pstt4 = cn.prepareStatement("select * from departamentos");
             ResultSet rss4 = pstt4.executeQuery();
 
@@ -78,6 +79,7 @@ public class Departamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btngEstado = new javax.swing.ButtonGroup();
         txt_CrearDep = new java.awt.TextField();
         btnModificar = new javax.swing.JButton();
         label1 = new java.awt.Label();
@@ -114,8 +116,10 @@ public class Departamento extends javax.swing.JFrame {
 
         label1.setText("MANTENIMIENTO DEPARTAMENTO");
 
+        btngEstado.add(activo);
         activo.setText("Activo");
 
+        btngEstado.add(inactivo);
         inactivo.setText("Inactivo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -313,7 +317,7 @@ public class Departamento extends javax.swing.JFrame {
         try {
             String codigo = cbox_Departamento.getSelectedItem().toString();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update Departamentos set Nombre_Departamento = ?,Estado_Departamento = ? where Codigo_Departamento = " + codigo);
             String mensaje = "";
 
@@ -357,7 +361,7 @@ public class Departamento extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into Departamentos values(?,?,?)");
 
             pst.setString(1, "0");
@@ -382,7 +386,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void btnEliminarDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDepActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from Departamentos where Codigo_Departamento = ?");
 
             pst.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -405,7 +409,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst2 = cn.prepareStatement("select * from Departamentos where Codigo_Departamento = ?");
             pst2.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -430,7 +434,7 @@ public class Departamento extends javax.swing.JFrame {
 
     private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Departamento from departamentos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -504,6 +508,7 @@ public class Departamento extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btn_Refrescar;
     private javax.swing.JButton btn_limpiar;
+    private javax.swing.ButtonGroup btngEstado;
     private javax.swing.JComboBox<String> cbox_Departamento;
     private javax.swing.JRadioButton inactivo;
     private javax.swing.JPanel jPanel1;

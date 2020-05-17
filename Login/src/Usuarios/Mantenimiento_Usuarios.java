@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import principal.mdiMenuPrincipal;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
   
     public void comboDB() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select Codigo_Empleado from Empleados ");
             ResultSet rs = pst.executeQuery();
 
@@ -264,7 +265,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // Altas Usuarios
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             //localhost es 127.0.0.1
             PreparedStatement pst = cn.prepareStatement("insert into Usarios values(?,?,?,?)");
             
@@ -297,7 +298,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
 //cmbx codigo empleado
 
      try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst = cn.prepareStatement("select Codigo_Empleado from Empleados where Nombre_Empleado = ?");
             
@@ -329,7 +330,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
         try {
             String ID = txtbuscado.getText().trim();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update Alumnos set  nombre_Alumnos = ?, direccion_Alumnos = ?, telefono_Alumnos = ?, email_Alumnos = ? , status_Alumnos= ? where carnet_Alumnos =" + ID);
 
             pst.setString(1, txtNombre_A.getText().trim());
@@ -355,7 +356,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from Alumnos where carnet_Alumnos = ?");
 
             pst.setString(1, txtbuscado.getText().trim());
@@ -378,7 +379,7 @@ public class Mantenimiento_Usuarios extends javax.swing.JFrame {
     private void btnBuscar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar2ActionPerformed
         // TODO add your handling code here:
         try{
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/siu", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from Alumnos where carnet_Alumnos =?");
             pst.setString(1, txtbuscado.getText().trim());
 

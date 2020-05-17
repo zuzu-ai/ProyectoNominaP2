@@ -5,6 +5,7 @@
  */
 package mantenimiento.empleado;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,7 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
+import principal.mdiMenuPrincipal;
 
 /**
  *
@@ -30,7 +33,7 @@ public class Registros extends javax.swing.JFrame {
         this.setTitle("Altas Empleados");
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -63,7 +66,7 @@ public class Registros extends javax.swing.JFrame {
 
     public void tablas() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pstt4 = cn.prepareStatement("select * from Empleados");
             ResultSet rss4 = pstt4.executeQuery();
 
@@ -167,6 +170,7 @@ public class Registros extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        btngEstado = new javax.swing.ButtonGroup();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
         label3 = new java.awt.Label();
@@ -298,8 +302,10 @@ public class Registros extends javax.swing.JFrame {
 
         jLabel1.setText("Estado Empleado");
 
+        btngEstado.add(inactivo);
         inactivo.setText("Inactivo");
 
+        btngEstado.add(activo);
         activo.setText("Activo");
 
         txt_Estado.setEnabled(false);
@@ -324,7 +330,7 @@ public class Registros extends javax.swing.JFrame {
                     .addComponent(activo)
                     .addComponent(inactivo)
                     .addComponent(txt_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         cbox_Id.addActionListener(new java.awt.event.ActionListener() {
@@ -475,7 +481,7 @@ public class Registros extends javax.swing.JFrame {
                                 .addComponent(date_Nacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txt_Dpi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txt_Nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(44, 44, 44)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -569,12 +575,13 @@ public class Registros extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(date_F, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(10, 10, 10)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addGap(17, 17, 17))))
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel1))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGap(24, 24, 24)
                                         .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -609,7 +616,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst2 = cn.prepareStatement("select Codigo_Departamento from Departamentos where Nombre_Departamento = ?");
 
@@ -633,7 +640,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_PuestoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst3 = cn.prepareStatement("select Codigo_Puesto from Puestos where Nombre_Puesto = ?");
 
             pst3.setString(1, cbox_Puesto.getSelectedItem().toString());
@@ -656,7 +663,15 @@ public class Registros extends javax.swing.JFrame {
     }//GEN-LAST:event_cbox_PuestoActionPerformed
 
     private void btn_AltasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AltasActionPerformed
-        java.util.Date fechaN = date_Nacimiento.getDate();
+        
+
+        if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty()
+                || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty() || date_Nacimiento.getCalendar() == null || date_Inicio.getCalendar() == null) {
+            JOptionPane.showMessageDialog(this, "¡Debe Llenar todos los campos!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        else{
+            java.util.Date fechaN = date_Nacimiento.getDate();
         long d = fechaN.getTime();
         java.sql.Date date = new java.sql.Date(d);
 
@@ -665,14 +680,8 @@ public class Registros extends javax.swing.JFrame {
         java.sql.Date datei = new java.sql.Date(di);
         String valor = null;
 
-        if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty()
-                || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty() || date_Nacimiento.getCalendar() == null || date_Inicio.getCalendar() == null) {
-            JOptionPane.showMessageDialog(this, "¡Debe Llenar todos los campos!", "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             String id = txt_Dpi.getText();
 
             PreparedStatement pstt = cn.prepareStatement("insert into Empleados values(?,?,?,?,?,?,?,?,?,?,?)");
@@ -738,7 +747,7 @@ public class Registros extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "¡REGISTRO FALLIDO!", "ERROR", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
-        }
+        }}
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_AltasActionPerformed
@@ -754,7 +763,7 @@ public class Registros extends javax.swing.JFrame {
         String codigo = cbox_Id.getSelectedItem().toString();
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update Empleados set Nombre_Empleado = ?, Dpi_Empleado = ?, Fecha_Nacimiento = ? ,Tel_Empleado = ?,Ubicacion_Empleado = ?,Sueldo_Empleado = ?, Estado_Empleado=?, Fecha_Inicio = ?,Codigo_Puesto =?,Codigo_Departamento=? where Codigo_Empleado=" + codigo);
             String mensaje = "";
 
@@ -815,7 +824,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void cbox_IdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_IdActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("select * from Empleados where Codigo_Empleado= ?");
             pst.setString(1, cbox_Id.getSelectedItem().toString());
 
@@ -862,7 +871,7 @@ public class Registros extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into Bajas values(?,?,?,?,?)");
             pst.setString(1, "0");
             pst.setString(2, cbox_Id.getSelectedItem().toString());
@@ -920,7 +929,7 @@ public class Registros extends javax.swing.JFrame {
 
     private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Nombre_Puesto from Puestos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -1044,6 +1053,7 @@ public class Registros extends javax.swing.JFrame {
     private javax.swing.JButton btn_Altas;
     private javax.swing.JButton btn_Refrescar;
     private javax.swing.JButton btn_limpiar;
+    private javax.swing.ButtonGroup btngEstado;
     private javax.swing.JComboBox<String> cbox_Departamento;
     private javax.swing.JComboBox<String> cbox_Id;
     private javax.swing.JComboBox<String> cbox_Puesto;

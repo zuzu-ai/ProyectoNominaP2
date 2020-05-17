@@ -5,6 +5,7 @@
  */
 package mantenimiento.empleado;
 
+import principal.mdiMenuPrincipal;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,6 +15,8 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import principal.mdiMenuPrincipal;
+
 
 /**
  *
@@ -30,7 +33,7 @@ public class Puesto extends javax.swing.JFrame {
         this.setTitle("Puestos");
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Puesto from puestos ");
             ResultSet rss = psttt.executeQuery();
 
@@ -48,7 +51,7 @@ public class Puesto extends javax.swing.JFrame {
 
     public void tablas() {
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pstt4 = cn.prepareStatement("select * from puestos");
             ResultSet rss4 = pstt4.executeQuery();
 
@@ -148,8 +151,10 @@ public class Puesto extends javax.swing.JFrame {
 
         label1.setText("MANTENIMIENTO PUESTO");
 
+        EstadoPuesto.add(activo);
         activo.setText("Activo");
 
+        EstadoPuesto.add(inactivo);
         inactivo.setText("Inactivo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -318,7 +323,7 @@ public class Puesto extends javax.swing.JFrame {
         }
 
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("insert into puestos values(?,?,?)");
 
             pst.setString(1, "0");
@@ -354,7 +359,7 @@ public class Puesto extends javax.swing.JFrame {
 
     private void btnEliminarDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDepActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("delete from puestos where Codigo_Puesto = ?");
 
             pst.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -379,7 +384,7 @@ public class Puesto extends javax.swing.JFrame {
         try {
             String codigo = cbox_Departamento.getSelectedItem().toString();
 
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement pst = cn.prepareStatement("update Puestos set Nombre_Puesto = ?,Estado_Puesto = ? where Codigo_Puesto = " + codigo);
             String mensaje = "";
 
@@ -413,7 +418,7 @@ public class Puesto extends javax.swing.JFrame {
 
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
 
             PreparedStatement pst2 = cn.prepareStatement("select * from puestos where Codigo_Puesto= ?");
             pst2.setString(1, cbox_Departamento.getSelectedItem().toString());
@@ -438,7 +443,7 @@ public class Puesto extends javax.swing.JFrame {
 
     private void btn_RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RefrescarActionPerformed
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nominaproyect", "root", "6182");
+             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
             PreparedStatement psttt = cn.prepareStatement("select Codigo_Puesto from puestos ");
             ResultSet rss = psttt.executeQuery();
 

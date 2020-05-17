@@ -1,3 +1,5 @@
+package principal;
+
 
 import static com.sun.javafx.fxml.expression.Expression.set;
 import java.io.BufferedReader;
@@ -58,7 +60,6 @@ private static String strUsuario, strContraseña;
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(300, 300));
         setMinimumSize(new java.awt.Dimension(800, 800));
-        setPreferredSize(new java.awt.Dimension(800, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));

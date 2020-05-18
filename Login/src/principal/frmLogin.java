@@ -1,5 +1,4 @@
-package principal;
-
+package Principal;
 
 import static com.sun.javafx.fxml.expression.Expression.set;
 import java.io.BufferedReader;
@@ -8,12 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import static java.lang.reflect.Array.set;
+import java.sql.*;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import sun.security.util.Password;
-
-
+import Principal.mdiMenuPrincipal;
+import java.util.Calendar;
 
 /**
  *
@@ -21,28 +22,68 @@ import sun.security.util.Password;
  */
 public class frmLogin extends javax.swing.JFrame {
 
-private static Scanner sc;
-private static int Intentos;
-private static String strUsuario, strContraseña; 
+    private static Scanner sc;
+    private static int Intentos = 3;
+    private static String strUsuario, strContraseña;
 
-    public static void setIntentos(int Intentos) {
-        frmLogin.Intentos = Intentos;
-    }
     /**
      * Creates new form login
      */
-    public frmLogin() {
-        initComponents();
-       setLocationRelativeTo(null);
-       setSize(1000,800);
-       setDefaultCloseOperation(EXIT_ON_CLOSE);
-       rootPane.setDefaultButton(btnIniciarSesion);
+
+    public void ingreso_bitacora() {
+try {
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
+            //localhost es 127.0.0.1
+            PreparedStatement pst = cn.prepareStatement("insert into Bitacora values(?,?,?,?,?)");
+
+            pst.setString(1, "0");
+            pst.setString(2, txtUsuario.getText());
+            pst.setString(3, "Ingresó a la plataforma");
+            
+            Calendar calendario = Calendar.getInstance();
+                
+                int hora = calendario.get(Calendar.HOUR_OF_DAY);
+                int minutos = calendario.get(Calendar.MINUTE);
+                int segundos = calendario.get(Calendar.SECOND);
+                
+                Calendar c1 = Calendar.getInstance();
+                String dia = Integer.toString(c1.get(Calendar.DATE));
+                String mes = Integer.toString(c1.get(Calendar.MONTH));
+                String annio = Integer.toString(c1.get(Calendar.YEAR));
+                
+                String fecha=dia+"/"+mes+"/"+annio;
+                String time=hora+":"+minutos+":"+segundos;
+                
+                date.setText(fecha);
+                timee.setText(time);
+                
+                pst.setString(4, date.getText());
+                pst.setString(5, timee.getText());
+            
+            
+
+            pst.executeUpdate();
+
+        } catch (SQLException e) {
+
+        }
     }
 
-      @SuppressWarnings("unchecked")
+    public frmLogin() {
+        initComponents();
+        setLocationRelativeTo(null);
+        setSize(1000, 800);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        rootPane.setDefaultButton(btnIniciarSesion);
+    }
+
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pass = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
+        timee = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtContraseña = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
@@ -55,6 +96,10 @@ private static String strUsuario, strContraseña;
         lblSistemaNomina = new javax.swing.JLabel();
         lblFondoLogin = new javax.swing.JLabel();
 
+        date.setText("jLabel1");
+
+        timee.setText("jLabel1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Nomina");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -66,6 +111,11 @@ private static String strUsuario, strContraseña;
 
         txtContraseña.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtContraseña.setToolTipText("Ingrese su contraseña");
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
 
         txtUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUsuario.setToolTipText("Ingrese su usuario");
@@ -81,7 +131,7 @@ private static String strUsuario, strContraseña;
         lblIniciosecion.setToolTipText("");
 
         lblContraseña.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblContraseña.setText("Contraseña");
+        lblContraseña.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/password.png"))); // NOI18N
 
         btnIniciarSesion.setBackground(new java.awt.Color(30, 30, 70));
         btnIniciarSesion.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
@@ -110,7 +160,7 @@ private static String strUsuario, strContraseña;
         });
 
         lblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblUsuario.setText("Usuario");
+        lblUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondos/user.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(31, 31, 63));
 
@@ -140,42 +190,44 @@ private static String strUsuario, strContraseña;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(219, Short.MAX_VALUE)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                            .addComponent(lblIniciosecion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContraseña))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(99, 99, 99)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIniciosecion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtUsuario)
+                        .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIniciosecion, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         lblFondoLogin.setFont(new java.awt.Font("Ebrima", 1, 11)); // NOI18N
@@ -207,52 +259,54 @@ private static String strUsuario, strContraseña;
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
         // TODO add your handling code here:
-              /**
-     * Inicia lectura de archivo
-     */   
-              FileReader fr=null;
-    try {
-        int nLineas=0;
-        int i=0;
-        String [] Usuario= null;
-        String Linea;
-        sc= new Scanner(new File("usuarios.txt"));
-        File f=new File("usuarios.txt");
-        fr = new FileReader(f);
-        BufferedReader br= new BufferedReader(fr);
-     
+        /**
+         * Inicia lectura de archivo
+         */
+        if (Intentos != 0) {
             try {
-                while ((Linea=br.readLine())!=null)
-                    nLineas++;
-            } catch (IOException ex) {
-                Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
+                PreparedStatement pst = cn.prepareStatement("select * from usarios where nombre_usuario = ?");
+
+                pst.setString(1, txtUsuario.getText().trim());
+                //pst.setString(2,txtContraseña.getText().trim());
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    pass.setText(rs.getString("contraseña_usuario"));
+
+                } else {
+
+                }
+
+                String password = pass.getText().trim();
+                String contrasenia = txtContraseña.getText().trim();
+
+                int c1 = Integer.valueOf(password);
+                int c2 = Integer.valueOf(contrasenia);
+
+                if (c1 == c2) {
+                    new mdiMenuPrincipal().setVisible(true);
+                    this.setVisible(false);
+                    
+                    
+
+                    ingreso_bitacora();
+                    
+                    String us = this.txtUsuario.getText();
+                    mdiMenuPrincipal.usuario.setText(us);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Usuario no registrado", "Warning", JOptionPane.WARNING_MESSAGE);
             }
-        //tamaño del array
-            Usuario=new String [nLineas];
-        //almacenando cada linea en una posición del arreglo   
-            while(sc.hasNextLine()){
-            Usuario[i++]=sc.nextLine();
-            
-            }
-            Intentos++;
-               /**
-     * Obtención de los datos ingresados en los JTextField
-     */
-            strUsuario= txtUsuario.getText();
-            strContraseña= txtContraseña.getText();
-            Seguridad s= new Seguridad();
-            s.ValidarUsuarios(Usuario, strUsuario, strContraseña, Intentos);
-                
-    } catch (FileNotFoundException ex) {
-        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-        try {
-            fr.close();
-        } catch (IOException ex) {
-            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Intentos--;
         }
-    }   
-      if(Intentos==0) this.dispose();
+        if (Intentos == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -261,13 +315,17 @@ private static String strUsuario, strContraseña;
 
     private void btnIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIniciarSesionMouseClicked
 
-        
+
     }//GEN-LAST:event_btnIniciarSesionMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,8 +336,7 @@ private static String strUsuario, strContraseña;
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-       
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -301,7 +358,7 @@ private static String strUsuario, strContraseña;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new frmLogin().setVisible(true);
             }
         });
@@ -310,6 +367,7 @@ private static String strUsuario, strContraseña;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JLabel date;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblContraseña;
@@ -317,6 +375,8 @@ private static String strUsuario, strContraseña;
     private javax.swing.JLabel lblIniciosecion;
     private javax.swing.JLabel lblSistemaNomina;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel pass;
+    private javax.swing.JLabel timee;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

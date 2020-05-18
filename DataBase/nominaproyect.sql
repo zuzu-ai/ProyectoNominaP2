@@ -36,7 +36,8 @@ Departamentos(Codigo_Departamento)
 )engine=InnoDB;
 
 create table Aplicacion(
-Codigo_Aplicacion varchar(1) primary key,
+Codigo_Aplicacion int primary key auto_increment,
+Nombre_Aplicacion varchar(60) not null,
 Codigo_Puesto int not null,
 Excepcion varchar(5),
 foreign key (Codigo_Puesto) references
@@ -44,12 +45,12 @@ Puestos(Codigo_Puesto)
 )engine=Innodb;
 
 create table Conceptos(
-Codigo_Concepto int primary key,
+Codigo_Concepto int primary key auto_increment,
 Codigo_Empleado int not null,
 Nombre_Concepto varchar(10) not null,
 Tipo_Concepto varchar(1) not null,
 Clase_Concepto varchar(1) not null,
-Aplicacion_Concepto varchar(1) not null,
+Aplicacion_Concepto int not null,
 Valor int not null,
 foreign key (Aplicacion_Concepto) references
 aplicacion(Codigo_Aplicacion),
@@ -83,7 +84,7 @@ Conceptos(Codigo_Concepto)
 )engine=InnoDB;
 
 create table Tipo_Porcentaje(
-Codigo_Concepto int primary key,
+Codigo_Concepto int primary key auto_increment,
 Nombre_Porcentaje varchar(60) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
@@ -91,7 +92,7 @@ Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table Tipo_Cuota(
-Codigo_Concepto int primary key,
+Codigo_Concepto int primary key auto_increment,
 Nombre_Cuota varchar(60) not null,
 Valor float(10),
 foreign key (Codigo_Concepto) references
@@ -99,7 +100,7 @@ Conceptos(Codigo_Concepto)
 )engine=Innodb;
 
 create table tipo_Tabla(
-Codigo_Concepto int primary key,
+Codigo_Concepto int primary key auto_increment,
 Rango_V1 float(10),
 Rango_V2 float(10),
 Valor varchar(1),
@@ -206,19 +207,35 @@ foreign key (Codigo_Altas) references
 Altas(Codigo_Altas)
 )engine=InnoDB;
 
+create table Usarios
+(
+Nombre_Usuario varchar (20) primary key,
+Contraseña_Usuario int not null,
+Codigo_Usuario int not null,
+
+foreign key (Codigo_Usuario) references Empleados(Codigo_Empleado)
+)engine= InnoDB;
+
 create table Bitacora(
 CodigoBitacora int primary key auto_increment,
-Codigo_Usuario int not null,
-fecha date not null,
-hora time not null,
-Descripcion varchar(60),
+Usuario varchar(20) not null,
+Descripcion varchar(200),
+fecha varchar(60) not null,
+hora varchar(60) not null,
 
-foreign key (Codigo_Usuario) references
-Usuarios(Codigo_Usuario)
+foreign key (Usuario) references
+Usarios(Nombre_Usuario)
+)engine=InnoDB;
+
+create table Excepcion(
+CodigoExcepcion int primary key auto_increment,
+NombreExcpecion varchar(60) not null,
+EstadoExcepcion varchar(1) not null
 )engine=InnoDB;
 
 
 
+/*INSERTS*/
 INSERT INTO puestos values ("0","Vendedor","T");
 INSERT INTO puestos values ("0","Gerente","T");
 INSERT INTO puestos values ("0","Contador","T");
@@ -231,17 +248,30 @@ INSERT INTO departamentos values ("0","Contabilidad","T");
 INSERT INTO departamentos values ("0","Limpieza","T");
 
 
-insert into aplicacion values ("1","1","N/A");
-insert into aplicacion values ("2","2","1");
+insert into Usarios VALUES("zuzu-ai","123456",1);
+insert into Usarios VALUES("kievkevin13","123456",2);
+insert into Usarios VALUES("ashly2015","123456",3);
+insert into Usarios VALUES("dgarciam2001","123456",4);
 
 
-insert into Conceptos VALUES(0,1,"Isr","%","-","1",5);
+INSERT INTO excepcion values ("0","N/A","T");
+INSERT INTO excepcion values ("0","*","T");
+INSERT INTO excepcion values ("0","Vendedor","T");
+INSERT INTO excepcion values ("0","Gerente","T");
+INSERT INTO excepcion values ("0","Contador","T");
+INSERT INTO excepcion values ("0","Auxiliar","T");
 
-
-
-
+/*SELECTS*/
+select * from conceptos;
 
 select * from empleados;
+
+select * from usarios;
+
+select * from excepcion;
+
+select * from bitacora;
+
 
 drop database nominaproyect;
 

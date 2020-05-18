@@ -19,13 +19,44 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="394" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="493" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel2" pref="1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="274" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace pref="438" max="32767" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="&quot;&lt;html&gt;- Ingresamos nuestro usuario y contrase&#xf1;a en el login &lt;p&gt;\&quot;\n&quot; +&#xa;    &quot;    + \&quot;- En la ventana principal podemos salir directamente en el menu \\\&quot;Archivo\\\&quot; &lt;p&gt;\&quot;\n&quot; +&#xa;    &quot;    + \&quot;- El siguiente menu es el de \\\&quot;Catalogo\\\&quot; ahi se encuntra la gestion de:\&quot;\n&quot; +&#xa;    &quot;    + \&quot;Empleados, Departamentos y Puestos. \&quot;\n&quot; +&#xa;    &quot;    + \&quot;En empleados puede modificar los datos de los empleados asi como su estado ya sea activo o inactivo al igual que en Puestos y Depatamentos con el manejo de los diferentes botones &lt;p&gt; \&quot;\n&quot; +&#xa;    &quot;    + \&quot;- En el menu \\\&quot;procesos\\\&quot; tenemos la opcion nomina, iniciamos metiendo una fecha para la generacion de la nomina &lt;p&gt; luego escogemos el nombre de un empleado de la lista, asi como su sueldo base &lt;p&gt; luego ingresamos los ingresos extra como:&lt;p&gt; las comisiones&lt;p&gt;bonificaciones extra&lt;p&gt;bonificacion incentivo que es por defecto 250Q&lt;p&gt; y daria como resultado un sueldo devengado&lt;p&gt;luego vendrian los descuentos&lt;p&gt;como el IGGS, el ISR que se calcularian en base a un porcentaje predicho&lt;p&gt;los descuentos a ingresar serian:&lt;p&gt;anticipos, descuentos judiciales y otros descuentos no descritos &lt;p&gt; luego de eso se muestra el total descuentos y el total liquido como final.&lt;p&gt;&quot;&#xa;    + &quot;      -En el siguiente menu \&quot;Herramientas\&quot; tenemos otra clasificacion de gestores, conceptos, usuarios y aplicaciones. Al igual que en la primera aqui agregaremos y modificaremos a placer estos titulos con sus diferentes objetos:&lt;p&gt;para Concepto: &lt;p&gt;seleccionando el empleado deseado, y declarandole un nombre al concepto para aplicarselo a dicho empleado&lt;p&gt;tambien se puede modificar un concepto y eliminarlo con los diferentes botones de la pantalla&lt;Para Usuarios: &lt;p&gt; el parametro de busqueda es el codigo usuario y se modificara, agregara o eliminara un usuario &lt;p&gt; Para Aplicaciones: &lt;p&gt; los parametros de busqueda seran el puesto y la exepcion y el usuario debera a&#xf1;adir el nombre de la aplicacion que desee para buscarla, agregarla, modificarla o eliminarla.  &lt;html&gt;&quot;" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>

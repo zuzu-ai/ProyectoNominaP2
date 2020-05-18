@@ -274,4 +274,3 @@ select * from bitacora;
 
 
 drop database nominaproyect;
-

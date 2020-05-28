@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author Heydi Quemé
+ * @author Heydi Quemé 9959-18-5335 y Kevin Flores 9959-18-17632
  */
 /*
  * La función de este form es permitir el registro de empleados en la nómina.

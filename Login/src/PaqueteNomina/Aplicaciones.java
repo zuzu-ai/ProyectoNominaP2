@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Heydi Quemé
+ * @author Heydi Quemé 9959-18-5335
  */
 /*
  * La función de este form es la gestión de las aplicaciones relacionadas con los puestos registrados

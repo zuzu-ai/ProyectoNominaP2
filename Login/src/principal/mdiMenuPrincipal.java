@@ -28,10 +28,22 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import mantenimiento.empleado.Empleado;
 import mantenimiento.empleado.Puesto;
-
+/**
+ *
+ * @author Kevin Flores 9959-18-17632
+ */
+/**
+ *
+ * Esta forma se incluye las llamas de todas las ventanas y manda informacion a bitacorra de las ventanas que se visitan.
+ * 
+ */
 public class mdiMenuPrincipal extends javax.swing.JFrame {
 
-   
+ /**
+ *
+ *Inicio de componesntes donde se acomoda toda la la parte visal y operativa de la ventana.
+ * 
+ */
     public mdiMenuPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -59,10 +71,14 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     }
 
     public static int clic;
-
+ /**
+ *
+ * Coneccion a la base de datos
+ */
     public static String BD = "jdbc:mysql://localhost/nominaproyect";
     public static String Usuario = "root";
     public static String Contraseña = "6182";
+
 
     public static Connection getConeccion() {
         Connection cn = null;
@@ -76,7 +92,10 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         return cn;
 
     }
-
+/**
+ *
+ * Funcion de tema que controla los elemantos visiales de los 2 temas que hay de opcion. 
+ */
     public void tema() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -389,7 +408,11 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ *
+ * Datos enviados a bitacora.
+ * 
+ */
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         Empleado e = new Empleado();
         e.setVisible(true);

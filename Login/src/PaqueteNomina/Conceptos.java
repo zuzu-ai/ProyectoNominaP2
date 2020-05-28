@@ -11,7 +11,7 @@ import java.util.Calendar;
 
 /**
  *
- * @author Heydi Quemé
+ * @author Heydi Quemé 9959-18-5335
  */
 /*
  * La función de este form es la gestión de los conceptos relacionados a los puestos registrados en

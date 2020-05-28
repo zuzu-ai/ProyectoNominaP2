@@ -19,7 +19,11 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Calendar;
 import javax.swing.ImageIcon;
-
+/**
+ *
+ * @author Kevin Flores 9959-18-17632
+ * 
+ */
 public class frmLogin extends javax.swing.JFrame {
 
     public int clic;
@@ -27,7 +31,11 @@ public class frmLogin extends javax.swing.JFrame {
     private static Scanner sc;
     private int Intentos = 3;
     private static String strUsuario, strContraseña;
-
+/**
+ *
+ * Envio de datos a bitacora.
+ * 
+ */
     public void ingreso_bitacora() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -64,7 +72,10 @@ public class frmLogin extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Temas de aspecto visal creados.
+ */
     public void tema() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -144,7 +155,11 @@ public class frmLogin extends javax.swing.JFrame {
         }
         return c;
     }
-
+/**
+ *
+ * Inicio de componentes.
+ * 
+ */
     public frmLogin() {
         initComponents();
         setLocationRelativeTo(null);
@@ -372,7 +387,11 @@ public class frmLogin extends javax.swing.JFrame {
     private void btnCerrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrar1MouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnCerrar1MouseClicked
-
+/**
+ *
+ * Boton para el inicio de sesion. 
+ * 
+ */   
     private void btnLogin1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseClicked
 
         /**
@@ -571,7 +590,11 @@ public class frmLogin extends javax.swing.JFrame {
     private void btnLogin1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogin1MouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogin1MouseEntered
-
+/**
+ *
+ * Boton que hace el cambio de tema. 
+ * 
+ */
     private void btnToggle11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnToggle11MousePressed
         // TODO add your handling code here:
         int c1 = 0, c2 = 0, c3 = 0;

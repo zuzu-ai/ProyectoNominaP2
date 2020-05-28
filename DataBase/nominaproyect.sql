@@ -1,3 +1,5 @@
+drop database nominaproyect;
+
 create database nominaproyect;
 use nominaproyect;
 
@@ -20,10 +22,10 @@ Codigo_Empleado int primary key auto_increment,
 Nombre_Empleado varchar(60) not null,
 Dpi_Empleado varchar(15) not null,
 Fecha_Nacimiento datetime not null,
-Tel_Empleado int not null,
+Tel_Empleado varchar(60) not null,
 Ubicacion_Empleado varchar(60) not null,
 Sueldo_Empleado float(10,2),
-Estado_Empledo varchar(1) not null,
+Estado_Empleado varchar(1) not null,
 Fecha_Inicio datetime not null,
 Codigo_Puesto int not null,
 Codigo_Departamento int not null,
@@ -44,26 +46,27 @@ foreign key (Codigo_Puesto) references
 Puestos(Codigo_Puesto)
 )engine=Innodb;
 
+
 create table Conceptos(
 Codigo_Concepto int primary key auto_increment,
-Codigo_Empleado int not null,
-Nombre_Concepto varchar(10) not null,
+Codigo_Puesto int not null,
+Nombre_Concepto varchar(100) not null,
 Tipo_Concepto varchar(1) not null,
 Clase_Concepto varchar(1) not null,
 Aplicacion_Concepto int not null,
-Valor int not null,
+Valor float not null,
 foreign key (Aplicacion_Concepto) references
 aplicacion(Codigo_Aplicacion),
-foreign key (Codigo_Empleado) references
-empleados(Codigo_Empleado)
+foreign key (Codigo_Puesto) references
+puestos(Codigo_Puesto)
 )engine=Innodb;
+
 
 create table Nomina
 (
 Codigo_Nomina int primary key auto_increment,
 Fecha_Inicial_Nomina date,
 Codigo_Empleado int not null,
-Codigo_Concepto int not null,
 SueldoL decimal not null,
 SueldoBase decimal not null,
 Comisiones decimal not null,
@@ -76,113 +79,11 @@ Anticipos decimal not null,
 DescuentosJ decimal not null,
 OtrosDescuentos decimal not null,
 TotalDesucentos decimal not null,
+Cuota_Patronal decimal not null,
 
 foreign key (Codigo_Empleado) references
-Empleados(Codigo_Empleado),
-foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
+Empleados(Codigo_Empleado)
 )engine=InnoDB;
-
-create table Tipo_Porcentaje(
-Codigo_Concepto int primary key auto_increment,
-Nombre_Porcentaje varchar(60) not null,
-Valor float(10),
-foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
-)engine=Innodb;
-
-create table Tipo_Cuota(
-Codigo_Concepto int primary key auto_increment,
-Nombre_Cuota varchar(60) not null,
-Valor float(10),
-foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
-)engine=Innodb;
-
-create table tipo_Tabla(
-Codigo_Concepto int primary key auto_increment,
-Rango_V1 float(10),
-Rango_V2 float(10),
-Valor varchar(1),
-foreign key (Codigo_Concepto) references
-Conceptos(Codigo_Concepto)
-)engine=Innodb;
-
-
-
-create table Reporte_Direccion(
-Reporte_Direccion_Id varchar(128) primary key not null
-, Reporte_Direccion_Zona1 decimal(2,2) not null
-, Reporte_Direccion_Zona2 decimal(2,2) not null
-, Reporte_Direccion_Zona3 decimal(2,2) not null
-, Reporte_Direccion_Zona4 decimal(2,2) not null
-, Reporte_Direccion_Zona5 decimal(2,2) not null
-, Reporte_Direccion_Zona6 decimal(2,2) not null
-, Reporte_Direccion_Zona7 decimal(2,2) not null
-, Reporte_Direccion_Zona8 decimal(2,2) not null
-, Reporte_Direccion_Zona9 decimal(2,2) not null
-, Reporte_Direccion_Zona10 decimal(2,2) not null
-, Reporte_Direccion_Zona11 decimal(2,2) not null
-, Reporte_Direccion_Zona12 decimal(2,2) not null
-, Reporte_Direccion_Zona13 decimal(2,2) not null
-, Reporte_Direccion_Zona14 decimal(2,2) not null
-, Reporte_Direccion_Zona15 decimal(2,2) not null
-, Reporte_Direccion_Zona16 decimal(2,2) not null
-, Reporte_Direccion_Zona17 decimal(2,2) not null
-, Reporte_Direccion_Zona18 decimal(2,2) not null
-, Reporte_Direccion_Zona19 decimal(2,2) not null
-, Reporte_Direccion_Zona21 decimal(2,2) not null
-, Reporte_Direccion_Zona24 decimal(2,2) not null
-, Reporte_Direccion_Zona25 decimal(2,2) not null
-
-
-)engine = InnoDB;
-
-create table Reporte_Departamento(
-Reporte_Departamentos_Id varchar(128) primary key not null
-, Reporte_Departamento1 decimal(2,2) not null
-, Reporte_Departamento2 decimal(2,2) not null
-
-)engine = InnoDB;
-
-create table Reporte_Puesto(
-Reporte_Puesto_Id varchar(128) primary key not null
-, Reporte_Puesto1 decimal(2,2) not null
-, Reporte_Puesto2 decimal(2,2) not null
-)engine = InnoDB;
-create table Reporte_Altas(
-Altas_Id varchar(128) primary key
-, Altas_Enero double(2,2) not null
-, Altas_febrero decimal(2,2) not null
-, Altas_Marzo decimal(2,2) not null
-, Altas_Abril decimal(2,2) not null
-, Altas_Mayo decimal(2,2) not null
-, Altas_Junio decimal(2,2) not null
-, Altas_Julio decimal(2,2) not null
-, Altas_Agosto decimal(2,2) not null
-, Altas_Septiembre decimal(2,2) not null
-, Altas_Octubre decimal(2,2) not null
-, Altas_Noviembre decimal(2,2) not null
-, Altas_Diciembre decimal(2,2) not null
-, Altas_Actuales int not null
-)engine = Innodb;
-
-create table Reporte_Bajas(
-Bajas_Id varchar(128) primary key not null
-, Bajas_Enero double(2,2) not null
-, Bajas_febrero decimal(2,2) not null
-, Bajas_Marzo decimal(2,2) not null
-, Bajas_Abril decimal(2,2) not null
-, Bajas_Mayo decimal(2,2) not null
-, Bajas_Junio decimal(2,2) not null
-, Bajas_Julio decimal(2,2) not null
-, Bajas_Agosto decimal(2,2) not null
-, Bajas_Septiembre decimal(2,2) not null
-, Bajas_Octubre decimal(2,2) not null
-, Bajas_Noviembre decimal(2,2) not null
-, Bajas_Diciembre decimal(2,2) not null
-, Bajas_Actuales int not null
-)engine = InnoDB;
 
 create table Altas
 (
@@ -209,8 +110,8 @@ Altas(Codigo_Altas)
 
 create table Usarios
 (
-Nombre_Usuario varchar (20) primary key,
-Contraseña_Usuario int not null,
+Nombre_Usuario varchar (20) not null primary key,
+Contraseña_Usuario varchar(8) not null,
 Codigo_Usuario int not null,
 
 foreign key (Codigo_Usuario) references Empleados(Codigo_Empleado)
@@ -233,45 +134,44 @@ NombreExcpecion varchar(60) not null,
 EstadoExcepcion varchar(1) not null
 )engine=InnoDB;
 
+create table togglereg(
+nombre varchar(10),
+clic int not null,
+codigo int not null primary key
+)engine=InnoDB;
+
 
 
 /*INSERTS*/
-INSERT INTO puestos values ("0","Vendedor","T");
-INSERT INTO puestos values ("0","Gerente","T");
-INSERT INTO puestos values ("0","Contador","T");
-INSERT INTO puestos values ("0","Auxiliar","T");
+INSERT INTO puestos values ("0","Vendedor","A");
+INSERT INTO puestos values ("0","Gerente","A");
+INSERT INTO puestos values ("0","Contador","A");
+INSERT INTO puestos values ("0","Auxiliar","A");
 
 
-INSERT INTO departamentos values ("0","Marketing","T");
-INSERT INTO departamentos values ("0","Gerencia","T");
-INSERT INTO departamentos values ("0","Contabilidad","T");
-INSERT INTO departamentos values ("0","Limpieza","T");
+INSERT INTO departamentos values ("0","Marketing","A");
+INSERT INTO departamentos values ("0","Gerencia","A");
+INSERT INTO departamentos values ("0","Contabilidad","A");
+INSERT INTO departamentos values ("0","Limpieza","A");
 
 
-insert into Usarios VALUES("zuzu-ai","123456",1);
-insert into Usarios VALUES("kievkevin13","123456",2);
-insert into Usarios VALUES("ashly2015","123456",3);
-insert into Usarios VALUES("dgarciam2001","123456",4);
+insert into empleados values(0,"Ingeniero","123456","1993-04-25 00:00:00",12345678,"su casa",4000.00,"A","2020-04-25 00:00:00","2","2");
+insert into Altas values(0,1,"2020-04-25 00:00:00",2,2);
+
+insert into Usarios VALUES("admin","1234",1);
 
 
-INSERT INTO excepcion values ("0","N/A","T");
-INSERT INTO excepcion values ("0","*","T");
-INSERT INTO excepcion values ("0","Vendedor","T");
-INSERT INTO excepcion values ("0","Gerente","T");
-INSERT INTO excepcion values ("0","Contador","T");
-INSERT INTO excepcion values ("0","Auxiliar","T");
+INSERT INTO excepcion values ("0","N/A","A");
+INSERT INTO excepcion values ("0","*","A");
+INSERT INTO excepcion values ("0","Vendedor","A");
+INSERT INTO excepcion values ("0","Gerente","A");
+INSERT INTO excepcion values ("0","Contador","A");
+INSERT INTO excepcion values ("0","Auxiliar","A");
 
-/*SELECTS*/
-select * from conceptos;
+insert into Aplicacion values(0,"A gerente",2,"*");
 
-select * from empleados;
+insert into conceptos values(0,2,"Cuota Patronal","%","-",1,12.64);
 
-select * from usarios;
+insert into togglereg VALUES("Claro","0","0");
 
-select * from excepcion;
-
-select * from bitacora;
-
-
-drop database nominaproyect;
 

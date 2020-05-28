@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Sucely Alvarez
+ * @author Heydi Quemé 9959-18-5335
  */
 public class Consulta_Bitacora extends javax.swing.JFrame {
     private int x;
@@ -20,7 +20,7 @@ public class Consulta_Bitacora extends javax.swing.JFrame {
     public static int clic;
 
     /**
-     * Creates new form Consulta_Bitacora
+     * Esta forma permite visualizar el contenido de la bitacatora 
      */
     
     public void tablas() {

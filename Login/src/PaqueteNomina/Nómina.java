@@ -8,6 +8,17 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.Calendar;
 
+/**
+ *
+ * @author Heydi Quemé
+ */
+/*
+ * La función de este form es permitir el registro de empleados en la nómina.
+ * También se puede modificar y eliminar empleados de la misma.
+ * Este form relaciona a los empleados con los conceptos según sus puestos, permitiéndo
+ * de este modo la aplicacion de impuestos y cuotas a los mismos.
+ */
+
 public class Nómina extends javax.swing.JFrame {
 
     private int x;

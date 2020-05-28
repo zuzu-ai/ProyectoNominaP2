@@ -22,10 +22,10 @@ import javax.swing.ImageIcon;
 
 public class frmLogin extends javax.swing.JFrame {
 
-    public static int clic;
+    public int clic;
 
     private static Scanner sc;
-    private static int Intentos = 3;
+    private int Intentos = 3;
     private static String strUsuario, strContraseña;
 
     public void ingreso_bitacora() {
@@ -400,9 +400,7 @@ public class frmLogin extends javax.swing.JFrame {
                     String us = this.txtUsuario.getText();
                     mdiMenuPrincipal.usuario.setText(us);
 
-                    String c = Integer.toString(clic);
-                    mdiMenuPrincipal.clic = this.clic;
-
+                   
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
@@ -411,10 +409,10 @@ public class frmLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario no registrado", "Warning", JOptionPane.WARNING_MESSAGE);
 
             }
-            Intentos--;
+            //Intentos--;
         }
         if (Intentos == 0) {
-            this.dispose();
+            System.exit(0);
         }
 
     }//GEN-LAST:event_btnLogin1MouseClicked
@@ -553,9 +551,7 @@ public class frmLogin extends javax.swing.JFrame {
                     String us = this.txtUsuario.getText();
                     mdiMenuPrincipal.usuario.setText(us);
 
-                    String c = Integer.toString(clic);
-                    mdiMenuPrincipal.clic = this.clic;
-
+                   
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Warning", JOptionPane.WARNING_MESSAGE);
                 }
@@ -564,10 +560,10 @@ public class frmLogin extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Usuario no registrado", "Warning", JOptionPane.WARNING_MESSAGE);
 
             }
-            Intentos--;
+            //Intentos--;
         }
         if (Intentos == 0) {
-            this.dispose();
+            System.exit(0);
         }
 
     }//GEN-LAST:event_loginbtn1MouseClicked

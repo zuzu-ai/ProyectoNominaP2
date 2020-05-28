@@ -17,7 +17,12 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Sucely Alvarez
+ * @author Heydi Quemé
+ */
+/*
+ * La función de este form es la gestión de las aplicaciones relacionadas con los puestos registrados
+ * en el sistema. Esto es, el registro, eliminación y modificación de los mismos.
+ * 
  */
 public class Aplicaciones extends javax.swing.JFrame {
 private int x;

@@ -10,7 +10,13 @@ import java.util.Calendar;
 
 /**
  *
- * @author Sucely Alvarez
+ * @author Heydi Quemé
+ */
+
+/*
+ * La función de este form es la gestión de los usuarios del sistema, lo que
+ * comprende el registro, modificación y eliminación de usuarios.
+ * 
  */
 public class Usuarios extends javax.swing.JFrame {
 

@@ -162,6 +162,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -286,6 +287,15 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         jMenu5.setBackground(new java.awt.Color(56, 54, 55));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosmenu/Archivo60.png"))); // NOI18N
         jMenu5.setPreferredSize(new java.awt.Dimension(70, 60));
+
+        jMenuItem6.setText("Consultas Bitácora");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem6);
+
         jMenuBar1.add(jMenu5);
 
         editMenu.setBackground(new java.awt.Color(56, 54, 55));
@@ -801,6 +811,52 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnApagar1MousePressed
 
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        Consulta_Bitacora bitacora = new Consulta_Bitacora();
+        bitacora.setVisible(true);
+        //registro en bitacora
+        try {
+            Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
+            //localhost es 127.0.0.1
+            PreparedStatement pst = cn.prepareStatement("insert into Bitacora values(?,?,?,?,?)");
+
+            pst.setString(1, "0");
+            pst.setString(2, usuario.getText());
+            pst.setString(3, "Ingresó a la consulta de Bitacora");
+
+            Calendar calendario = Calendar.getInstance();
+
+            int hora = calendario.get(Calendar.HOUR_OF_DAY);
+            int minutos = calendario.get(Calendar.MINUTE);
+            int segundos = calendario.get(Calendar.SECOND);
+
+            Calendar c1 = Calendar.getInstance();
+            String dia = Integer.toString(c1.get(Calendar.DATE));
+            String mes = Integer.toString(c1.get(Calendar.MONTH));
+            String annio = Integer.toString(c1.get(Calendar.YEAR));
+
+            String fecha = dia + "/" + mes + "/" + annio;
+            String time = hora + ":" + minutos + ":" + segundos;
+
+            date.setText(fecha);
+            timee.setText(time);
+
+            pst.setString(4, date.getText());
+            pst.setString(5, timee.getText());
+
+            String us = this.usuario.getText();
+            Aplicaciones.usuario.setText(us);
+
+            Aplicaciones.clic = this.clic;
+
+            pst.executeUpdate();
+
+        } catch (SQLException ex) {
+
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -834,6 +890,7 @@ public class mdiMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     public static javax.swing.JLabel label;
     public static javax.swing.JLabel label1;

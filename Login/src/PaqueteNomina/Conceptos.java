@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package PaqueteNomina;
 
 import java.sql.*;
@@ -15,7 +11,12 @@ import java.util.Calendar;
 
 /**
  *
- * @author Sucely Alvarez
+ * @author Heydi Quemé
+ */
+/*
+ * La función de este form es la gestión de los conceptos relacionados a los puestos registrados en
+ * el sistema, lo que comprende el resgistro, modificación y eliminación de los mismos.
+ * 
  */
 public class Conceptos extends javax.swing.JFrame {
 

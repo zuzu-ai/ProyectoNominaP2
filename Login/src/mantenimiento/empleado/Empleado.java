@@ -10,12 +10,19 @@ import java.util.Calendar;
 import java.sql.SQLException;
 import java.util.HashSet;
 
+/**
+ *
+ * @author Ashly Barrios 9959-18-649
+ */
 public class Empleado extends javax.swing.JFrame {
 
     public static int clic;
     private int x;
     private int y;
-
+/**
+ *
+ * Funcion para mostrar la informacion que esta en la base de datos 
+ */
     public void tablas() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -108,7 +115,10 @@ public class Empleado extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+/**
+ *
+ * Funcion para poblar los combobox
+ */
     public void iniciar_combo() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -141,7 +151,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         tablas();
     }
-
+/**
+ *
+ * Funcion para actualizar los combobox
+ */
     public void refrescar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -178,7 +191,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         tablas();
     }
-
+/**
+ *
+ * Funcion para poblar la tabla de bitacora en la base de datos con la funcion de eliminar
+ */
     public void bitacora_eliminar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -217,7 +233,10 @@ public class Empleado extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion de guardar
+ */
     public void bitacora_guardar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -256,7 +275,10 @@ public class Empleado extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion de guardar
+ */
     public void bitacora_modificar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -295,7 +317,10 @@ public class Empleado extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora para la funcion busqueda
+ */
     public void bitacora_busqueda() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -333,7 +358,10 @@ public class Empleado extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla del tema en la base de datos
+ */
     public void tema() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -451,7 +479,10 @@ public class Empleado extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+/**
+ *
+ * Funcion para buscar la informacion que esta en la tabla del tema 
+ */
     public int getClic() {
         int c = 0;
 
@@ -471,7 +502,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         return c;
     }
-
+/**
+ *
+ * Funcion principal de la clase
+ */
     public Empleado() {
         initComponents();
         setLocationRelativeTo(null);
@@ -982,7 +1016,10 @@ public class Empleado extends javax.swing.JFrame {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-
+/**
+ *
+ * Funcion para mostrar el codigo del combobox
+ */
     private void cbox_PuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_PuestoActionPerformed
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -1005,7 +1042,10 @@ public class Empleado extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_cbox_PuestoActionPerformed
-
+/**
+ *
+ * Funcion para mostrar el codigo del combobox
+ */
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -1079,7 +1119,10 @@ public class Empleado extends javax.swing.JFrame {
             e.printStackTrace();
         }  
     }//GEN-LAST:event_cbox_IdActionPerformed
-
+/**
+ *
+ * Funcion para ingresar los datos en la base de datos
+ */
     private void btnIngresarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMousePressed
         if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty()
                 || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty() || date_Nacimiento.getCalendar() == null || date_Inicio.getCalendar() == null) {
@@ -1166,7 +1209,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnIngresarMousePressed
-
+/**
+ *
+ * Funcion para ingresar los datos en la base de datos
+ */
     private void btnIngresar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresar1MousePressed
         if (txt_Nombre.getText().isEmpty() || txt_Dpi.getText().isEmpty() || txt_Tel.getText().isEmpty() || txt_Ubicacion.getText().isEmpty() || txt_Sueldo.getText().isEmpty()
                 || lb_Dep.getText().isEmpty() || lb_Pues.getText().isEmpty() || date_Nacimiento.getCalendar() == null || date_Inicio.getCalendar() == null) {
@@ -1253,7 +1299,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnIngresar1MousePressed
-
+/**
+ *
+ * Funcion para limpiar los elementos en ek form
+ */
     private void limpiarbtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarbtnMousePressed
          txt_Nombre.setText("");
         txt_Dpi.setText("");
@@ -1276,7 +1325,10 @@ public class Empleado extends javax.swing.JFrame {
         txt_Estado.setEnabled(false);
 
     }//GEN-LAST:event_limpiarbtnMousePressed
-
+/**
+ *
+ * Funcion para limpiar los elementos en ek form
+ */
     private void btnLimpiar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiar1MousePressed
         txt_Nombre.setText("");
         txt_Dpi.setText("");
@@ -1298,7 +1350,10 @@ public class Empleado extends javax.swing.JFrame {
         btnEliminar1.setEnabled(false);
 
     }//GEN-LAST:event_btnLimpiar1MousePressed
-
+/**
+ *
+ * Funcion para modificar los datos en la base de datos
+ */
     private void btnModificar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificar1MousePressed
         // TODO add your handling code here:
         java.util.Date fecha = date_Nacimiento.getDate();
@@ -1371,7 +1426,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnModificar1MousePressed
-
+/**
+ *
+ * Funcion para modificar los datos en la base de datos
+ */
     private void btnModificar2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificar2MousePressed
         java.util.Date fecha = date_Nacimiento.getDate();
         long d = fecha.getTime();
@@ -1444,7 +1502,10 @@ public class Empleado extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnModificar2MousePressed
-
+/**
+ *
+ * Funcion para eliminar los datos en la base de datos
+ */
     private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
         java.util.Date fecha = date_F.getDate();
         long d = fecha.getTime();
@@ -1516,7 +1577,10 @@ public class Empleado extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnEliminarMousePressed
-
+/**
+ *
+ * Funcion para eliminar los datos en la base de datos
+ */
     private void btnEliminar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminar1MousePressed
         java.util.Date fecha = date_F.getDate();
         long d = fecha.getTime();

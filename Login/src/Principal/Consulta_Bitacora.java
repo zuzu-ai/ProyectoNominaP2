@@ -129,6 +129,11 @@ public class Consulta_Bitacora extends javax.swing.JFrame {
         setLocationRelativeTo(null); 
        this.clic=getClic();
         tema();
+    tabla_b.getColumnModel().getColumn(0).setPreferredWidth(40);
+     tabla_b.getColumnModel().getColumn(1).setPreferredWidth(60);
+      tabla_b.getColumnModel().getColumn(2).setPreferredWidth(380);
+       tabla_b.getColumnModel().getColumn(3).setPreferredWidth(80);
+       
     }
 
     /**
@@ -222,12 +227,13 @@ public class Consulta_Bitacora extends javax.swing.JFrame {
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, -1));
 
+        tabla_b.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         tabla_b.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Usuario", "Descripcion", "Fecha", "Hora"
+                "Código", "Usuario", "Descripción", "Fecha", "Hora"
             }
         ));
         jScrollPane1.setViewportView(tabla_b);

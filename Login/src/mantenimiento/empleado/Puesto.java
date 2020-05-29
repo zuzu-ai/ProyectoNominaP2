@@ -13,12 +13,20 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.Calendar;
 
+/**
+ *
+ * @author Ashly Barrios 9959-18-649
+ */
+
 public class Puesto extends javax.swing.JFrame {
 
     public static int clic;
     private int x;
     private int y;
-
+/**
+ *
+ * Funcion para que se muestre la tabla con la informacion que esta en la base de datos 
+ */
     public void tablas() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -41,7 +49,10 @@ public class Puesto extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+/**
+ *
+ * Funcion para poblar el combobox con la informacion correspondiente segun la base de datos
+ */
     public void iniciar_combo() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -59,7 +70,10 @@ public class Puesto extends javax.swing.JFrame {
 
         tablas();
     }
-
+ /**
+ *
+ * Funcion para actualizar los combobox
+ */
     public void refrescar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -77,7 +91,10 @@ public class Puesto extends javax.swing.JFrame {
         }
         tablas();
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla de bitacora en la base de datos con la funcion de eliminar
+ */
     public void bitacora_eliminar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -116,7 +133,10 @@ public class Puesto extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion de guardar
+ */
     public void bitacora_guardar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -155,7 +175,11 @@ public class Puesto extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion modificar
+ */
+    
     public void bitacora_modificar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -194,7 +218,10 @@ public class Puesto extends javax.swing.JFrame {
 
         }
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla bitacora para la funcion busqueda
+ */
     public void bitacora_busqueda() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -233,7 +260,10 @@ public class Puesto extends javax.swing.JFrame {
 
         }
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla del tema en la base de datos
+ */
     public void tema() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -322,7 +352,10 @@ public class Puesto extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+/**
+ *
+ * Funcion para buscar la informacion que esta en la tabla del tema 
+ */
     public int getClic() {
         int c = 0;
 
@@ -342,7 +375,10 @@ public class Puesto extends javax.swing.JFrame {
         }
         return c;
     }
-
+/**
+ *
+ * Funcion principal de la clase
+ */
     public Puesto() {
         initComponents();
         iniciar_combo();

@@ -7,13 +7,19 @@ import Principal.mdiMenuPrincipal;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.Calendar;
-
+/**
+ *
+ * @author Ashly Barrios 9959-18-649
+ */
 public class Departamento extends javax.swing.JFrame {
 
     public static int clic;
     private int x;
     private int y;
-
+/**
+ *
+ * Funcion para que se muestre la tabla con la informacion que esta en la base de datos 
+ */
     public void tablas() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -36,7 +42,10 @@ public class Departamento extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
+/**
+ *
+ * Funcion para actualizar los combobox
+ */
     public void refrescar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -54,7 +63,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         tablas();
     }
-
+/**
+ *
+ * Funcion para poblar el combobox con la informacion correspondiente segun la base de datos
+ */
     public void iniciar_combo() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -70,7 +82,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         tablas();
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla de bitacora en la base de datos con la funcion de eliminar
+ */
     public void bitacora_eliminar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -109,7 +124,10 @@ public class Departamento extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion de guardar
+ */
     public void bitacora_guardar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -148,7 +166,10 @@ public class Departamento extends javax.swing.JFrame {
 
         }
     }
-
+/**
+ *
+ * Funcion para poblar la tabla bitacora con la funcion modificar
+ */
     public void bitacora_modificar() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -186,7 +207,10 @@ public class Departamento extends javax.swing.JFrame {
         } catch (SQLException e) {
         }
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla bitacora para la funcion busqueda
+ */
     public void bitacora_busqueda() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -225,7 +249,10 @@ public class Departamento extends javax.swing.JFrame {
 
         }
     }
-
+ /**
+ *
+ * Funcion para poblar la tabla del tema en la base de datos
+ */
     public void tema() {
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -308,7 +335,10 @@ public class Departamento extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-
+/**
+ *
+ * Funcion para buscar la informacion que esta en la tabla del tema 
+ */
     public int getClic() {
         int c = 0;
         try {
@@ -326,7 +356,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         return c;
     }
-
+/**
+ *
+ * Funcion principal de la clase
+ */
     public Departamento() {
         initComponents();
         setLocationRelativeTo(null);
@@ -626,7 +659,10 @@ public class Departamento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ *
+ * Funcion para mostrar el codigo del combobox
+ */
     private void cbox_DepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbox_DepartamentoActionPerformed
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -686,7 +722,10 @@ public class Departamento extends javax.swing.JFrame {
         x = evt.getX();
         y = evt.getY();
     }//GEN-LAST:event_jPanel3MousePressed
-
+/**
+ *
+ * Funcion para ingresar los datos en la base de datos
+ */
     private void btnIngresarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMousePressed
         String puesto = txt_CrearDep.getText().trim();
         if (puesto.isEmpty()) {
@@ -719,7 +758,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnIngresarMousePressed
-
+/**
+ *
+ * Funcion para ingresar los datos en la base de datos
+ */
     private void btnIngresar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresar1MousePressed
         String puesto = txt_CrearDep.getText().trim();
         if (puesto.isEmpty()) {
@@ -752,7 +794,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnIngresar1MousePressed
-
+/**
+ *
+ * Funcion para limpiar los elementos en ek form
+ */
     private void limpiarbtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarbtnMousePressed
         txt_CrearDep.setText("");
         cbox_Departamento.setSelectedIndex(0);
@@ -778,7 +823,10 @@ public class Departamento extends javax.swing.JFrame {
         activo.setSelected(false);
 
     }//GEN-LAST:event_btnLimpiar1MousePressed
-
+/**
+ *
+ * Funcion para limpiar los elementos en ek form
+ */
     private void btnModificar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificar1MousePressed
         try {
             String codigo = cbox_Departamento.getSelectedItem().toString();
@@ -814,7 +862,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnModificar1MousePressed
-
+/**
+ *
+ * Funcion para modificar los datos en la base de datos
+ */
     private void btnModificar2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificar2MousePressed
         try {
             String codigo = cbox_Departamento.getSelectedItem().toString();
@@ -851,7 +902,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnModificar2MousePressed
-
+/**
+ *
+ * Funcion para modificar los datos en la base de datos
+ */
     private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
@@ -878,7 +932,10 @@ public class Departamento extends javax.swing.JFrame {
         }
         refrescar();
     }//GEN-LAST:event_btnEliminarMousePressed
-
+/**
+ *
+ * Funcion para eliminar los datos en la base de datos
+ */
     private void btnEliminar1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminar1MousePressed
         try {
             Connection cn = DriverManager.getConnection(mdiMenuPrincipal.BD, mdiMenuPrincipal.Usuario, mdiMenuPrincipal.Contraseña);
